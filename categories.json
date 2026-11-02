@@ -1,0 +1,59 @@
+{
+    "categories": [
+        {
+            "category": "Notebook",
+            "Description_EN": "Portable computers for personal and professional use.",
+            "Description_DE": "Tragbare Computer für den persönlichen und beruflichen Gebrauch.",
+            "icon": "category_notebook.png"
+        },
+        {
+            "category": "Tablet",
+            "Description_EN": "Touchscreen devices for media consumption, productivity, and communication.",
+            "Description_DE": "Touchscreen-Geräte für Medienkonsum, Produktivität und Kommunikation.",
+            "icon": "category_tablet.png"
+        },
+        {
+            "category": "Smartphone",
+            "Description_EN": "Mobile devices for communication, media consumption, and productivity.",
+            "Description_DE": "Mobile Geräte für Kommunikation, Medienkonsum und Produktivität.",
+            "icon": "category_smartphone.png"
+        },
+                {
+            "category": "Handheld",
+            "Description_EN": "Portable devices for communication, media consumption, and productivity.",
+            "Description_DE": "Tragbare Geräte für Kommunikation, Medienkonsum und Produktivität.",
+            "icon": "category_handheld.png"
+        },
+        {
+            "category": "Workstation",
+            "Description_EN": "Desktop and laptop computers for personal and professional use.",
+            "Description_DE": "Desktop- und Laptop-Computer für den persönlichen und beruflichen Gebrauch.",
+            "icon": "category_workstation.png"
+        }
+        ,
+        {
+            "category": "Printer",
+            "Description_EN": "Devices for printing documents and images.",
+            "Description_DE": "Geräte zum Drucken von Dokumenten und Bildern.",
+            "icon": "category_printer.png"
+        },
+         {
+            "category": "Virtual",
+            "Description_EN": "Virtual devices for various applications.",
+            "Description_DE": "Virtuelle Geräte für verschiedene Anwendungen.",
+            "icon": "category_virtual.png"
+        },
+                 {
+            "category": "IP Phone",
+            "Description_EN": "Internet Protocol phones for voice communication over the internet.",
+            "Description_DE": "Internetprotokoll-Telefone für die Sprachkommunikation über das Internet.",
+            "icon": "category_ip_phone.png"
+        },
+        {
+            "category": "Monitor",
+            "Description_EN": "Displays for computers and other devices.",
+            "Description_DE": "Bildschirme für Computer und andere Geräte.",
+            "icon": "category_monitor.png"
+        }
+    ]
+}
