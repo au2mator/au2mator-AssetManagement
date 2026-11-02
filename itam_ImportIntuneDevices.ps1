@@ -266,6 +266,140 @@ function Get-au2matorAPIPaging {
 
 
 
+function Get-ModelImageBase64 {
+    <#
+        Holt das offizielle Produktbild eines Modells von der Hersteller-URL
+        (Feld image_url aus models.json) und gibt es als Base64 zurueck.
+
+        Dieses Repository hostet KEINE Herstellerbilder. Hier wird nur ein Link
+        verfolgt - und auch das nur, wenn der Betreiber $DownloadModelImages
+        ausdruecklich aktiviert. Die Bilder gehoeren den jeweiligen Herstellern.
+
+        Faehrt der Download gegen die Wand, wird das protokolliert und $null
+        zurueckgegeben. Ein fehlendes Bild darf den Import NIE abbrechen.
+    #>
+    param (
+        [string]$ImageUrl,
+        [string]$ModelName,
+        [int]$TimeoutSec = 15
+    )
+
+    if ([string]::IsNullOrWhiteSpace($ImageUrl)) { return $null }
+
+    # Nur offizielle Hersteller-Domains. Gleiche Regel wie im Repository.
+    $AllowedHosts = @(
+        'cdsassets.apple.com', 'support.apple.com',
+        'images.samsung.com', 'www.samsung.com',
+        'i.dell.com', 'www.dell.com',
+        'ssl-product-images.www8-hp.com', 'www.hp.com',
+        'p1-ofp.static.pub', 'psref.lenovo.com', 'www.lenovo.com'
+    )
+
+    try {
+        $Uri = [Uri]$ImageUrl
+    }
+    catch {
+        Write-au2matorLog -Type WARNING -Text "Model image URL is not a valid URI for $($ModelName): $ImageUrl"
+        return $null
+    }
+
+    if ($Uri.Scheme -ne 'https') {
+        Write-au2matorLog -Type WARNING -Text "Model image URL is not HTTPS for $($ModelName): $ImageUrl"
+        return $null
+    }
+
+    if ($AllowedHosts -notcontains $Uri.Host) {
+        Write-au2matorLog -Type WARNING -Text "Model image host '$($Uri.Host)' is not an approved manufacturer domain - skipping image for $ModelName"
+        return $null
+    }
+
+    try {
+        $Response = Invoke-WebRequest -Uri $ImageUrl -UseBasicParsing -TimeoutSec $TimeoutSec -MaximumRedirection 3
+        $Bytes = $Response.Content
+        if ($Bytes -isnot [byte[]]) { $Bytes = $Response.RawContentStream.ToArray() }
+        if ($null -eq $Bytes -or $Bytes.Length -eq 0) {
+            Write-au2matorLog -Type WARNING -Text "Model image download was empty for $($ModelName): $ImageUrl"
+            return $null
+        }
+        Write-au2matorLog -Type INFO -Text "Downloaded model image for $ModelName ($([math]::Round($Bytes.Length / 1KB)) KB)"
+        return [Convert]::ToBase64String($Bytes)
+    }
+    catch {
+        Write-au2matorLog -Type WARNING -Text "Model image download failed for $($ModelName): $($_.Exception.Message)"
+        return $null
+    }
+}
+
+function Invoke-au2matorPatch {
+    <#
+        Schickt eine JSON-Patch-Operation an die au2mator-API.
+        Alle Update-Endpunkte folgen demselben Muster:
+          PATCH <BaseURL>/itam_AssetApi/<Endpoint>/<id>
+          ContentType application/json-patch+json
+          Body = Array aus @{ op = "replace"; path = "/feld"; value = "..." }
+        Belegt durch die OpenAPI-Spec fuer UpdateCategory, UpdateCompany,
+        UpdateUser, UpdateHardwareAsset, UpdateConfigurationItem, UpdateCountry.
+    #>
+    param (
+        [string]$BaseURL,
+        [hashtable]$Header,
+        [string]$Endpoint,
+        [string]$Id,
+        [array]$Operations,
+        [string]$Subject
+    )
+
+    if ($null -eq $Operations -or $Operations.Count -eq 0) { return $null }
+
+    $Body = ConvertTo-Json -InputObject @($Operations) -Depth 10
+    $Uri = "$($BaseURL)/itam_AssetApi/$($Endpoint)/$($Id)"
+
+    try {
+        $Response = Invoke-RestMethod -Method PATCH -Uri $Uri -Headers $Header -Body $Body -ContentType "application/json-patch+json"
+        Write-au2matorLog -Type INFO -Text "Updated $($Subject) - fields: $(($Operations | ForEach-Object { $_.path }) -join ', ')"
+        return $Response
+    }
+    catch {
+        Write-au2matorLog -Type ERROR -Text "Update failed for $($Subject) via $($Endpoint): $($_.Exception.Message)"
+        return $null
+    }
+}
+
+function Get-CategoryIconBase64 {
+    <#
+        Laedt ein Kategorie-Icon aus dem lokalen icons-Ordner als Base64.
+        Diese Icons stammen aus au2mators eigenem Icon-Set und liegen im
+        Repository - hier wird nichts von fremden Servern geholt.
+    #>
+    param (
+        [string]$IconFileName,
+        [string]$IconDirectory,
+        [string]$CategoryName
+    )
+
+    if ([string]::IsNullOrWhiteSpace($IconFileName)) {
+        Write-au2matorLog -Type WARNING -Text "No icon defined for category $CategoryName"
+        return $null
+    }
+
+    $IconPath = Join-Path -Path $IconDirectory -ChildPath $IconFileName
+
+    # Leaf-Pruefung: ohne sie wuerde ein leerer Dateiname auf das Verzeichnis
+    # selbst zeigen, Test-Path true liefern und ReadAllBytes eine Exception werfen.
+    if (-not (Test-Path -Path $IconPath -PathType Leaf)) {
+        Write-au2matorLog -Type WARNING -Text "Icon not found for category $($CategoryName): $IconPath"
+        return $null
+    }
+
+    try {
+        return [Convert]::ToBase64String([System.IO.File]::ReadAllBytes($IconPath))
+    }
+    catch {
+        Write-au2matorLog -Type WARNING -Text "Icon could not be read for category $($CategoryName): $($_.Exception.Message)"
+        return $null
+    }
+}
+
 #endregion Functions
 
 
@@ -301,6 +435,31 @@ $BAseDir = "C:\_SCOworkingDir\TFS\au2mator-AssetManagement"
 #Sync Settings
 $ImportUnknownDevices = $false
 $LogFileForUnknownDevices = "C:\_au2mator\_SourceControl\au2mator\PS-Service\LOGS\TASKS\UnknownDevices.log"
+
+#region Image Settings
+# Kategorie-Icons stammen aus au2mators eigenem Icon-Set und liegen als Dateien
+# im Repository. Unkritisch, daher standardmaessig aktiv.
+$ImportCategoryIcons = $true
+
+# Modellbilder sind NICHT Teil dieses Repositories. models.json enthaelt nur
+# einen Link auf das Bild beim Hersteller (Feld image_url). Wird dieser Schalter
+# aktiviert, laedt der Import das Bild vom Server des Herstellers und legt es in
+# DIESER au2mator-Installation ab.
+#
+# Das ist bewusst eine Entscheidung des Betreibers und deshalb standardmaessig
+# AUS: die Bilder gehoeren den jeweiligen Herstellern, nicht au2mator. Wer den
+# Schalter umlegt, muss sich selbst vergewissern, die noetigen Rechte zu haben.
+$DownloadModelImages = $false
+$ModelImageTimeoutSec = 15
+
+# Bestehende Kategorien und Modelle in ITAM gegen die JSON abgleichen und
+# Beschreibung bzw. Bild nachziehen, wenn sie abweichen.
+# Standardmaessig AUS: wer das aktiviert, laesst die JSON gewinnen und
+# ueberschreibt damit ggf. Aenderungen, die jemand in au2mator gemacht hat.
+# Es wird ausschliesslich bei echter Abweichung geschrieben.
+$UpdateExistingCategories = $false
+$UpdateExistingModels = $false
+#endregion Image Settings
 
 
 #region Script
@@ -474,7 +633,7 @@ try {
 
             $UpdateBodyJson = $UpdateBody | ConvertTo-Json -Depth 10
             $Update_URL = "$($au2mator_BaseURL)/itam_AssetApi/UpdateUser/$($ITAMUser.id)"
-            $UpdateBodyJson
+            Write-au2matorLog -Type DEBUG -Text "User update payload: $UpdateBodyJson"
             Write-au2matorLog -Type INFO -Text "Updating User: $($User.userPrincipalName) - $($User.displayName) - $($User.companyName)"
             $Response = Invoke-RestMethod -Method PATCH -Uri $Update_URL -Headers $au2mator_Header -Body $UpdateBodyJson  -ContentType "application/json; charset=utf-8"
             Write-au2matorLog -Type INFO -Text "Updated User: $($User.userPrincipalName) - Response: $($Response.message)"
@@ -561,13 +720,15 @@ try {
                     key_model_intune   = $_.key_model_intune
                     model_number       = $_.model_number
                     Description_EN     = $_.Description_EN
+                    Description_DE     = $_.Description_DE
                     release_year       = $_.release_year
-                    icon               = $_.icon
+                    image_url          = $_.image_url
+                    image_source       = $_.image_source
                 }
             }
         }
     }
-    $JSONModels.count
+    Write-au2matorLog -Type INFO -Text "Models available in JSON: $($JSONModels.count)"
 
 
     #Get Details from au2mator
@@ -594,7 +755,8 @@ try {
         $ITAMCategoryLookup[$key] = $obj
     }
 
-    $AllITAMAssets = get-au2matorAPIPaging -URL "$($au2mator_BaseURL)/itam_AssetAPI/GetAllHArdwareAssets" -Header $au2mator_Header
+    # Endpunktname laut OpenAPI-Spec: GetAllHardwareAssets
+    $AllITAMAssets = get-au2matorAPIPaging -URL "$($au2mator_BaseURL)/itam_AssetApi/GetAllHardwareAssets" -Header $au2mator_Header
     $ITAMDeviceLookup = @{}
     foreach ($obj in $AllITAMAssets) {
         $key = "$($obj.serialNumber)"
@@ -632,15 +794,104 @@ try {
 
 
 
+    #region UpdateExisting
+    # Bestehende Kategorien und Modelle gegen die JSON abgleichen.
+    #
+    # Bewusst EIGENE Schleifen vor der Geraeteverarbeitung: die Anlage-Logik
+    # weiter unten haengt in "foreach ($Device in $DevicesNotInITAM)" und der
+    # Kategorie-Zweig zusaetzlich in "if ($NewModel)". Dort eingehaengt wuerde
+    # ein Update bestehende Objekte praktisch nie erreichen - die existieren ja
+    # gerade dann, wenn auch die Geraete schon in ITAM sind.
+
+    if ($UpdateExistingCategories) {
+        Write-au2matorLog -Type INFO -Text "Checking existing categories against JSON"
+        $CategoriesUpdated = 0
+        $CategoriesChecked = 0
+
+        foreach ($JSONCategory in $JSONCategories.categories) {
+            $ITAMCategory = $ITAMCategoryLookup[$JSONCategory.category]
+            if ($null -eq $ITAMCategory) { continue }   # neu -> legt die Anlage-Logik an
+            $CategoriesChecked++
+
+            $Operations = @()
+
+            $DesiredDescription = $JSONCategory."Description_$ImportLanguage"
+            if (-not [string]::IsNullOrWhiteSpace($DesiredDescription) -and $DesiredDescription -ne $ITAMCategory.description) {
+                $Operations += @{ op = "replace"; path = "/description"; value = "$DesiredDescription" }
+            }
+
+            if ($ImportCategoryIcons) {
+                $DesiredIcon = Get-CategoryIconBase64 -IconFileName $JSONCategory.icon -IconDirectory (Join-Path $BaseDir 'icons') -CategoryName $JSONCategory.category
+                if ($null -ne $DesiredIcon -and $DesiredIcon -ne $ITAMCategory.icon) {
+                    $Operations += @{ op = "replace"; path = "/icon"; value = "$DesiredIcon" }
+                }
+            }
+
+            if ($Operations.Count -gt 0) {
+                $Result = Invoke-au2matorPatch -BaseURL $au2mator_BaseURL -Header $au2mator_Header -Endpoint "UpdateCategory" -Id $ITAMCategory.id -Operations $Operations -Subject "category $($JSONCategory.category)"
+                if ($null -ne $Result) { $CategoriesUpdated++ }
+            }
+        }
+
+        Write-au2matorLog -Type INFO -Text "Categories checked: $CategoriesChecked - updated: $CategoriesUpdated"
+    }
+    else {
+        Write-au2matorLog -Type INFO -Text "Skipping category update - UpdateExistingCategories is disabled"
+    }
+
+    if ($UpdateExistingModels) {
+        Write-au2matorLog -Type INFO -Text "Checking existing models against JSON"
+        $ModelsUpdated = 0
+        $ModelsChecked = 0
+
+        foreach ($JSONModel in $JSONModels) {
+            if ([string]::IsNullOrWhiteSpace($JSONModel.key_model_intune)) { continue }
+
+            $ITAMModel = $ITAMModelLookup[$JSONModel.key_model_intune]
+            if ($null -eq $ITAMModel) { continue }      # neu -> legt die Anlage-Logik an
+            $ModelsChecked++
+
+            $Operations = @()
+
+            $DesiredDescription = $JSONModel."Description_$ImportLanguage"
+            if (-not [string]::IsNullOrWhiteSpace($DesiredDescription) -and $DesiredDescription -ne $ITAMModel.description) {
+                $Operations += @{ op = "replace"; path = "/description"; value = "$DesiredDescription" }
+            }
+
+            # Bild nur nachtragen, wenn in ITAM noch keines hinterlegt ist.
+            # Ein Vergleich wuerde bedeuten, bei JEDEM Lauf fuer JEDES Modell
+            # das Bild beim Hersteller zu laden - das waeren hunderte Abrufe
+            # pro Durchlauf, nur um dann meist nichts zu tun.
+            if ($DownloadModelImages -and [string]::IsNullOrWhiteSpace($ITAMModel.icon) -and -not [string]::IsNullOrWhiteSpace($JSONModel.image_url)) {
+                $DesiredImage = Get-ModelImageBase64 -ImageUrl $JSONModel.image_url -ModelName $JSONModel.model_name -TimeoutSec $ModelImageTimeoutSec
+                if ($null -ne $DesiredImage) {
+                    $Operations += @{ op = "replace"; path = "/icon"; value = "$DesiredImage" }
+                }
+            }
+
+            if ($Operations.Count -gt 0) {
+                $Result = Invoke-au2matorPatch -BaseURL $au2mator_BaseURL -Header $au2mator_Header -Endpoint "UpdateModel" -Id $ITAMModel.id -Operations $Operations -Subject "model $($JSONModel.model_name)"
+                if ($null -ne $Result) { $ModelsUpdated++ }
+            }
+        }
+
+        Write-au2matorLog -Type INFO -Text "Models checked: $ModelsChecked - updated: $ModelsUpdated"
+    }
+    else {
+        Write-au2matorLog -Type INFO -Text "Skipping model update - UpdateExistingModels is disabled"
+    }
+    #endregion UpdateExisting
+
+
     $DevicesNotInITAM = $IntuneDeviceKeys | Where-Object { -not $ITAMDeviceLookup.ContainsKey($_) } | ForEach-Object { $IntuneDeviceLookup[$_] }
-    $DevicesNotInITAM.count
+    Write-au2matorLog -Type INFO -Text "Devices in Intune but not in ITAM: $($DevicesNotInITAM.count)"
 
 
     $DevicesAlreadyInITAM = $IntuneDeviceKeys | Where-Object { $ITAMDeviceLookup.ContainsKey($_) } | ForEach-Object { $IntuneDeviceLookup[$_] }
-    $DevicesAlreadyInITAM.count
+    Write-au2matorLog -Type INFO -Text "Devices already in ITAM: $($DevicesAlreadyInITAM.count)"
 
     $DevicesNotInIntune = $ITAMDeviceKeys | Where-Object { -not $IntuneDeviceLookup.ContainsKey($_) } | ForEach-Object { $ITAMDeviceLookup[$_] }
-    $DevicesNotInIntune.count
+    Write-au2matorLog -Type INFO -Text "Devices in ITAM but no longer in Intune: $($DevicesNotInIntune.count)"
 
 
 
@@ -660,7 +911,10 @@ try {
         if ($null -eq $ModelMatchITAM) {
             #Model does not exist in a2uamtor, check Model JSON
             $ModelMatchJSON = $null
-            $ModelMatchJSON = $JSONModels | Where-Object { $_.key_model_intune -eq $Device.model }
+            # Select-Object -First 1 ist Absicht: in models.json gibt es Modelle,
+            # die sich denselben key_model_intune teilen. Ohne das waere
+            # $ModelMatchJSON ein Array und jedes Feld im Request-Body ebenfalls.
+            $ModelMatchJSON = $JSONModels | Where-Object { $_.key_model_intune -eq $Device.model } | Select-Object -First 1
 
 
             if ($null -ne $ModelMatchJSON) {
@@ -683,9 +937,9 @@ try {
                         isManufacturer = $true
                     }
                     $ImportBodyJson = $ImportBody | ConvertTo-Json -Depth 3
-                    Write-Host "Creating Manufacturer: $($ModelMatchJSON.manufacturer) for Model: $($ModelMatchJSON.model_name)"
+                    Write-au2matorLog -Type INFO -Text "Creating Manufacturer: $($ModelMatchJSON.manufacturer) for Model: $($ModelMatchJSON.model_name)"
                     $Response = Invoke-RestMethod -Method POST -Uri "$($au2mator_BaseURL)/itam_AssetApi/CreateCompany" -Headers $au2mator_Header -Body $ImportBodyJson -ContentType "application/json; charset=utf-8"
-                    Write-Host "Created Manufacturer: $($ModelMatchJSON.manufacturer)"
+                    Write-au2matorLog -Type INFO -Text "Created Manufacturer: $($ModelMatchJSON.manufacturer)"
                 
                     foreach ($obj in $Response) {
                         $key = "$($obj.shortName)"
@@ -707,31 +961,36 @@ try {
                         #New ITAM Category
                         $CategoryDetails = $JSONCategorieLookup[$ModelMatchJSON.category]
 
-
-                        #Icon to BAse64
-                        $IconPath = "$BaseDir\Icons\$($CategoryDetails.icon)"
-                        if (Test-Path -Path $IconPath) {
-                            $IconBytes = [System.IO.File]::ReadAllBytes($IconPath)
-                            $IconBase64 = [Convert]::ToBase64String($IconBytes)
-                            $CategoryDetails.icon = $IconBase64
-                        }
-                        else {
-                            Write-Host "Icon not found for Category: $($CategoryDetails.category) - Path: $IconPath"
-                            $CategoryDetails.icon = $null
+                        # models.json kann eine Kategorie verwenden, die
+                        # categories.json nicht kennt (aktuell: Server). Ohne
+                        # diesen Guard wuerde unten mit name = $null angelegt und
+                        # das Icon-Handling auf das Verzeichnis statt auf eine
+                        # Datei zeigen - Test-Path meldet dann true und
+                        # ReadAllBytes wirft eine Exception.
+                        if ($null -eq $CategoryDetails) {
+                            Write-au2matorLog -Type WARNING -Text "Category '$($ModelMatchJSON.category)' is used in models.json but not defined in categories.json - skipping model $($ModelMatchJSON.model_name)"
+                            continue
                         }
 
-
+                        # Bewusst in eine eigene Variable, NICHT zurueck nach
+                        # $CategoryDetails.icon: das Objekt liegt im Lookup und
+                        # wuerde sonst dauerhaft den Base64-String statt des
+                        # Dateinamens tragen.
+                        $CategoryIconBase64 = $null
+                        if ($ImportCategoryIcons) {
+                            $CategoryIconBase64 = Get-CategoryIconBase64 -IconFileName $CategoryDetails.icon -IconDirectory (Join-Path $BaseDir 'icons') -CategoryName $CategoryDetails.category
+                        }
 
                         $ImportBody = @{
         
                             name        = $CategoryDetails.category
                             description = $CategoryDetails."Description_$ImportLanguage"
-                            icon        = $CategoryDetails.icon
+                            icon        = $CategoryIconBase64
                         }
                         $ImportBodyJson = $ImportBody | ConvertTo-Json -Depth 3
-                        Write-Host "Creating Category: $($CategoryDetails.category) for Model: $($ModelMatchJSON.model_name)"
+                        Write-au2matorLog -Type INFO -Text "Creating Category: $($CategoryDetails.category) for Model: $($ModelMatchJSON.model_name)"
                         $Response = Invoke-RestMethod -Method POST -Uri "$($au2mator_BaseURL)/itam_AssetApi/CreateCategory" -Headers $au2mator_Header -Body $ImportBodyJson -ContentType "application/json; charset=utf-8"
-                        Write-Host "Created Category: $($CategoryDetails.category)"
+                        Write-au2matorLog -Type INFO -Text "Created Category: $($CategoryDetails.category)"
                         foreach ($obj in $Response) {
                             $key = "$($obj.name)"
                             $ITAMCategoryLookup[$key] = $obj
@@ -739,44 +998,41 @@ try {
                         $CategoryMatchITAM = $ITAMCategoryLookup[$ModelMatchJSON.category]
                     }
                     
-                    #Icon to BAse64
-                    $IconPath = "$BaseDir\icons\$($ModelMatchJSON.icon)"
-                    try {
-                        if ((Test-Path -Path $IconPath) -and $ModelMatchJSON.icon -like "*.png") {
-           
-                            $IconBytes = [System.IO.File]::ReadAllBytes($IconPath)
-                            $IconBase64 = [Convert]::ToBase64String($IconBytes)
-                            $ModelMatchJSON.icon = $IconBase64
-                        }
-                        else {
-                            Write-Host "Icon not found for Model: $($ModelMatchJSON.model_name) - Path: $IconPath"
-                            $ModelMatchJSON.icon = $null
-                        }
+                    # Modellbild: nur wenn der Betreiber es ausdruecklich will.
+                    # models.json liefert lediglich den Link zum Hersteller.
+                    $ModelImageBase64 = $null
+                    if ($DownloadModelImages) {
+                        $ModelImageBase64 = Get-ModelImageBase64 -ImageUrl $ModelMatchJSON.image_url -ModelName $ModelMatchJSON.model_name -TimeoutSec $ModelImageTimeoutSec
                     }
-                    catch {
-                        Write-Host "Icon not found for Model: $($ModelMatchJSON.model_name) - Path: $IconPath"
-                        $ModelMatchJSON.icon = $null
-                    }    
 
                     $ImportBody = @{
                         name           = $ModelMatchJSON.model_name
                         description    = $($ModelMatchJSON."Description_$ImportLanguage")
-                        icon           = $ModelMatchJSON.icon
+                        icon           = $ModelImageBase64
                         modelNumber    = $ModelMatchJSON.key_model_intune
                         manufacturerId = $ManufacturerID
                         categoryId     = $CategoryMatchITAM.id
                         keymodelintune = $ModelMatchJSON.key_model_intune
                     }
                     $ImportBodyJson = $ImportBody | ConvertTo-Json -Depth 3
-                    Write-Host "Creating Model: $($ModelMatchJSON.model_name)"
+                    Write-au2matorLog -Type INFO -Text "Creating Model: $($ModelMatchJSON.model_name)"
                     $Response = Invoke-RestMethod -Method POST -Uri "$($au2mator_BaseURL)/itam_AssetApi/CreateModel" -Headers $au2mator_Header -Body $ImportBodyJson -ContentType "application/json; charset=utf-8"
 
-                    Write-Host "Created Model: $($ModelMatchJSON.model_name)"
+                    Write-au2matorLog -Type INFO -Text "Created Model: $($ModelMatchJSON.model_name)"
                     foreach ($obj in $Response) {
                         $key = "$($obj.modelNumber)"
                         $ITAMModelLookup[$key] = $obj
                     }
-                    $ModelMatchITAM = $ITAMModelLookup[$ModelMatchJSON.model_number]
+                    # Angelegt wird mit modelNumber = key_model_intune, also muss
+                    # auch damit nachgeschlagen werden. Mit model_number lief der
+                    # Lookup bei jedem Modell ins Leere, dessen Artikelnummer von
+                    # der Intune-Bezeichnung abweicht (Apple, ASUS, Acer, ...) -
+                    # das Geraet wurde dann stillschweigend uebersprungen und erst
+                    # im naechsten Lauf angelegt.
+                    $ModelMatchITAM = $ITAMModelLookup[$ModelMatchJSON.key_model_intune]
+                    if ($null -eq $ModelMatchITAM) {
+                        Write-au2matorLog -Type WARNING -Text "Model $($ModelMatchJSON.model_name) was created but could not be read back - device will be picked up on the next run"
+                    }
                     #Start-Sleep -Seconds 5
                 }
                 #
@@ -819,14 +1075,14 @@ try {
             }
             $ImportBodyJson = $ImportBody | ConvertTo-Json -Depth 3
 
-            $ImportBodyJson
+            Write-au2matorLog -Type DEBUG -Text "Hardware asset payload: $ImportBodyJson"
 
 
-            Write-Host "Creating Device: $($Device.deviceName)" 
+            Write-au2matorLog -Type INFO -Text "Creating Device: $($Device.deviceName)" 
             #Start-Sleep -Seconds 10
             $Response = Invoke-RestMethod -Method POST -Uri "$($au2mator_BaseURL)/itam_AssetApi/CreateHardwareAsset" -Headers $au2mator_Header -Body $ImportBodyJson -ContentType "application/json; charset=utf-8"
             #Start-Sleep -Seconds 5
-            Write-Host "Created Device: $($Device.deviceName)"
+            Write-au2matorLog -Type INFO -Text "Created Device: $($Device.deviceName)"
         }
 
     }
@@ -856,7 +1112,7 @@ try {
 
             if ($ItamObjectDetails.company.id -ne $ItamCompanyObject.id -or $ItamObjectDetails.location.id -ne $null) {
                 #Update Company in ITAM
-                Write-Host "Updating Company in ITAM for Device: $($Device.deviceName) - Serial: $($Device.serialNumber)"
+                Write-au2matorLog -Type INFO -Text "Updating Company in ITAM for Device: $($Device.deviceName) - Serial: $($Device.serialNumber)"
                 #Start-Sleep -Seconds 10
                 $ImportBody = @(
                     @{
@@ -897,7 +1153,7 @@ try {
 
                 if ($ItamUserObjectDetails.company.id -ne $ItamObjectDetails.company.id -or $ItamUserObjectDetails.location.id -ne $ItamObjectDetails.location.id) {
                     $Update = $true
-                    Write-Host "Updating Company and Location in ITAM for Device: $($Device.deviceName) - Serial: $($Device.serialNumber)"
+                    Write-au2matorLog -Type INFO -Text "Updating Company and Location in ITAM for Device: $($Device.deviceName) - Serial: $($Device.serialNumber)"
                     #Start-Sleep -Seconds 10
                     $ImportBody += @(
            
@@ -917,7 +1173,7 @@ try {
                 #Check AssignedTo in ITAM and Intune, if not the same, update in ITAM
                 if ($ITAMDevice.assignedTo.upn -ne $Device.userPrincipalName) {
                     $Update = $true
-                    Write-Host "Updating AssignedTo in ITAM for Device: $($Device.deviceName) - Serial: $($Device.serialNumber)"
+                    Write-au2matorLog -Type INFO -Text "Updating AssignedTo in ITAM for Device: $($Device.deviceName) - Serial: $($Device.serialNumber)"
                     $ImportBody += @(
                         @{
                             op    = "replace"
@@ -928,7 +1184,7 @@ try {
                 }
 
                 if ($Update) {
-                    Write-Host "Updating Device: $($Device.deviceName) - Serial: $($Device.serialNumber) in ITAM"
+                    Write-au2matorLog -Type INFO -Text "Updating Device: $($Device.deviceName) - Serial: $($Device.serialNumber) in ITAM"
                     $ImportBodyJson = ConvertTo-Json -InputObject $ImportBody -Depth 10
 
                     $Response = Invoke-RestMethod -Method PATCH -Uri "$($au2mator_BaseURL)/itam_AssetApi/UpdateHardwareAsset/$($ITAMDevice.id)" `
@@ -940,7 +1196,7 @@ try {
                 }  
             }
             catch {
-                Write-Host "Error getting ITAM User Details for Device: $($Device.deviceName) - Serial: $($Device.serialNumber) - User: $($Device.userPrincipalName) - Error: $($_.Exception.Message)"
+                Write-au2matorLog -Type ERROR -Text "Error getting ITAM User Details for Device: $($Device.deviceName) - Serial: $($Device.serialNumber) - User: $($Device.userPrincipalName) - Error: $($_.Exception.Message)"
             }
        
         }
@@ -952,7 +1208,7 @@ try {
     foreach ($Device in $DevicesNotInIntune) {
         #Check if Device is In Use or Offline in ITAM, if In Use, we need to set it to Offline, because it is not in Intune anymore
         if ($Device.status.id -eq $InUseStatusID) {
-            Write-Host "Device: $($Device.name) - Serial: $($Device.serialNumber) is In Use in ITAM but not in Intune anymore, setting to Offline"
+            Write-au2matorLog -Type INFO -Text "Device: $($Device.name) - Serial: $($Device.serialNumber) is In Use in ITAM but not in Intune anymore, setting to Offline"
 
         
             $UpdateBody = @(
@@ -967,9 +1223,9 @@ try {
 
 
 
-            Write-Host "Setting Device: $($Device.name) - Serial: $($Device.serialNumber) to Offline"
+            Write-au2matorLog -Type INFO -Text "Setting Device: $($Device.name) - Serial: $($Device.serialNumber) to Offline"
             $Response = Invoke-RestMethod -Method PATCH -Uri "$($au2mator_BaseURL)/itam_AssetApi/UpdateHardwareAsset/$($Device.id)" -Headers $au2mator_Header -Body $UpdateBodyJson -ContentType "application/json; charset=utf-8"
-            Write-Host "Set Device: $($Device.name) - Serial: $($Device.serialNumber) to Offline"
+            Write-au2matorLog -Type INFO -Text "Set Device: $($Device.name) - Serial: $($Device.serialNumber) to Offline"
         }
     }
 
@@ -1114,7 +1370,7 @@ foreach ($company in $DEV_Companies) {
         #"HALT"; Start-Sleep -Seconds 10
         #GetCompany from DEV for Country Info
         $DEV_Company = Invoke-RestMethod -Method GET -Uri "$($au2mator_DEV_BaseURL)/itam_AssetApi/GetCompany?Id=$($company.id)" -Headers $au2mator_DEV_Header
-        $DEV_Company.country
+        Write-au2matorLog -Type DEBUG -Text "Company country: $($DEV_Company.country)"
 
         #Get Country from Prod
         $PROD_Country = $PROD_Countries | Where-Object { $_.name -eq $DEV_Company.country.name }
@@ -1134,9 +1390,9 @@ foreach ($company in $DEV_Companies) {
 
         }
         $ImportBodyJson = $ImportBody | ConvertTo-Json -Depth 3
-        Write-Host "Importing Company: $($DEV_Company.name) - $($DEV_Company.shortName) - $($PROD_Country.name)"
+        Write-au2matorLog -Type INFO -Text "Importing Company: $($DEV_Company.name) - $($DEV_Company.shortName) - $($PROD_Country.name)"
         $Response = Invoke-RestMethod -Method POST -Uri $Post_URL -Headers $au2mator_Header -Body $ImportBodyJson -ContentType "application/json; charset=utf-8"
-        Write-Host "Imported Company: $($DEV_Company.name) - Response: $($Response.message)"
+        Write-au2matorLog -Type INFO -Text "Imported Company: $($DEV_Company.name) - Response: $($Response.message)"
 
 
     }
@@ -1195,9 +1451,9 @@ foreach ($location in $DEV_Locations) {
 
     }
     $ImportBodyJson = $ImportBody | ConvertTo-Json -Depth 3
-    Write-Host "Importing Location: $($TargetLocation.name) - $($PROD_Country.name)"
+    Write-au2matorLog -Type INFO -Text "Importing Location: $($TargetLocation.name) - $($PROD_Country.name)"
     $Response = Invoke-RestMethod -Method POST -Uri $Post_URL -Headers $au2mator_Header -Body $ImportBodyJson -ContentType "application/json; charset=utf-8"
-    Write-Host "Imported Location: $($TargetLocation.name) - Response: $($Response.message)"
+    Write-au2matorLog -Type INFO -Text "Imported Location: $($TargetLocation.name) - Response: $($Response.message)"
 
 
 
@@ -1260,7 +1516,7 @@ foreach ($User in $PROD_Users) {
 
             $UpdateBodyJson = $UpdateBody | ConvertTo-Json -Depth 10
             $Response = Invoke-RestMethod -Method PATCH -Uri $Update_URL -Headers $au2mator_Header -Body $UpdateBodyJson -ContentType "application/json; charset=utf-8"
-            Write-Host "Updated User: $($User.upn) - Response: $($Response.message)"
+            Write-au2matorLog -Type INFO -Text "Updated User: $($User.upn) - Response: $($Response.message)"
 
 
 
