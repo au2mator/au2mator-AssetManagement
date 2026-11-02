@@ -573,7 +573,7 @@ try {
     write-au2matorLog -Type INFO -Text "Total Users in ITAM: $($AllITAMUsers.count)"
 
 
-    #Baumit Company Details
+    #Lookups nach userPrincipalName aufbauen
     $GraphLookup = @{}
     foreach ($obj in $AllEntraUsers) {
         $key = "$($obj.userPrincipalName)"
