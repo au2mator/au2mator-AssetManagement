@@ -62,8 +62,9 @@ ZOTAC, MINIX, VMware, Zebra, Honeywell, KEYENCE, Poly, Yealink, step.
 ## Images: linked, never hosted
 
 This repository ships **neutral category icons only** — one per device type,
-referenced from `categories.json`. It deliberately contains **no manufacturer
-product photos**.
+referenced from `categories.json`, drawn from au2mator's own icon set and
+free for you to reuse. It deliberately contains **no manufacturer product
+photos**.
 
 Product photography is copyrighted by the manufacturer, and no reseller or
 syndication licence covers redistributing it through a public repository.
@@ -146,12 +147,13 @@ own import against the au2mator ITAM API, this data is usable as-is.
 
 [MIT](LICENSE).
 
-[`NOTICE.md`](NOTICE.md) adds three clarifications that the MIT text does not
-cover on its own: an explicit grant of **EU database rights** over the data
-files so you can extract and re-use them without ambiguity, confirmation that
-**manufacturer images linked via `image_url` are not licensed here** and are
-never hosted in this repository, and the note that contributions are accepted
-under the same licence.
+[`NOTICE.md`](NOTICE.md) adds the clarifications the MIT text does not cover
+on its own: an explicit grant of **EU database rights** over the data files
+so you can extract and re-use them without ambiguity, confirmation that the
+**category icons are au2mator's own work** and need no third-party
+attribution, confirmation that **manufacturer images linked via `image_url`
+are not licensed here** and are never hosted in this repository, and the note
+that contributions are accepted under the same licence.
 
 ---
 

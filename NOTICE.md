@@ -16,7 +16,14 @@ or any of its member states, au2mator GmbH grants the same permissions in
 respect of those rights, including the right to extract and re-utilise the
 contents in whole or in substantial part.
 
-## 2. Linked third-party images are NOT licensed here
+## 2. The category icons are our own work
+
+The nine neutral category icons in `icons/` are part of au2mator's internal
+icon set, created by au2mator GmbH. They are covered by the MIT grant like
+everything else here, so you may use, modify and redistribute them freely,
+including commercially. No third-party attribution is required.
+
+## 3. Linked third-party images are NOT licensed here
 
 Some records contain an `image_url` field pointing to an image hosted by the
 respective hardware manufacturer, alongside the official page it was taken
@@ -33,7 +40,7 @@ Manufacturer names, product names, trade marks and product designs appearing
 in this data belong to their respective owners and are used for identification
 purposes only.
 
-## 3. Contributions
+## 4. Contributions
 
 Unless you state otherwise in writing, any contribution you submit for
 inclusion in this repository is provided under the terms of the MIT License.
