@@ -144,15 +144,14 @@ own import against the au2mator ITAM API, this data is usable as-is.
 
 ## Licence
 
-[MIT](LICENSE) — including an explicit grant of EU database rights over the
-data files, so you can extract and re-use them without ambiguity.
+[MIT](LICENSE).
 
-Two things the licence does **not** cover, spelled out in `LICENSE`:
-manufacturer images linked through `image_url` are owned by the
-manufacturers and are never hosted here, and manufacturer and product names
-appear for identification only.
-
-Contributions are accepted under the same licence.
+[`NOTICE.md`](NOTICE.md) adds three clarifications that the MIT text does not
+cover on its own: an explicit grant of **EU database rights** over the data
+files so you can extract and re-use them without ambiguity, confirmation that
+**manufacturer images linked via `image_url` are not licensed here** and are
+never hosted in this repository, and the note that contributions are accepted
+under the same licence.
 
 ---
 
