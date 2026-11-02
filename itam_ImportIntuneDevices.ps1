@@ -3,7 +3,7 @@
 $a2m_Environment = "local"          # local | AAHybrid | AAnoHybrid
 $a2m_LogLevel = "INFO"              # DEBUG | INFO | WARNING | ERROR
 $a2m_LogLocation = "Local"             # Local | Hybrid | Azure
-$a2m_LogPath = "C:\_au2mator\_SourceControl\au2mator\PS-Service\LOGS\TASKS"
+$a2m_LogPath = "C:\_SCOworkingDir\TFS\au2mator-AssetManagement\LOGS\TASKS"
 $a2m_LogFileName = "TASK_0011_SyncEntraAssets"
 $a2m_DeleteAfterDays = 30
 $global:a2m_AZKVResponse = $null
@@ -487,6 +487,8 @@ $BAseDir = "C:\_SCOworkingDir\TFS\au2mator-AssetManagement"
 $ImportUnknownDevices = $false
 $LogFileForUnknownDevices = "C:\_au2mator\_SourceControl\au2mator\PS-Service\LOGS\TASKS\UnknownDevices.log"
 
+$InternalCompanyShort="au2mator"
+
 #region Image Settings
 # Kategorie-Icons stammen aus au2mators eigenem Icon-Set und liegen als Dateien
 # im Repository. Unkritisch, daher standardmaessig aktiv.
@@ -506,16 +508,16 @@ $ModelImageTimeoutSec = 15
 # Herstellerlogos. models.json hinterlegt pro Hersteller einen Link auf das
 # Logo auf der offiziellen Herstellerseite. Gleiche Ueberlegung wie bei den
 # Modellbildern: das Logo gehoert dem Hersteller, wir verlinken nur.
-$DownloadCompanyLogos = $false
+$DownloadCompanyLogos = $true
 
 # Bestehende Kategorien, Modelle und Hersteller in ITAM gegen die JSON
 # abgleichen und Beschreibung bzw. Bild nachziehen, wenn sie abweichen.
 # Standardmaessig AUS: wer das aktiviert, laesst die JSON gewinnen und
 # ueberschreibt damit ggf. Aenderungen, die jemand in au2mator gemacht hat.
 # Es wird ausschliesslich bei echter Abweichung geschrieben.
-$UpdateExistingCategories = $false
-$UpdateExistingModels = $false
-$UpdateExistingCompanies = $false
+$UpdateExistingCategories = $true
+$UpdateExistingModels = $true
+$UpdateExistingCompanies = $true
 
 # Von diesen Hosts darf ein Bild geladen werden. Ausschliesslich offizielle
 # Herstellerdomains - keine Haendler, keine Logo-Sammlungen, keine Spiegel.
@@ -545,7 +547,7 @@ try {
     $Entra_header = Get-GraphHeader -ClientID $Entra_AppReg_clientID -TenantID $Entra_AppReg_tenantID -Secret $Entra_AppReg_Clientsecret 
 
     $Resource = "users"
-    $uri = "https://graph.microsoft.com/v1.0/$($Resource)?`$select=displayName,givenName,postalCode,identities,surname,userPrincipalName,companyName,accountEnabled,onPremisesExtensionAttributes"
+    $uri = "https://graph.microsoft.com/v1.0/$($Resource)?`$select=displayName,givenName,postalCode,identities,surname,userPrincipalName,companyName,accountEnabled"
     $AllEntraUsers = Get-AzureResourcePaging -URL $uri -AuthHeader $Entra_header
 
     Write-au2matorLog -Type INFO -Text "Total Users in Entra: $($AllEntraUsers.count)"
@@ -597,7 +599,7 @@ try {
             name         = $User.displayName
             firstName    = $User.givenName
             lastName     = $User.surname
-            companyId    = ($AllITAMCompanies | Where-Object { $_.shortName -eq $User.onPremisesExtensionAttributes.extensionAttribute15 }).id
+            companyId    = ($AllITAMCompanies | Where-Object { $_.shortName -eq "$InternalCompanyShort"}).id
             userStatusId = switch ($User.accountEnabled) {
                 $true { ($AllUSerStatus.items | Where-Object { $_.name -eq "Active" }).id }
                 $false { ($AllUSerStatus.items | Where-Object { $_.name -eq "Inactive" }).id }
@@ -639,16 +641,16 @@ try {
         }
         #Company
         $UpdateCompany = $false
-        If (($AllITAMCompanies | Where-Object { $_.shortName -eq $User.onPremisesExtensionAttributes.extensionAttribute15 }).name -ne $ITAMUserObject.company.name) {
-            #$UpdateBody.companyId = ($AllITAMCompanies | Where-Object { $_.shortName -eq $User.onPremisesExtensionAttributes.extensionAttribute15 }).id
+        If (($AllITAMCompanies | Where-Object { $_.shortName -eq $InternalCompanyShort }).name -ne $ITAMUserObject.company.name) {
+            
 
             #checkl if we have a company with the shortName in ITAM
-            If (($AllITAMCompanies | Where-Object { $_.shortName -eq $User.onPremisesExtensionAttributes.extensionAttribute15 }).id) {
+            If (($AllITAMCompanies | Where-Object { $_.shortName -eq $InternalCompanyShort }).id) {
                 
                 $UpdateCompany = $true
             }
             else {
-                Write-au2matorLog -Type WARNING -Text "Company with shortName $($User.onPremisesExtensionAttributes.extensionAttribute15) not found in ITAM for user $($User.userPrincipalName)"
+                Write-au2matorLog -Type WARNING -Text "Company with shortName $($InternalCompanyShort) not found in ITAM for user $($User.userPrincipalName)"
             }
 
             
@@ -696,7 +698,7 @@ try {
                     @{
                         op    = "replace"
                         path  = "/companyId"
-                        value = ($AllITAMCompanies | Where-Object { $_.shortName -eq $User.onPremisesExtensionAttributes.extensionAttribute15 }).id
+                        value = ($AllITAMCompanies | Where-Object { $_.shortName -eq $InternalCompanyShort }).id
                     }
                 }
             )
@@ -751,16 +753,6 @@ try {
     $uri = "https://graph.microsoft.com/v1.0/$($Resource)"
     $AllIntuneDevices = Get-AzureResourcePaging -URL "https://graph.microsoft.com/v1.0/deviceManagement/managedDevices" -AuthHeader $Intune_header
     $IntuneDeviceLookup = @{}
-
-
-    $IntuneScopeTageLookup = @{}
-
-    $Scopes = Invoke-RestMethod -Uri  "https://graph.microsoft.com/beta/deviceManagement/roleScopeTags" -Headers $Intune_header -Method Get
-
-    foreach ($Scope in $Scopes.value) {
-        $key = "$($Scope.id)"
-        $IntuneScopeTageLookup[$key] = $Scope
-    }
 
 
 
@@ -845,6 +837,13 @@ try {
         $ITAMModelLookup[$key] = $obj
     }
 
+        $ITAMModelLookup_keyModelIntune = @{}
+    foreach ($obj in $AllITAMModels) {
+        $key = "$($obj.keyModelIntune)"
+        $ITAMModelLookup_keyModelIntune[$key] = $obj
+    }
+
+
 
 
 
@@ -912,7 +911,7 @@ try {
         Write-au2matorLog -Type INFO -Text "Skipping category update - UpdateExistingCategories is disabled"
     }
 
-    if ($UpdateExistingModels) {
+    if ($ITAMModelLookup_keyModelIntune) {
         Write-au2matorLog -Type INFO -Text "Checking existing models against JSON"
         $ModelsUpdated = 0
         $ModelsChecked = 0
@@ -920,7 +919,7 @@ try {
         foreach ($JSONModel in $JSONModels) {
             if ([string]::IsNullOrWhiteSpace($JSONModel.key_model_intune)) { continue }
 
-            $ITAMModel = $ITAMModelLookup[$JSONModel.key_model_intune]
+            $ITAMModel = $ITAMModelLookup_keyModelIntune[$JSONModel.key_model_intune]
             if ($null -eq $ITAMModel) { continue }      # neu -> legt die Anlage-Logik an
             $ModelsChecked++
 
@@ -1160,7 +1159,7 @@ try {
             
                 #Logging to LogFileForUnknownDevices with alle Infos
 
-                $LogEntry = "Device: $($Device.deviceName) - Serial: $($Device.serialNumber) - Model: $($Device.model) - Manufacturer: $($Device.manufacturer) - UserPrincipalName: $($Device.userPrincipalName) - Company: $($GraphLookup[$Device.userPrincipalName].onPremisesExtensionAttributes.extensionAttribute15)"
+                $LogEntry = "Device: $($Device.deviceName) - Serial: $($Device.serialNumber) - Model: $($Device.model) - Manufacturer: $($Device.manufacturer) - UserPrincipalName: $($Device.userPrincipalName)"
                 Add-Content -Path $LogFileForUnknownDevices -Value $LogEntry
 
             }
@@ -1173,7 +1172,6 @@ try {
             $AssignedUserCompany = ""
             if ($Device.userPrincipalName -ne $null) {
                 $AssignedUser = $ITAMUserLookup[$Device.userPrincipalName]
-                $AssignedUserCompany = $GraphLookup[$Device.userPrincipalName].onPremisesExtensionAttributes.extensionAttribute15
             }
     
 
@@ -1189,8 +1187,7 @@ try {
                 name           = $Device.deviceName
                 manufacturerId = $ModelMatchITAM.manufacturer.id
                 statusId       = $InUseStatusID
-                companyId      = ($AllITAMCompanies | Where-Object { $_.shortName -eq $AssignedUserCompany }).id
-            }
+                        }
             $ImportBodyJson = $ImportBody | ConvertTo-Json -Depth 3
 
             Write-au2matorLog -Type DEBUG -Text "Hardware asset payload: $ImportBodyJson"
@@ -1208,114 +1205,7 @@ try {
 
     foreach ($Device in $DevicesAlreadyInITAM) {
         #Check adssigned to and set in ITAM/au2mator
-        $ITAMDevice = $ITAMDeviceLookup[$Device.serialNumber]
-        #$Device.userPrincipalName
-
-        #$ITAMDevice.assignedTo.upn
-        $ItamObjectDetails = Invoke-RestMethod -Method GET -Uri "$($au2mator_BaseURL)/itam_AssetApi/GetHardwareAsset?id=$($ITAMDevice.id)" -Headers $au2mator_Header
-        #$ItamObjectDetails.serialNumber
-        if ($Device.userPrincipalName.Length -eq 0) {
-            #Assigned to is empty in both, so set company to Intune ScopeTag and clear Location in ITAM
-            #"LEER";
-            #Asset Location leeren
-
-            #Get ScopeDtag from Entra
-            $DeviceDetails = Invoke-RestMethod -Uri  "https://graph.microsoft.com/beta/deviceManagement/managedDevices/$($Device.id)?`$select=roleScopeTagIds" -Headers $Intune_header -Method Get
-            $ScopeTagIDs = $DeviceDetails.roleScopeTagIds
-
-            #Get ScopeTag Names from Entra
-            $IntuneScopeTageLookup[$ScopeTagIDs[0]].displayName
-            $ItamCompanyObject = $ITAMCompanyLookup_ShortName[$IntuneScopeTageLookup[$ScopeTagIDs[0]].displayName]
-
-
-            if ($ItamObjectDetails.company.id -ne $ItamCompanyObject.id -or $ItamObjectDetails.location.id -ne $null) {
-                #Update Company in ITAM
-                Write-au2matorLog -Type INFO -Text "Updating Company in ITAM for Device: $($Device.deviceName) - Serial: $($Device.serialNumber)"
-                #Start-Sleep -Seconds 10
-                $ImportBody = @(
-                    @{
-                        op    = "replace"
-                        path  = "/companyId"
-                        value = "$($ItamCompanyObject.id)"
-                    },
-                    @{
-                        op    = "replace"
-                        path  = "/locationId"
-                        value = ""
-                    }, @{
-                        op    = "replace"
-                        path  = "/assignedToId"
-                        value = ""
-                    }
-                ) 
-
-                $ImportBodyJson = ConvertTo-Json -InputObject $ImportBody -Depth 10
-
-                $Response = Invoke-RestMethod -Method PATCH -Uri "$($au2mator_BaseURL)/itam_AssetApi/UpdateHardwareAsset/$($ITAMDevice.id)" `
-                    -Headers $au2mator_Header -Body $ImportBodyJson -ContentType "application/json-patch+json" 
-            }
-
-    
-        }
-        else {
-            #Update AssignedTo in ITAM
-            Write-au2matorLog -Type DEBUG -Text "Assignment differs for $($Device.deviceName) - ITAM: '$($ITAMDevice.assignedTo.upn)' / Intune: '$($Device.userPrincipalName)'"
-
-            $ITAMUser = $ITAMUserLookup[$Device.userPrincipalName]
-            try {
-                $ItamUserObjectDetails = Invoke-RestMethod -Method GET -Uri "$($au2mator_BaseURL)/itam_AssetApi/GetUser?id=$($ITAMUser.id)" -Headers $au2mator_Header
-                $Update = $false
-                $ImportBody = @()
-
-                if ($ItamUserObjectDetails.company.id -ne $ItamObjectDetails.company.id -or $ItamUserObjectDetails.location.id -ne $ItamObjectDetails.location.id) {
-                    $Update = $true
-                    Write-au2matorLog -Type INFO -Text "Updating Company and Location in ITAM for Device: $($Device.deviceName) - Serial: $($Device.serialNumber)"
-                    #Start-Sleep -Seconds 10
-                    $ImportBody += @(
-           
-                        @{
-                            op    = "replace"
-                            path  = "/companyId"
-                            value = "$($ItamUserObjectDetails.company.id)"
-                        },
-                        @{
-                            op    = "replace"
-                            path  = "/locationId"
-                            value = "$($ItamUserObjectDetails.location.id)"
-                        }
-                    )               
-                }
-
-                #Check AssignedTo in ITAM and Intune, if not the same, update in ITAM
-                if ($ITAMDevice.assignedTo.upn -ne $Device.userPrincipalName) {
-                    $Update = $true
-                    Write-au2matorLog -Type INFO -Text "Updating AssignedTo in ITAM for Device: $($Device.deviceName) - Serial: $($Device.serialNumber)"
-                    $ImportBody += @(
-                        @{
-                            op    = "replace"
-                            path  = "/assignedToId"
-                            value = "$($ITAMUser.id)"
-                        }
-                    )
-                }
-
-                if ($Update) {
-                    Write-au2matorLog -Type INFO -Text "Updating Device: $($Device.deviceName) - Serial: $($Device.serialNumber) in ITAM"
-                    $ImportBodyJson = ConvertTo-Json -InputObject $ImportBody -Depth 10
-
-                    $Response = Invoke-RestMethod -Method PATCH -Uri "$($au2mator_BaseURL)/itam_AssetApi/UpdateHardwareAsset/$($ITAMDevice.id)" `
-                        -Headers $au2mator_Header -Body $ImportBodyJson -ContentType "application/json-patch+json" 
-
-                }
-                else {
-                    Write-au2matorLog -Type DEBUG -Text "No Update needed for Device: $($Device.deviceName) - Serial: $($Device.serialNumber) in ITAM"
-                }  
-            }
-            catch {
-                Write-au2matorLog -Type ERROR -Text "Error getting ITAM User Details for Device: $($Device.deviceName) - Serial: $($Device.serialNumber) - User: $($Device.userPrincipalName) - Error: $($_.Exception.Message)"
-            }
-       
-        }
+      
     }
 
 
