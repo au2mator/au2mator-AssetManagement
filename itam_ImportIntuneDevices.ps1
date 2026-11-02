@@ -16,6 +16,64 @@ $a2m_AZKeyVaultName = "AA-Prod-au2matorInternal"
 
 #region Functions
 
+function Write-au2matorLog {
+    [CmdletBinding()]
+    param
+    (
+        [ValidateSet('DEBUG', 'INFO', 'WARNING', 'ERROR')]
+        [string]$Type,
+        [string]$Text
+    )
+
+    if ($a2m_LogLevel -eq "DEBUG" -and ($Type -eq "DEBUG" -or $Type -eq "INFO" -or $Type -eq "WARNING" -or $Type -eq "ERROR")) {
+        $Logging = $true
+    }
+    elseif ($a2m_LogLevel -eq "INFO" -and ($Type -eq "INFO" -or $Type -eq "WARNING" -or $Type -eq "ERROR")) {
+        $Logging = $true
+    }
+    elseif ($a2m_LogLevel -eq "WARNING" -and ($Type -eq "WARNING" -or $Type -eq "ERROR")) {
+        $Logging = $true
+    }
+    elseif ($a2m_LogLevel -eq "ERROR" -and $Type -eq "ERROR") {
+        $Logging = $true
+    }
+    else {
+        $Logging = $false
+    }
+
+    if ($Logging) {
+        if (($a2m_Environment -eq "AAHybrid" -or $a2m_Environment -eq "local") -and ($a2m_LogLocation -eq "Local" -or $a2m_LogLocation -eq "Hybrid")) {
+            if (!(Test-Path -Path $a2m_LogPath)) {
+                try {
+                    $null = New-Item -Path $a2m_LogPath -ItemType Directory
+                    Write-Verbose ("Path: ""{0}"" was created." -f $a2m_LogPath)
+                }
+                catch {
+                    Write-Verbose ("Path: ""{0}"" couldn't be created." -f $a2m_LogPath)
+                }
+            }
+            else {
+                Write-Verbose ("Path: ""{0}"" already exists." -f $a2m_LogPath)
+            }
+            [string]$logFile = '{0}\{1}_{2}.log' -f $a2m_LogPath, $(Get-Date -Format 'yyyyMMdd'), $a2m_LogFileName
+            $logEntry = '{0}: <{1}> <{2}> <{3}> {4}' -f $(Get-Date -Format dd.MM.yyyy-HH:mm:ss), $Type, $RequestId, $Service, $Text
+            Out-File -FilePath $logFile -Append -InputObject $logEntry -Encoding utf8
+        }
+        if (($a2m_Environment -eq "AAHybrid" -or $a2m_Environment -eq "AAnoHybrid") -and ($a2m_LogLocation -eq "Hybrid" -or $a2m_LogLocation -eq "Azure")) {
+            $logEntry = '{0}: <{1}> {2}' -f $(Get-Date -Format yyyyMMdd_HHmmss), $Type, $Text
+
+            switch ($Type) {
+                INFO { Write-Debug $logEntry }
+                WARNING { Write-Warning $logEntry }
+                ERROR { Write-Error $logEntry }
+                DEBUG { Write-Debug $logEntry }
+                Default { Write-Debug $logEntry }
+            }
+        }
+    }
+
+}
+
 function Get-GraphHeader {
     param (
         $ClientID,
