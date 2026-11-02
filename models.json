@@ -1107,7 +1107,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://www.apple.com/apple-touch-icon.png",
+            "image_source": "https://www.apple.com/",
+            "image_checked": "2026-11-02"
         },
         {
             "manufacturer": "Fujitsu Technology Solutions GmbH",
@@ -3854,7 +3857,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://www.hp.com/apple-touch-icon.png",
+            "image_source": "https://www.hp.com/",
+            "image_checked": "2026-11-02"
         },
         {
             "manufacturer": "Lenovo Inc.",
@@ -6765,7 +6771,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://resources.samsung.com/etc.clientlibs/samsung/clientlibs/consumer/global/clientlib-common/resources/images/app_ico.png",
+            "image_source": "https://www.samsung.com/",
+            "image_checked": "2026-11-02"
         },
         {
             "manufacturer": "Dell Inc.",
@@ -8316,7 +8325,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://www.dell.com/favicon.svg",
+            "image_source": "https://www.dell.com/",
+            "image_checked": "2026-11-02"
         },
         {
             "manufacturer": "Zebra Technologies",
@@ -8384,7 +8396,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://www.zebra.com/etc.clientlibs/zebra-web/clientlibs/clientlib-site/resources/images/favicons/192x192.png",
+            "image_source": "https://www.zebra.com/",
+            "image_checked": "2026-11-02"
         },
         {
             "manufacturer": "MINIX Technology Limited",
@@ -8421,7 +8436,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://www.minix.com.hk/cdn/shop/files/minix-logo-180x180-2_e81a89a4-0cfe-4fed-8f90-79d12547aacd.png?v=1736928687&width=180",
+            "image_source": "https://www.minix.com.hk/",
+            "image_checked": "2026-11-02"
         },
         {
             "manufacturer": "VMware, Inc.",
@@ -8471,7 +8489,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://www.vmware.com/vm-favicon-96x96.png",
+            "image_source": "https://www.vmware.com/",
+            "image_checked": "2026-11-02"
         },
         {
             "manufacturer": "Microsoft Corporation",
@@ -8770,7 +8791,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://www.intel.com/apple-touch-icon.png",
+            "image_source": "https://www.intel.com/",
+            "image_checked": "2026-11-02"
         },
         {
             "manufacturer": "Honeywell International",
@@ -8807,7 +8831,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://www.honeywell.com/content/dam/honcorp/us-en/common-assets/logos/hon-honeywell-technologies-logo-mini.svg",
+            "image_source": "https://www.honeywell.com/",
+            "image_checked": "2026-11-02"
         },
         {
             "manufacturer": "ASUSTeK Computer Inc.",
@@ -8966,7 +8993,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://www.asus.com/new_asus_ico_256x256.png",
+            "image_source": "https://www.asus.com/",
+            "image_checked": "2026-11-02"
         },
         {
             "manufacturer": "Acer Inc.",
@@ -9042,7 +9072,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://www.acer.com/apple-touch-icon.png",
+            "image_source": "https://www.acer.com/",
+            "image_checked": "2026-11-02"
         },
         {
             "manufacturer": "Gigabyte Technology Co., Ltd.",
@@ -9157,7 +9190,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://www.gigabyte.com/favicon.svg",
+            "image_source": "https://www.gigabyte.com/",
+            "image_checked": "2026-11-02"
         },
         {
             "manufacturer": "Poly (HP)",
@@ -9257,7 +9293,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://www.hpe.com/content/dam/hpe/favicons/favicon.svg",
+            "image_source": "https://www.hpe.com/",
+            "image_checked": "2026-11-02"
         },
         {
             "manufacturer": "Alienware (Dell Technologies)",
@@ -9305,7 +9344,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://us.dynabook.com/images/udc/2026/footer/footer-dynabook-logo-xl-1.svg",
+            "image_source": "https://us.dynabook.com/",
+            "image_checked": "2026-11-02"
         },
         {
             "manufacturer": "Micro-Star International Co., Ltd.",
@@ -9384,7 +9426,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://step-solutions.de/assets/favicon/sale/apple-touch-icon.png",
+            "image_source": "https://step-solutions.de/",
+            "image_checked": "2026-11-02"
         }
     ]
 }

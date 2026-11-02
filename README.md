@@ -84,6 +84,9 @@ the manufacturer's own server:
   verify the origin instead of trusting it
 - `image_checked` — when the link was last confirmed to resolve
 
+The same three fields exist on each **manufacturer**, pointing at that
+company's own logo on its own website.
+
 A model carries **either its correct own image or none at all**. Models
 without an image simply have no image fields. Falling back to a category
 icon is a presentation decision, handled by au2mator Asset Management
@@ -104,7 +107,14 @@ installation.
 
 Current coverage: **Apple, 68 of 68 models**, linked to Apple's own support
 CDN and sourced from Apple's four "Identify your ..." pages. Other
-manufacturers fall back to category icons for now.
+manufacturers have no model images yet.
+
+**Manufacturer logos: 15 of 24**, each taken from that manufacturer's own
+site. The remaining nine are deliberately empty rather than wrong: some
+sites expose nothing better than a 32×32 `favicon.ico`, some block automated
+access, and for sub-brands the only logo on offer belonged to the parent
+company. A missing logo renders as the category icon, which beats showing
+the wrong brand.
 
 ## Contributing
 

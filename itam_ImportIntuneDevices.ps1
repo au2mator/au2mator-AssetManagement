@@ -266,13 +266,14 @@ function Get-au2matorAPIPaging {
 
 
 
-function Get-ModelImageBase64 {
+function Get-RemoteImageBase64 {
     <#
-        Holt das offizielle Produktbild eines Modells von der Hersteller-URL
-        (Feld image_url aus models.json) und gibt es als Base64 zurueck.
+        Holt ein Bild von einer offiziellen Herstellerseite (Feld image_url aus
+        models.json - fuer Modelle wie fuer Hersteller) und gibt es als Base64
+        zurueck.
 
-        Dieses Repository hostet KEINE Herstellerbilder. Hier wird nur ein Link
-        verfolgt - und auch das nur, wenn der Betreiber $DownloadModelImages
+        Dieses Repository hostet KEINE Hersteller-Bilder oder -Logos. Hier wird
+        nur ein Link verfolgt - und auch das nur, wenn der Betreiber es
         ausdruecklich aktiviert. Die Bilder gehoeren den jeweiligen Herstellern.
 
         Faehrt der Download gegen die Wand, wird das protokolliert und $null
@@ -280,36 +281,28 @@ function Get-ModelImageBase64 {
     #>
     param (
         [string]$ImageUrl,
-        [string]$ModelName,
+        [string]$Subject,
+        [string[]]$AllowedHosts,
         [int]$TimeoutSec = 15
     )
 
     if ([string]::IsNullOrWhiteSpace($ImageUrl)) { return $null }
 
-    # Nur offizielle Hersteller-Domains. Gleiche Regel wie im Repository.
-    $AllowedHosts = @(
-        'cdsassets.apple.com', 'support.apple.com',
-        'images.samsung.com', 'www.samsung.com',
-        'i.dell.com', 'www.dell.com',
-        'ssl-product-images.www8-hp.com', 'www.hp.com',
-        'p1-ofp.static.pub', 'psref.lenovo.com', 'www.lenovo.com'
-    )
-
     try {
         $Uri = [Uri]$ImageUrl
     }
     catch {
-        Write-au2matorLog -Type WARNING -Text "Model image URL is not a valid URI for $($ModelName): $ImageUrl"
+        Write-au2matorLog -Type WARNING -Text "Image URL is not a valid URI for $($Subject): $ImageUrl"
         return $null
     }
 
     if ($Uri.Scheme -ne 'https') {
-        Write-au2matorLog -Type WARNING -Text "Model image URL is not HTTPS for $($ModelName): $ImageUrl"
+        Write-au2matorLog -Type WARNING -Text "Image URL is not HTTPS for $($Subject): $ImageUrl"
         return $null
     }
 
     if ($AllowedHosts -notcontains $Uri.Host) {
-        Write-au2matorLog -Type WARNING -Text "Model image host '$($Uri.Host)' is not an approved manufacturer domain - skipping image for $ModelName"
+        Write-au2matorLog -Type WARNING -Text "Image host '$($Uri.Host)' is not an approved manufacturer domain - skipping image for $Subject"
         return $null
     }
 
@@ -318,14 +311,14 @@ function Get-ModelImageBase64 {
         $Bytes = $Response.Content
         if ($Bytes -isnot [byte[]]) { $Bytes = $Response.RawContentStream.ToArray() }
         if ($null -eq $Bytes -or $Bytes.Length -eq 0) {
-            Write-au2matorLog -Type WARNING -Text "Model image download was empty for $($ModelName): $ImageUrl"
+            Write-au2matorLog -Type WARNING -Text "Image download was empty for $($Subject): $ImageUrl"
             return $null
         }
-        Write-au2matorLog -Type INFO -Text "Downloaded model image for $ModelName ($([math]::Round($Bytes.Length / 1KB)) KB)"
+        Write-au2matorLog -Type INFO -Text "Downloaded image for $Subject ($([math]::Round($Bytes.Length / 1KB)) KB)"
         return [Convert]::ToBase64String($Bytes)
     }
     catch {
-        Write-au2matorLog -Type WARNING -Text "Model image download failed for $($ModelName): $($_.Exception.Message)"
+        Write-au2matorLog -Type WARNING -Text "Image download failed for $($Subject): $($_.Exception.Message)"
         return $null
     }
 }
@@ -452,13 +445,35 @@ $ImportCategoryIcons = $true
 $DownloadModelImages = $false
 $ModelImageTimeoutSec = 15
 
-# Bestehende Kategorien und Modelle in ITAM gegen die JSON abgleichen und
-# Beschreibung bzw. Bild nachziehen, wenn sie abweichen.
+# Herstellerlogos. models.json hinterlegt pro Hersteller einen Link auf das
+# Logo auf der offiziellen Herstellerseite. Gleiche Ueberlegung wie bei den
+# Modellbildern: das Logo gehoert dem Hersteller, wir verlinken nur.
+$DownloadCompanyLogos = $false
+
+# Bestehende Kategorien, Modelle und Hersteller in ITAM gegen die JSON
+# abgleichen und Beschreibung bzw. Bild nachziehen, wenn sie abweichen.
 # Standardmaessig AUS: wer das aktiviert, laesst die JSON gewinnen und
 # ueberschreibt damit ggf. Aenderungen, die jemand in au2mator gemacht hat.
 # Es wird ausschliesslich bei echter Abweichung geschrieben.
 $UpdateExistingCategories = $false
 $UpdateExistingModels = $false
+$UpdateExistingCompanies = $false
+
+# Von diesen Hosts darf ein Bild geladen werden. Ausschliesslich offizielle
+# Herstellerdomains - keine Haendler, keine Logo-Sammlungen, keine Spiegel.
+# Wer models.json um weitere Hersteller ergaenzt, traegt deren Domain hier ein.
+$AllowedImageHosts = @(
+    'cdsassets.apple.com', 'support.apple.com', 'www.apple.com',
+    'images.samsung.com', 'www.samsung.com', 'resources.samsung.com',
+    'i.dell.com', 'www.dell.com',
+    'ssl-product-images.www8-hp.com', 'www.hp.com', 'www.hpe.com',
+    'p1-ofp.static.pub', 'p3-ofp.static.pub', 'psref.lenovo.com', 'www.lenovo.com',
+    'www.zebra.com', 'www.minix.com.hk', 'www.vmware.com', 'www.microsoft.com',
+    'www.intel.com', 'www.honeywell.com', 'www.asus.com', 'www.acer.com',
+    'images.acer.com', 'www.gigabyte.com', 'us.dynabook.com', 'emea.dynabook.com',
+    'www.yealink.com', 'www.keyence.com', 'www.zotac.com', 'www.msi.com',
+    'www.fujitsu.com', 'www.poly.com', 'www.alienware.com', 'step-solutions.de'
+)
 #endregion Image Settings
 
 
@@ -863,7 +878,7 @@ try {
             # das Bild beim Hersteller zu laden - das waeren hunderte Abrufe
             # pro Durchlauf, nur um dann meist nichts zu tun.
             if ($DownloadModelImages -and [string]::IsNullOrWhiteSpace($ITAMModel.icon) -and -not [string]::IsNullOrWhiteSpace($JSONModel.image_url)) {
-                $DesiredImage = Get-ModelImageBase64 -ImageUrl $JSONModel.image_url -ModelName $JSONModel.model_name -TimeoutSec $ModelImageTimeoutSec
+                $DesiredImage = Get-RemoteImageBase64 -ImageUrl $JSONModel.image_url -Subject "model $($JSONModel.model_name)" -AllowedHosts $AllowedImageHosts -TimeoutSec $ModelImageTimeoutSec
                 if ($null -ne $DesiredImage) {
                     $Operations += @{ op = "replace"; path = "/icon"; value = "$DesiredImage" }
                 }
@@ -879,6 +894,43 @@ try {
     }
     else {
         Write-au2matorLog -Type INFO -Text "Skipping model update - UpdateExistingModels is disabled"
+    }
+
+    if ($UpdateExistingCompanies) {
+        Write-au2matorLog -Type INFO -Text "Checking existing manufacturers against JSON"
+        $CompaniesUpdated = 0
+        $CompaniesChecked = 0
+
+        foreach ($JSONManufacturer in $JSONManufacturers.manufacturers) {
+            $ITAMCompany = $ITAMCompanyLookup_ShortName[$JSONManufacturer.short_name]
+            if ($null -eq $ITAMCompany) { continue }   # neu -> legt die Anlage-Logik an
+            $CompaniesChecked++
+
+            $Operations = @()
+
+            if (-not [string]::IsNullOrWhiteSpace($JSONManufacturer.manufacturer) -and $JSONManufacturer.manufacturer -ne $ITAMCompany.name) {
+                $Operations += @{ op = "replace"; path = "/name"; value = "$($JSONManufacturer.manufacturer)" }
+            }
+
+            # Logo wie beim Modell nur nachtragen, wenn in ITAM noch keines
+            # hinterlegt ist - sonst laedt jeder Lauf alle Logos neu.
+            if ($DownloadCompanyLogos -and [string]::IsNullOrWhiteSpace($ITAMCompany.icon) -and -not [string]::IsNullOrWhiteSpace($JSONManufacturer.image_url)) {
+                $DesiredLogo = Get-RemoteImageBase64 -ImageUrl $JSONManufacturer.image_url -Subject "company $($JSONManufacturer.short_name)" -AllowedHosts $AllowedImageHosts -TimeoutSec $ModelImageTimeoutSec
+                if ($null -ne $DesiredLogo) {
+                    $Operations += @{ op = "replace"; path = "/icon"; value = "$DesiredLogo" }
+                }
+            }
+
+            if ($Operations.Count -gt 0) {
+                $Result = Invoke-au2matorPatch -BaseURL $au2mator_BaseURL -Header $au2mator_Header -Endpoint "UpdateCompany" -Id $ITAMCompany.id -Operations $Operations -Subject "company $($JSONManufacturer.short_name)"
+                if ($null -ne $Result) { $CompaniesUpdated++ }
+            }
+        }
+
+        Write-au2matorLog -Type INFO -Text "Manufacturers checked: $CompaniesChecked - updated: $CompaniesUpdated"
+    }
+    else {
+        Write-au2matorLog -Type INFO -Text "Skipping manufacturer update - UpdateExistingCompanies is disabled"
     }
     #endregion UpdateExisting
 
@@ -931,10 +983,18 @@ try {
 
                     $ManafacturerDetails = $JSONManufacturerLookup[$ModelMatchJSON.manufacturer_short]
 
+                    # Herstellerlogo nur, wenn der Betreiber es will. models.json
+                    # liefert lediglich den Link auf die offizielle Herstellerseite.
+                    $CompanyLogoBase64 = $null
+                    if ($DownloadCompanyLogos) {
+                        $CompanyLogoBase64 = Get-RemoteImageBase64 -ImageUrl $ManafacturerDetails.image_url -Subject "company $($ManafacturerDetails.short_name)" -AllowedHosts $AllowedImageHosts -TimeoutSec $ModelImageTimeoutSec
+                    }
+
                     $ImportBody = @{
                         name           = $ManafacturerDetails.manufacturer
                         shortname      = $ManafacturerDetails.short_name
                         isManufacturer = $true
+                        icon           = $CompanyLogoBase64
                     }
                     $ImportBodyJson = $ImportBody | ConvertTo-Json -Depth 3
                     Write-au2matorLog -Type INFO -Text "Creating Manufacturer: $($ModelMatchJSON.manufacturer) for Model: $($ModelMatchJSON.model_name)"
@@ -1002,7 +1062,7 @@ try {
                     # models.json liefert lediglich den Link zum Hersteller.
                     $ModelImageBase64 = $null
                     if ($DownloadModelImages) {
-                        $ModelImageBase64 = Get-ModelImageBase64 -ImageUrl $ModelMatchJSON.image_url -ModelName $ModelMatchJSON.model_name -TimeoutSec $ModelImageTimeoutSec
+                        $ModelImageBase64 = Get-RemoteImageBase64 -ImageUrl $ModelMatchJSON.image_url -Subject "model $($ModelMatchJSON.model_name)" -AllowedHosts $AllowedImageHosts -TimeoutSec $ModelImageTimeoutSec
                     }
 
                     $ImportBody = @{
