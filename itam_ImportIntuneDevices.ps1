@@ -487,11 +487,8 @@ $BAseDir = "C:\_SCOworkingDir\TFS\au2mator-AssetManagement"
 $ImportUnknownDevices = $false
 $LogFileForUnknownDevices = "C:\_au2mator\_SourceControl\au2mator\PS-Service\LOGS\TASKS\UnknownDevices.log"
 
-<<<<<<< HEAD
 $InternalCompanyShort="au2mator"
 
-#region Image Settings
-=======
 #region Import Settings - Bilder und Updates
 #
 #   Bilder
@@ -509,7 +506,6 @@ $InternalCompanyShort="au2mator"
 #     $AllowedImageHosts         erlaubte Hersteller-Domains fuer Bild-Downloads
 #
 
->>>>>>> 293b16f2fe5f68608f5641cfb75c898d8e25d153
 # Kategorie-Icons stammen aus au2mators eigenem Icon-Set und liegen als Dateien
 # im Repository. Unkritisch, daher standardmaessig aktiv.
 $ImportCategoryIcons = $true
@@ -528,16 +524,16 @@ $ModelImageTimeoutSec = 15
 # Herstellerlogos. models.json hinterlegt pro Hersteller einen Link auf das
 # Logo auf der offiziellen Herstellerseite. Gleiche Ueberlegung wie bei den
 # Modellbildern: das Logo gehoert dem Hersteller, wir verlinken nur.
-$DownloadCompanyLogos = $true
+$DownloadCompanyLogos = $false
 
 # Bestehende Kategorien, Modelle und Hersteller in ITAM gegen die JSON
 # abgleichen und Beschreibung bzw. Bild nachziehen, wenn sie abweichen.
 # Standardmaessig AUS: wer das aktiviert, laesst die JSON gewinnen und
 # ueberschreibt damit ggf. Aenderungen, die jemand in au2mator gemacht hat.
 # Es wird ausschliesslich bei echter Abweichung geschrieben.
-$UpdateExistingCategories = $true
-$UpdateExistingModels = $true
-$UpdateExistingCompanies = $true
+$UpdateExistingCategories = $false
+$UpdateExistingModels = $false
+$UpdateExistingCompanies = $false
 
 # Von diesen Hosts darf ein Bild geladen werden. Ausschliesslich offizielle
 # Herstellerdomains - keine Haendler, keine Logo-Sammlungen, keine Spiegel.
@@ -1361,203 +1357,8 @@ Clear-Logs
 
 
 
-<#
+# Hinweis: Hier lag ein einmaliger, auskommentierter DEV->PROD-Migrationsblock.
+# Entfernt, weil er fest verdrahtete Kunden-URLs, einen lokalen Dateipfad und
+# einen API-Schluessel im Klartext enthielt. Einmal-Migrationen gehoeren in ein
+# eigenes, nicht oeffentliches Skript.
 
-#Temp Migrations
-
-#CompanyName from DEV to PROD via API
-
-$a2m_API_Key = Get-AZKeyVaultSecret  -SecretName "au2mator-API-Key-AssetImport"
-$au2mator_BaseURL = "https://automation.baumit.app/api"
-$au2mator_Header = @{
-    'Content-Type' = "application/json"
-    'X-Api-Key'    = "$a2m_API_Key"     
-    'accept'       = "*/*"
-}
-
-
-$a2m_DEV_API_Key = "REMOVED-ROTATED-CREDENTIAL"
-$au2mator_DEV_BaseURL = "https://automationdev.baumit.app/api"
-$au2mator_DEV_Header = @{
-    'Content-Type' = "application/json"
-    'X-Api-Key'    = "$a2m_DEV_API_Key"
-    'accept'       = "*/*"
-}
-
-
-$DEV_Companies = get-au2matorAPIPaging -URL "$($au2mator_DEV_BaseURL)/itam_AssetApi/GetAllCompanies" -Header $au2mator_DEV_Header
-$PROD_Companies = get-au2matorAPIPaging -URL "$($au2mator_BaseURL)/itam_AssetApi/GetAllCompanies" -Header $au2mator_Header
-
-$PROD_Countries = Get-au2matorAPIPaging -URL "$($au2mator_BaseURL)/itam_AssetApi/GetAllCountries" -Header $au2mator_Header
-
-
-foreach ($company in $DEV_Companies) {
-    if ($company.shortName -like "B*") {
-        #"HALT"; Start-Sleep -Seconds 10
-        #GetCompany from DEV for Country Info
-        $DEV_Company = Invoke-RestMethod -Method GET -Uri "$($au2mator_DEV_BaseURL)/itam_AssetApi/GetCompany?Id=$($company.id)" -Headers $au2mator_DEV_Header
-        Write-au2matorLog -Type DEBUG -Text "Company country: $($DEV_Company.country)"
-
-        #Get Country from Prod
-        $PROD_Country = $PROD_Countries | Where-Object { $_.name -eq $DEV_Company.country.name }
-
-        $LogoURL = "C:\Temp\baumit-logo-png_seeklogo-17175.png"
-        $IconBytes = [System.IO.File]::ReadAllBytes($LogoURL)
-        $IconBase64 = [Convert]::ToBase64String($IconBytes)
-        $CategoryDetails = $IconBase64
-
-        #Now Create Company in PROD
-        $Post_URL = "$($au2mator_BaseURL)/itam_AssetApi/CreateCompany"
-        $ImportBody = @{
-            name      = $DEV_Company.name
-            shortName = $DEV_Company.shortName
-            countryId = $PROD_Country.id
-            logoURL   = $CategoryDetails
-
-        }
-        $ImportBodyJson = $ImportBody | ConvertTo-Json -Depth 3
-        Write-au2matorLog -Type INFO -Text "Importing Company: $($DEV_Company.name) - $($DEV_Company.shortName) - $($PROD_Country.name)"
-        $Response = Invoke-RestMethod -Method POST -Uri $Post_URL -Headers $au2mator_Header -Body $ImportBodyJson -ContentType "application/json; charset=utf-8"
-        Write-au2matorLog -Type INFO -Text "Imported Company: $($DEV_Company.name) - Response: $($Response.message)"
-
-
-    }
-}
-
-
-
-#Locations
-
-$DEV_Locations = get-au2matorAPIPaging -URL "$($au2mator_DEV_BaseURL)/itam_AssetApi/GetAllLocations" -Header $au2mator_DEV_Header
-
-
-foreach ($location in $DEV_Locations) {
-
-    #build Body
-
-    #{
-    #  "name": "string",
-    #  "description": "string",
-    #  "address": "string",
-    #  "city": "string",
-    #  "state": "string",
-    #  "postalCode": "string",
-    #  "companyIds": [
-    #    "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-    #  ],
-    #  "countryId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    #
-    #}
-    
-
-
-    #Get Location for Details
-    $TargetLocation = Invoke-RestMethod -Method GET -Uri "$($au2mator_DEV_BaseURL)/itam_AssetApi/GetLocation?Id=$($location.id)" -Headers $au2mator_DEV_Header
-
-    #New Location with related Country and Companies
-    $PROD_Country = $PROD_Countries | Where-Object { $_.name -eq $location.country.name }
-    $PROD_CompanyIDs = @()
-    foreach ($Entry in $location.companies.name) {
-        $PROD_Company = $PROD_Companies | Where-Object { $_.name -eq $Entry }
-        if ($PROD_Company) {
-            $PROD_CompanyIDs += $PROD_Company.id
-        }
-    }
-
-    $Post_URL = "$($au2mator_BaseURL)/itam_AssetApi/CreateLocation"
-    $ImportBody = @{
-        name        = $TargetLocation.name
-        description = $TargetLocation.description
-        address     = $TargetLocation.address
-        city        = $TargetLocation.city
-        state       = $TargetLocation.state
-        postalCode  = $TargetLocation.postalCode
-        companyIds  = $PROD_CompanyIDs
-        countryId   = $PROD_Country.id
-
-    }
-    $ImportBodyJson = $ImportBody | ConvertTo-Json -Depth 3
-    Write-au2matorLog -Type INFO -Text "Importing Location: $($TargetLocation.name) - $($PROD_Country.name)"
-    $Response = Invoke-RestMethod -Method POST -Uri $Post_URL -Headers $au2mator_Header -Body $ImportBodyJson -ContentType "application/json; charset=utf-8"
-    Write-au2matorLog -Type INFO -Text "Imported Location: $($TargetLocation.name) - Response: $($Response.message)"
-
-
-
-
-
-
-
-    
-}
-
-
-
-#Sync User Location from dEV to PROD
-$DEV_Users = get-au2matorAPIPaging -URL "$($au2mator_DEV_BaseURL)/itam_AssetApi/GetAllUsers" -Header $au2mator_DEV_Header
-$PROD_Users = get-au2matorAPIPaging -URL "$($au2mator_BaseURL)/itam_AssetApi/GetAllUsers" -Header $au2mator_Header
-
-$DEV_LOCATIONS = get-au2matorAPIPaging -URL "$($au2mator_DEV_BaseURL)/itam_AssetApi/GetAllLocations" -Header $au2mator_DEV_Header
-$PROD_LOCATIONS = get-au2matorAPIPaging -URL "$($au2mator_BaseURL)/itam_AssetApi/GetAllLocations" -Header $au2mator_Header
-
-
-$Dev_Users_lookup = @{}
-foreach ($User in $DEV_Users) {
-    $Dev_Users_lookup[$User.upn] = $User
-}
-
-foreach ($User in $PROD_Users) {
-
-    $DevUserObject = $Dev_Users_lookup[$User.upn]
-
-    if ($DevUserObject) {
-        $DevUserGetObject = Invoke-RestMethod -Method GET -Uri "$($au2mator_DEV_BaseURL)/itam_AssetApi/GetUser?Id=$($DevUserObject.id)" -Headers $au2mator_DEV_Header
-
-
-        if ($DevUserGetObject.location) {
-            "Location"; Start-Sleep -Seconds 10
-
-            #$PRODUserGetObjekt = Invoke-RestMethod -Method GET -Uri "$($au2mator_BaseURL)/itam_AssetApi/GetUser?Id=$($User.id)" -Headers $au2mator_Header
-
-            $PROD_Location = $PROD_LOCATIONS | Where-Object { $_.name -eq $DevUserGetObject.location.name }
-
-            #Update user in PROD
-            $Update_URL = "$($au2mator_BaseURL)/itam_AssetApi/UpdateUser/$($User.id)"
-
-
-
-            $UpdateBody = @(
-                @{
-                    op    = "replace"
-                    path  = "/LocationID"
-                    value = "$($PROD_Location.id)"
-                },
-                @{
-                    op    = "replace"
-                    path  = "/locationId"
-                    value = "$($PROD_Location.id)"
-                }            
-            ) 
-
-
-
-            $UpdateBodyJson = $UpdateBody | ConvertTo-Json -Depth 10
-            $Response = Invoke-RestMethod -Method PATCH -Uri $Update_URL -Headers $au2mator_Header -Body $UpdateBodyJson -ContentType "application/json; charset=utf-8"
-            Write-au2matorLog -Type INFO -Text "Updated User: $($User.upn) - Response: $($Response.message)"
-
-
-
-
-        }
-
-
-
-    }
-}
-
-
-
-
-
-
-
-#>
