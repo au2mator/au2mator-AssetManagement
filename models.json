@@ -19,7 +19,10 @@
                             "Description_EN": "Apple iPhone 15 Pro Max with A17 Pro chip, 6.7-inch ProMotion display, titanium frame, 5x optical zoom, and USB 3 connectivity.",
                             "release_year": "2023",
                             "Description_DE": "Apple iPhone 15 Pro Max mit A17 Pro Chip, 6,7-Zoll ProMotion Display, Titanrahmen, 5-fach optischer Zoom und USB 3.",
-                            "icon": "Apple_Smartphone_iPhone 15 Pro Max.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/fall-2023-iphone-colors-iphone-15-pro-max.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 15",
@@ -33,7 +36,10 @@
                             "Description_EN": "Apple iPhone 15 with A16 Bionic chip, 6.1-inch Super Retina XDR display, Dynamic Island, USB-C, and 48MP main camera.",
                             "Description_DE": "Apple iPhone 15 mit A16 Bionic Chip, 6,1-Zoll Super Retina XDR Display, Dynamic Island, USB-C und 48-MP-Hauptkamera.",
                             "release_year": "2023",
-                            "icon": "Apple_Smartphone_iPhone 15.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/fall-2023-iphone-colors-iphone-15.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 16",
@@ -47,7 +53,10 @@
                             "Description_EN": "Apple iPhone 16 with A18 chip, 6.1-inch Super Retina XDR display, Camera Control button, and Apple Intelligence support.",
                             "Description_DE": "Apple iPhone 16 mit A18 Chip, 6,1-Zoll Super Retina XDR Display, Camera Control Taste und Apple Intelligence Unterstützung.",
                             "release_year": "2024",
-                            "icon": "Apple_Smartphone_iPhone 16.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-16-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone SE (3rd generation)",
@@ -61,7 +70,10 @@
                             "Description_EN": "Apple iPhone SE (3rd generation) with A15 Bionic chip, 4.7-inch Retina HD display, Touch ID, and 5G connectivity.",
                             "Description_DE": "Apple iPhone SE (3. Generation) mit A15 Bionic Chip, 4,7-Zoll Retina HD Display, Touch ID und 5G-Konnektivität.",
                             "release_year": "2022",
-                            "icon": "Apple_Smartphone_iPhone SE (3rd generation).png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-se-3rd-gen-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 13",
@@ -74,8 +86,11 @@
                             "model_number": "iPhone 13",
                             "Description_EN": "Apple iPhone 13 with A15 Bionic chip, 6.1-inch Super Retina XDR display, improved dual-camera system, and 5G.",
                             "release_year": "2021",
-                            "icon": "Apple_Smartphone_iPhone 13.png",
-                            "Description_DE": "Apple iPhone 13 mit A15 Bionic Chip, 6,1-Zoll Super Retina XDR Display, verbessertem Dual-Kamerasystem und 5G."
+                            "icon": "category_smartphone.png",
+                            "Description_DE": "Apple iPhone 13 mit A15 Bionic Chip, 6,1-Zoll Super Retina XDR Display, verbessertem Dual-Kamerasystem und 5G.",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/2022-spring-iphone13-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 16e",
@@ -89,7 +104,10 @@
                             "Description_EN": "Apple iPhone 16e with A16 Bionic chip, 6.1-inch Super Retina XDR display, Face ID, USB-C, and Apple Intelligence.",
                             "Description_DE": "Apple iPhone 16e mit A16 Bionic Chip, 6,1-Zoll Super Retina XDR Display, Face ID, USB-C und Apple Intelligence.",
                             "release_year": "2025",
-                            "icon": "Apple_Smartphone_iPhone 16e.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-16e/iphone-16e-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 14",
@@ -103,7 +121,10 @@
                             "Description_EN": "Apple iPhone 14 with A15 Bionic chip, 6.1-inch Super Retina XDR display, Crash Detection, and Emergency SOS via satellite.",
                             "release_year": "2022",
                             "Description_DE": "Apple iPhone 14 mit A15 Bionic Chip, 6,1-Zoll Super Retina XDR Display, Unfallerkennnung und Notruf SOS via Satellit.",
-                            "icon": "Apple_Smartphone_iPhone 14.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-14-colors-spring-2023.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone SE (2nd generation)",
@@ -117,7 +138,10 @@
                             "Description_EN": "Apple iPhone SE (2nd generation) with A13 Bionic chip, 4.7-inch Retina HD display, Touch ID, and single-camera system.",
                             "Description_DE": "Apple iPhone SE (2. Generation) mit A13 Bionic Chip, 4,7-Zoll Retina HD Display, Touch ID und Einzelkamera.",
                             "release_year": "2020",
-                            "icon": "Apple_Smartphone_iPhone SE (2nd generation).png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-se/iphone-se-2nd-gen-colors.jpg",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 7",
@@ -131,7 +155,10 @@
                             "Description_EN": "Apple iPhone 7 with A10 Fusion chip, 4.7-inch Retina HD display, Touch ID, and IP67 water resistance.",
                             "Description_DE": "Apple iPhone 7 mit A10 Fusion Chip, 4,7-Zoll Retina HD Display, Touch ID und IP67-Wasserbeständigkeit.",
                             "release_year": "2016",
-                            "icon": "Apple_Smartphone_iPhone 7.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-7/iphone7-colors.jpg",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 11",
@@ -145,7 +172,10 @@
                             "Description_EN": "Apple iPhone 11 with A13 Bionic chip, 6.1-inch Liquid Retina display, dual-camera system, and Face ID.",
                             "Description_DE": "Apple iPhone 11 mit A13 Bionic Chip, 6,1-Zoll Liquid Retina Display, Dual-Kamerasystem und Face ID.",
                             "release_year": "2019",
-                            "icon": "Apple_Smartphone_iPhone 11.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/identify-iphone-11-colors.jpg",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 12",
@@ -159,7 +189,10 @@
                             "Description_EN": "Apple iPhone 12 with A14 Bionic chip, 6.1-inch Super Retina XDR display, 5G connectivity, and MagSafe.",
                             "Description_DE": "Apple iPhone 12 mit A14 Bionic Chip, 6,1-Zoll Super Retina XDR Display, 5G-Konnektivität und MagSafe.",
                             "release_year": "2020",
-                            "icon": "Apple_Smartphone_iPhone 12.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/2021-iphone12-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 14 Pro",
@@ -173,7 +206,10 @@
                             "Description_EN": "Apple iPhone 14 Pro with A16 Bionic chip, 6.1-inch ProMotion display, Dynamic Island, always-on display, and Pro camera system.",
                             "Description_DE": "Apple iPhone 14 Pro mit A16 Bionic Chip, 6,1-Zoll ProMotion Display, Dynamic Island, Always-On Display und Pro-Kamerasystem.",
                             "release_year": "2022",
-                            "icon": "Apple_Smartphone_iPhone 14 Pro.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-14-pro-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 15 Pro",
@@ -187,7 +223,10 @@
                             "Description_EN": "Apple iPhone 15 Pro with A17 Pro chip, 6.1-inch ProMotion display, titanium frame, Action Button, and USB 3 connectivity.",
                             "Description_DE": "Apple iPhone 15 Pro mit A17 Pro Chip, 6,1-Zoll ProMotion Display, Titanrahmen, Action Button und USB 3.",
                             "release_year": "2023",
-                            "icon": "Apple_Smartphone_iPhone 15 Pro.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/fall-2023-iphone-colors-iphone-15-pro.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 13 mini",
@@ -201,7 +240,10 @@
                             "Description_EN": "Apple iPhone 13 mini with A15 Bionic chip, 5.4-inch Super Retina XDR display, dual-camera system, and 5G.",
                             "Description_DE": "Apple iPhone 13 mini mit A15 Bionic Chip, 5,4-Zoll Super Retina XDR Display, Dual-Kamerasystem und 5G.",
                             "release_year": "2021",
-                            "icon": "Apple_Smartphone_iPhone 13 mini.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/2022-iphone13-mini-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 5S",
@@ -215,7 +257,10 @@
                             "Description_EN": "Apple iPhone 5S with A7 chip, 4-inch Retina display, Touch ID fingerprint sensor, and 8MP camera.",
                             "Description_DE": "Apple iPhone 5S mit A7 Chip, 4-Zoll Retina Display, Touch ID Fingerabdrucksensor und 8-MP-Kamera.",
                             "release_year": "2013",
-                            "icon": "Apple_Smartphone_iPhone 5S.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-iphone5s-colors.jpg",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 6s",
@@ -229,7 +274,10 @@
                             "Description_EN": "Apple iPhone 6s with A9 chip, 4.7-inch Retina HD display, Touch ID, 3D Touch, and 12MP camera.",
                             "Description_DE": "Apple iPhone 6s mit A9 Chip, 4,7-Zoll Retina HD Display, Touch ID, 3D Touch und 12-MP-Kamera.",
                             "release_year": "2015",
-                            "icon": "Apple_Smartphone_iPhone 6s.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-6s-colors.jpg",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 7 Plus",
@@ -243,7 +291,10 @@
                             "Description_EN": "Apple iPhone 7 Plus with A10 Fusion chip, 5.5-inch Retina HD display, dual-camera system with optical zoom, Touch ID, and IP67.",
                             "Description_DE": "Apple iPhone 7 Plus mit A10 Fusion Chip, 5,5-Zoll Retina HD Display, Dual-Kamerasystem mit optischem Zoom, Touch ID und IP67.",
                             "release_year": "2016",
-                            "icon": ""
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-7-plus/iphone7plus-colors.jpg",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 8",
@@ -257,7 +308,10 @@
                             "Description_EN": "Apple iPhone 8 with A11 Bionic chip, 4.7-inch Retina HD display, Touch ID, wireless charging, and IP67 water resistance.",
                             "Description_DE": "Apple iPhone 8 mit A11 Bionic Chip, 4,7-Zoll Retina HD Display, Touch ID, kabelloses Laden und IP67-Wasserbeständigkeit.",
                             "release_year": "2017",
-                            "icon": "Apple_Smartphone_iPhone 8.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-8/iphone-8-colors.jpg",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 8 Plus",
@@ -271,7 +325,10 @@
                             "Description_EN": "Apple iPhone 8 Plus with A11 Bionic chip, 5.5-inch Retina HD display, dual-camera system, Touch ID, and wireless charging.",
                             "Description_DE": "Apple iPhone 8 Plus mit A11 Bionic Chip, 5,5-Zoll Retina HD Display, Dual-Kamerasystem, Touch ID und kabelloses Laden.",
                             "release_year": "2017",
-                            "icon": "Apple_Smartphone_iPhone 8 Plus.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-8-plus/iphone-8plus-colors.jpg",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone XR",
@@ -285,7 +342,10 @@
                             "Description_EN": "Apple iPhone XR with A12 Bionic chip, 6.1-inch Liquid Retina display, Face ID, single-camera system, and IP67.",
                             "Description_DE": "Apple iPhone XR mit A12 Bionic Chip, 6,1-Zoll Liquid Retina Display, Face ID, Einzelkamerasystem und IP67.",
                             "release_year": "2018",
-                            "icon": "Apple_Smartphone_iPhone XR.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-xr/identify-iphone-xr-colors.jpg",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone XS",
@@ -299,7 +359,10 @@
                             "Description_EN": "Apple iPhone XS with A12 Bionic chip, 5.8-inch Super Retina OLED display, Face ID, dual-camera system, and IP68.",
                             "Description_DE": "Apple iPhone XS mit A12 Bionic Chip, 5,8-Zoll Super Retina OLED Display, Face ID, Dual-Kamerasystem und IP68.",
                             "release_year": "2018",
-                            "icon": "Apple_Smartphone_iPhone XS.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-xs-colors.jpg",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 11 Pro",
@@ -313,7 +376,10 @@
                             "Description_EN": "Apple iPhone 11 Pro with A13 Bionic chip, 5.8-inch Super Retina XDR display, triple-camera Pro system, Face ID, and IP68.",
                             "Description_DE": "Apple iPhone 11 Pro mit A13 Bionic Chip, 5,8-Zoll Super Retina XDR Display, Triple-Kamera Pro-System, Face ID und IP68.",
                             "release_year": "2019",
-                            "icon": "Apple_Smartphone_iPhone 11 Pro.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/identify-iphone-11pro.jpg",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 11 Pro Max",
@@ -327,7 +393,10 @@
                             "Description_EN": "Apple iPhone 11 Pro Max with A13 Bionic chip, 6.5-inch Super Retina XDR display, triple-camera Pro system, Face ID, and IP68.",
                             "Description_DE": "Apple iPhone 11 Pro Max mit A13 Bionic Chip, 6,5-Zoll Super Retina XDR Display, Triple-Kamera Pro-System, Face ID und IP68.",
                             "release_year": "2019",
-                            "icon": ""
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/identify-iphone-11pro-max.jpg",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 12 mini",
@@ -341,7 +410,10 @@
                             "Description_EN": "Apple iPhone 12 mini with A14 Bionic chip, 5.4-inch Super Retina XDR display, 5G, MagSafe, and dual-camera system.",
                             "Description_DE": "Apple iPhone 12 mini mit A14 Bionic Chip, 5,4-Zoll Super Retina XDR Display, 5G, MagSafe und Dual-Kamerasystem.",
                             "release_year": "2020",
-                            "icon": "Apple_Smartphone_iPhone 12 mini.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/2021-iphone12-mini-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 12 Pro",
@@ -355,7 +427,10 @@
                             "Description_EN": "Apple iPhone 12 Pro with A14 Bionic chip, 6.1-inch Super Retina XDR display, Pro triple-camera system, 5G, and LiDAR scanner.",
                             "Description_DE": "Apple iPhone 12 Pro mit A14 Bionic Chip, 6,1-Zoll Super Retina XDR Display, Pro Triple-Kamerasystem, 5G und LiDAR-Scanner.",
                             "release_year": "2020",
-                            "icon": "Apple_Smartphone_iPhone 12 Pro.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-12-pro/iphone12-pro-colors.jpg",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 12 Pro Max",
@@ -369,7 +444,10 @@
                             "Description_EN": "Apple iPhone 12 Pro Max with A14 Bionic chip, 6.7-inch Super Retina XDR display, Pro triple-camera system with sensor-shift OIS, 5G, and LiDAR scanner.",
                             "Description_DE": "Apple iPhone 12 Pro Max mit A14 Bionic Chip, 6,7-Zoll Super Retina XDR Display, Pro Triple-Kamerasystem mit Sensor-Shift OIS, 5G und LiDAR-Scanner.",
                             "release_year": "2020",
-                            "icon": "Apple_Smartphone_iPhone 12 Pro Max.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-12-pro-max/iphone12-pro-max-colors.jpg",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone SE (1st generation)",
@@ -383,7 +461,10 @@
                             "Description_EN": "Apple iPhone SE (1st generation) with A9 chip, 4-inch Retina display, Touch ID, and 12MP camera in a compact form factor.",
                             "Description_DE": "Apple iPhone SE (1. Generation) mit A9 Chip, 4-Zoll Retina Display, Touch ID und 12-MP-Kamera im kompakten Formfaktor.",
                             "release_year": "2016",
-                            "icon": ""
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-se/iphone-se-colors.jpg",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 13 Pro",
@@ -397,7 +478,10 @@
                             "Description_EN": "Apple iPhone 13 Pro with A15 Bionic chip, 6.1-inch ProMotion Super Retina XDR display, Pro triple-camera system, and 5G.",
                             "Description_DE": "Apple iPhone 13 Pro mit A15 Bionic Chip, 6,1-Zoll ProMotion Super Retina XDR Display, Pro Triple-Kamerasystem und 5G.",
                             "release_year": "2021",
-                            "icon": "Apple_Smartphone_iPhone 13 Pro.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/2022-spring-iphone13-pro-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 13 Pro Max",
@@ -411,7 +495,10 @@
                             "Description_EN": "Apple iPhone 13 Pro Max with A15 Bionic chip, 6.7-inch ProMotion Super Retina XDR display, Pro triple-camera system, and 5G.",
                             "Description_DE": "Apple iPhone 13 Pro Max mit A15 Bionic Chip, 6,7-Zoll ProMotion Super Retina XDR Display, Pro Triple-Kamerasystem und 5G.",
                             "release_year": "2021",
-                            "icon": "Apple_Smartphone_iPhone 13 Pro Max.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/2022-spring-iphone13-pro-max-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 14 Pro Max",
@@ -425,7 +512,10 @@
                             "Description_EN": "Apple iPhone 14 Pro Max with A16 Bionic chip, 6.7-inch ProMotion display, Dynamic Island, always-on display, 48MP Pro camera, and Emergency SOS via satellite.",
                             "Description_DE": "Apple iPhone 14 Pro Max mit A16 Bionic Chip, 6,7-Zoll ProMotion Display, Dynamic Island, Always-On Display, 48-MP-Pro-Kamera und Notruf SOS via Satellit.",
                             "release_year": "2022",
-                            "icon": "Apple_Smartphone_iPhone 14 Pro Max.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-14-pro-max-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 15 Plus",
@@ -439,7 +529,10 @@
                             "Description_EN": "Apple iPhone 15 Plus with A16 Bionic chip, 6.7-inch Super Retina XDR display, Dynamic Island, USB-C, and 48MP main camera.",
                             "Description_DE": "Apple iPhone 15 Plus mit A16 Bionic Chip, 6,7-Zoll Super Retina XDR Display, Dynamic Island, USB-C und 48-MP-Hauptkamera.",
                             "release_year": "2023",
-                            "icon": ""
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/fall-2023-iphone-colors-iphone-15-plus.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 16 Plus",
@@ -453,7 +546,10 @@
                             "Description_EN": "Apple iPhone 16 Plus with A18 chip, 6.7-inch Super Retina XDR display, Camera Control button, and Apple Intelligence support.",
                             "Description_DE": "Apple iPhone 16 Plus mit A18 Chip, 6,7-Zoll Super Retina XDR Display, Camera Control Taste und Apple Intelligence Unterstützung.",
                             "release_year": "2024",
-                            "icon": "Apple_Smartphone_iPhone 16 Plus.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-16-plus-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 16 Pro",
@@ -467,7 +563,10 @@
                             "Description_EN": "Apple iPhone 16 Pro with A18 Pro chip, 6.3-inch ProMotion display, Camera Control, 5x optical zoom, and Apple Intelligence.",
                             "Description_DE": "Apple iPhone 16 Pro mit A18 Pro Chip, 6,3-Zoll ProMotion Display, Camera Control, 5-fach optischer Zoom und Apple Intelligence.",
                             "release_year": "2024",
-                            "icon": "Apple_Smartphone_iPhone 16 Pro.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-16-pro-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 16 Pro Max",
@@ -481,7 +580,10 @@
                             "Description_EN": "Apple iPhone 16 Pro Max with A18 Pro chip, 6.9-inch ProMotion display, Camera Control, 5x optical zoom, and Apple Intelligence.",
                             "Description_DE": "Apple iPhone 16 Pro Max mit A18 Pro Chip, 6,9-Zoll ProMotion Display, Camera Control, 5-fach optischer Zoom und Apple Intelligence.",
                             "release_year": "2024",
-                            "icon": "Apple_Smartphone_iPhone 16 Pro Max.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-16-pro-max-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 17",
@@ -495,7 +597,10 @@
                             "Description_EN": "Apple iPhone 17 with A19 chip, 6.1-inch Super Retina XDR display, Camera Control button, and Apple Intelligence support.",
                             "Description_DE": "Apple iPhone 17 mit A19 Chip, 6,1-Zoll Super Retina XDR Display, Camera Control Taste und Apple Intelligence Unterstützung.",
                             "release_year": "2025",
-                            "icon": "Apple_Smartphone_iPhone 17.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-17-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 17 Pro",
@@ -509,7 +614,10 @@
                             "Description_EN": "Apple iPhone 17 Pro with A19 Pro chip, ProMotion display, Camera Control, advanced Pro camera system, and Apple Intelligence.",
                             "Description_DE": "Apple iPhone 17 Pro mit A19 Pro Chip, ProMotion Display, Camera Control, erweitertem Pro-Kamerasystem und Apple Intelligence.",
                             "release_year": "2025",
-                            "icon": "Apple_Smartphone_iPhone 17 Pro.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-17-pro-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 17 Pro Max",
@@ -523,7 +631,10 @@
                             "Description_EN": "Apple iPhone 17 Pro Max with A19 Pro chip, large ProMotion display, Camera Control, advanced Pro camera system, and Apple Intelligence.",
                             "Description_DE": "Apple iPhone 17 Pro Max mit A19 Pro Chip, großem ProMotion Display, Camera Control, erweitertem Pro-Kamerasystem und Apple Intelligence.",
                             "release_year": "2025",
-                            "icon": "Apple_Smartphone_iPhone 17 Pro Max.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-17-pro-max-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPhone 14 Plus",
@@ -537,7 +648,10 @@
                             "Description_EN": "Apple iPhone 14 Plus with A15 Bionic chip, 6.7-inch Super Retina XDR display, Crash Detection, Emergency SOS via satellite, and improved battery life.",
                             "Description_DE": "Apple iPhone 14 Plus mit A15 Bionic Chip, 6,7-Zoll Super Retina XDR Display, Unfallerkennung, Notruf SOS via Satellit und verbesserter Akkulaufzeit.",
                             "release_year": "2022",
-                            "icon": "Apple_Smartphone_iPhone 14 Plus.png"
+                            "icon": "category_smartphone.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-14-plus-colors-spring-2023.png",
+                            "image_source": "https://support.apple.com/en-us/108044",
+                            "image_checked": "2026-11-02"
                         }
                     ]
                 },
@@ -556,7 +670,10 @@
                             "Description_EN": "Apple iPad Air 13-inch (M2) with Apple M2 chip, 13-inch Liquid Retina display, USB-C, Wi-Fi 6E, and support for Apple Pencil (2nd generation).",
                             "release_year": "2024",
                             "Description_DE": "Apple iPad Air 13 Zoll (M2) mit Apple M2 Chip, 13-Zoll Liquid Retina Display, USB-C, Wi-Fi 6E und Unterstützung für Apple Pencil (2. Generation).",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/spring-2024-3.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro 12.9-inch (M2)",
@@ -570,7 +687,10 @@
                             "Description_EN": "Apple iPad Pro 12.9-inch (M2) with Apple M2 chip, mini-LED Liquid Retina XDR display, Wi-Fi 6E, and Apple Pencil hover.",
                             "release_year": "2022",
                             "Description_DE": "Apple iPad Pro 12,9 Zoll (M2) mit Apple M2 Chip, Mini-LED Liquid Retina XDR Display, Wi-Fi 6E und Apple Pencil Hover-Funktion.",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/fall-2022-12-9-inch-6gen-ipad-pro.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro 11-inch (M2)",
@@ -584,7 +704,10 @@
                             "Description_EN": "Apple iPad Pro 11-inch (M2) with Apple M2 chip, Liquid Retina display, Wi-Fi 6E, Bluetooth 5.3, and Apple Pencil hover.",
                             "release_year": "2022",
                             "Description_DE": "Apple iPad Pro 11 Zoll (M2) mit Apple M2 Chip, Liquid Retina Display, Wi-Fi 6E, Bluetooth 5.3 und Apple Pencil Hover-Funktion.",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/fall-2022-11-inch-4gen-ipad-pro.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad 10th Generation",
@@ -598,7 +721,10 @@
                             "Description_EN": "Apple iPad (10th generation) with A14 Bionic chip, 10.9-inch Liquid Retina display, USB-C, Wi-Fi 6, and support for Apple Pencil (1st generation).",
                             "release_year": "2022",
                             "Description_DE": "Apple iPad (10. Generation) mit A14 Bionic Chip, 10,9-Zoll Liquid Retina Display, USB-C, Wi-Fi 6 und Unterstützung für Apple Pencil (1. Generation).",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/fall-2022-10-gen-ipad.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Mini 6th Generation",
@@ -612,7 +738,10 @@
                             "Description_EN": "Apple iPad mini (6th generation) with A15 Bionic chip, 8.3-inch Liquid Retina display, USB-C, Touch ID, and support for Apple Pencil (2nd generation).",
                             "release_year": "2021",
                             "Description_DE": "Apple iPad mini (6. Generation) mit A15 Bionic Chip, 8,3-Zoll Liquid Retina Display, USB-C, Touch ID und Unterstützung für Apple Pencil (2. Generation).",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/ipad-mini-2021-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro 11-inch (M1)",
@@ -626,7 +755,10 @@
                             "Description_EN": "Apple iPad Pro 11-inch (M1) with Apple M1 chip, Liquid Retina display, Thunderbolt/USB 4, and 5G connectivity.",
                             "release_year": "2021",
                             "Description_DE": "Apple iPad Pro 11 Zoll (M1) mit Apple M1 Chip, Liquid Retina Display, Thunderbolt/USB 4 und 5G-Konnektivität.",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/2021-ipad-pro-11-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad (9th generation)",
@@ -640,7 +772,10 @@
                             "Description_EN": "Apple iPad (9th generation) with A13 Bionic chip, 10.2-inch Retina display, Touch ID, Wi-Fi, and support for Apple Pencil (1st generation).",
                             "Description_DE": "Apple iPad (9. Generation) mit A13 Bionic Chip, 10,2-Zoll Retina Display, Touch ID, Wi-Fi und Unterstützung für Apple Pencil (1. Generation).",
                             "release_year": "2021",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/ipad-2021-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad (10th generation)",
@@ -654,7 +789,10 @@
                             "Description_EN": "Apple iPad (10th generation) with A14 Bionic chip, 10.9-inch Liquid Retina display, USB-C, Wi-Fi 6, and support for Apple Pencil (1st generation).",
                             "Description_DE": "Apple iPad (10. Generation) mit A14 Bionic Chip, 10,9-Zoll Liquid Retina Display, USB-C, Wi-Fi 6 und Unterstützung für Apple Pencil (1. Generation).",
                             "release_year": "2022",
-                            "icon": "Apple_Tablet_iPad (10th generation).png"
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/fall-2022-10-gen-ipad.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad (A16)",
@@ -668,7 +806,10 @@
                             "Description_EN": "Apple iPad (A16) with A16 Bionic chip, 10.9-inch Liquid Retina display, USB-C, Wi-Fi 6E, and support for Apple Pencil Pro.",
                             "Description_DE": "Apple iPad (A16) mit A16 Bionic Chip, 10,9-Zoll Liquid Retina Display, USB-C, Wi-Fi 6E und Unterstützung für Apple Pencil Pro.",
                             "release_year": "2025",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/spring-2025-ipad.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad mini (6th generation)",
@@ -682,7 +823,10 @@
                             "Description_EN": "Apple iPad mini (6th generation) with A15 Bionic chip, 8.3-inch Liquid Retina display, USB-C, Touch ID, and support for Apple Pencil (2nd generation).",
                             "Description_DE": "Apple iPad mini (6. Generation) mit A15 Bionic Chip, 8,3-Zoll Liquid Retina Display, USB-C, Touch ID und Unterstützung für Apple Pencil (2. Generation).",
                             "release_year": "2021",
-                            "icon": "Apple_Tablet_iPad mini (6th generation).png"
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/ipad-mini-2021-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Air (4th generation)",
@@ -696,7 +840,10 @@
                             "Description_EN": "Apple iPad Air (4th generation) with A14 Bionic chip, 10.9-inch Liquid Retina display, USB-C, Touch ID, and support for Apple Pencil (2nd generation).",
                             "Description_DE": "Apple iPad Air (4. Generation) mit A14 Bionic Chip, 10,9-Zoll Liquid Retina Display, USB-C, Touch ID und Unterstützung für Apple Pencil (2. Generation).",
                             "release_year": "2020",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/ipad-air-4th-gen-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Air (5th generation)",
@@ -710,7 +857,10 @@
                             "Description_EN": "Apple iPad Air (5th generation) with Apple M1 chip, 10.9-inch Liquid Retina display, USB-C, 5G optional, and support for Apple Pencil (2nd generation).",
                             "Description_DE": "Apple iPad Air (5. Generation) mit Apple M1 Chip, 10,9-Zoll Liquid Retina Display, USB-C, optionalem 5G und Unterstützung für Apple Pencil (2. Generation).",
                             "release_year": "2022",
-                            "icon": "Apple_Tablet_iPad Air (5th generation).png"
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad-air-5th-gen-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro (9.7)",
@@ -724,7 +874,10 @@
                             "Description_EN": "Apple iPad Pro 9.7-inch with A9X chip, 9.7-inch Retina display, Smart Connector, 12MP camera, and support for Apple Pencil (1st generation).",
                             "Description_DE": "Apple iPad Pro 9,7 Zoll mit A9X Chip, 9,7-Zoll Retina Display, Smart Connector, 12-MP-Kamera und Unterstützung für Apple Pencil (1. Generation).",
                             "release_year": "2016",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/identify-ipad-pro-9-7.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro (10.5)",
@@ -738,7 +891,10 @@
                             "Description_EN": "Apple iPad Pro 10.5-inch with A10X Fusion chip, 10.5-inch ProMotion Retina display, and support for Apple Pencil (1st generation).",
                             "Description_DE": "Apple iPad Pro 10,5 Zoll mit A10X Fusion Chip, 10,5-Zoll ProMotion Retina Display und Unterstützung für Apple Pencil (1. Generation).",
                             "release_year": "2017",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/ios11-ipad-pro-10-in.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro (11)(2nd generation)",
@@ -752,7 +908,10 @@
                             "Description_EN": "Apple iPad Pro 11-inch (2nd generation) with A12Z Bionic chip, Liquid Retina display, USB-C, LiDAR scanner, and 5G optional.",
                             "Description_DE": "Apple iPad Pro 11 Zoll (2. Generation) mit A12Z Bionic Chip, Liquid Retina Display, USB-C, LiDAR-Scanner und optionalem 5G.",
                             "release_year": "2020",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/ios13-4-ipad-pro-4gen-11-in.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro (11)(3rd generation)",
@@ -766,7 +925,10 @@
                             "Description_EN": "Apple iPad Pro 11-inch (3rd generation) with Apple M1 chip, Liquid Retina display, Thunderbolt/USB 4, and 5G optional.",
                             "Description_DE": "Apple iPad Pro 11 Zoll (3. Generation) mit Apple M1 Chip, Liquid Retina Display, Thunderbolt/USB 4 und optionalem 5G.",
                             "release_year": "2021",
-                            "icon": "Apple_Tablet_iPad Pro (11)(3rd generation).png"
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/2021-ipad-pro-11-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro (11)(4th generation)",
@@ -780,7 +942,10 @@
                             "Description_EN": "Apple iPad Pro 11-inch (4th generation) with Apple M2 chip, Liquid Retina display, Wi-Fi 6E, and Apple Pencil hover support.",
                             "Description_DE": "Apple iPad Pro 11 Zoll (4. Generation) mit Apple M2 Chip, Liquid Retina Display, Wi-Fi 6E und Apple Pencil Hover-Funktion.",
                             "release_year": "2022",
-                            "icon": "Apple_Tablet_iPad Pro (11)(4th generation).png"
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/fall-2022-11-inch-4gen-ipad-pro.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro 11-inch (M4)",
@@ -794,7 +959,10 @@
                             "Description_EN": "Apple iPad Pro 11-inch (M4) with Apple M4 chip, Ultra Retina XDR OLED display, tandem OLED, USB 4, and Apple Pencil Pro support.",
                             "Description_DE": "Apple iPad Pro 11 Zoll (M4) mit Apple M4 Chip, Ultra Retina XDR OLED Display, Tandem-OLED, USB 4 und Apple Pencil Pro Unterstützung.",
                             "release_year": "2024",
-                            "icon": "Apple_Tablet_iPad Pro 11-inch (M4).png"
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/spring-2024-2.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro 11-inch (M5)",
@@ -808,7 +976,10 @@
                             "Description_EN": "Apple iPad Pro 11-inch (M5) with Apple M5 chip, Ultra Retina XDR OLED display, USB 4, and Apple Intelligence support.",
                             "Description_DE": "Apple iPad Pro 11 Zoll (M5) mit Apple M5 Chip, Ultra Retina XDR OLED Display, USB 4 und Apple Intelligence Unterstützung.",
                             "release_year": "2025",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/fall-2025-ipad-pro-m5-11in.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro (12.9)(4th generation)",
@@ -822,7 +993,10 @@
                             "Description_EN": "Apple iPad Pro 12.9-inch (4th generation) with A12Z Bionic chip, Liquid Retina XDR display, USB-C, LiDAR scanner, and 5G optional.",
                             "Description_DE": "Apple iPad Pro 12,9 Zoll (4. Generation) mit A12Z Bionic Chip, Liquid Retina XDR Display, USB-C, LiDAR-Scanner und optionalem 5G.",
                             "release_year": "2020",
-                            "icon": "Apple_Tablet_iPad Pro (12.9)(4th generation).png"
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/ios13-4-ipad-pro-4gen-12-9-in.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro (12.9)(5th generation)",
@@ -836,7 +1010,10 @@
                             "Description_EN": "Apple iPad Pro 12.9-inch (5th generation) with Apple M1 chip, mini-LED Liquid Retina XDR display, Thunderbolt/USB 4, and 5G optional.",
                             "Description_DE": "Apple iPad Pro 12,9 Zoll (5. Generation) mit Apple M1 Chip, Mini-LED Liquid Retina XDR Display, Thunderbolt/USB 4 und optionalem 5G.",
                             "release_year": "2021",
-                            "icon": "Apple_Tablet_iPad Pro (12.9)(5th generation).png"
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/2021-ipad-pro-12-9-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro (12.9)(6th generation)",
@@ -850,7 +1027,10 @@
                             "Description_EN": "Apple iPad Pro 12.9-inch (6th generation) with Apple M2 chip, mini-LED Liquid Retina XDR display, Wi-Fi 6E, and Apple Pencil hover support.",
                             "Description_DE": "Apple iPad Pro 12,9 Zoll (6. Generation) mit Apple M2 Chip, Mini-LED Liquid Retina XDR Display, Wi-Fi 6E und Apple Pencil Hover-Funktion.",
                             "release_year": "2022",
-                            "icon": "Apple_Tablet_iPad Pro (12.9)(6th generation).png"
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/fall-2022-12-9-inch-6gen-ipad-pro.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro 13-inch (M5)",
@@ -864,7 +1044,10 @@
                             "Description_EN": "Apple iPad Pro 13-inch (M5) with Apple M5 chip, Ultra Retina XDR OLED display, USB 4, and Apple Intelligence support.",
                             "Description_DE": "Apple iPad Pro 13 Zoll (M5) mit Apple M5 Chip, Ultra Retina XDR OLED Display, USB 4 und Apple Intelligence Unterstützung.",
                             "release_year": "2025",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/fall-2025-ipad-pro-m5-13in.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Air 2",
@@ -878,7 +1061,10 @@
                             "Description_EN": "Apple iPad Air 2 with Apple A8X chip, 9.7-inch Retina display, Touch ID, and support for Apple Pencil (1st generation).",
                             "Description_DE": "Apple iPad Air 2 mit Apple A8X Chip, 9,7-Zoll Retina Display, Touch ID und Unterstützung für Apple Pencil (1. Generation).",
                             "release_year": "2014",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/identify-ipad-air2.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad (6th generation)",
@@ -892,7 +1078,10 @@
                             "Description_EN": "Apple iPad (6th generation) with A10 Fusion chip, 9.7-inch Retina display, Touch ID, and support for Apple Pencil (1st generation).",
                             "Description_DE": "Apple iPad (6. Generation) mit A10 Fusion Chip, 9,7-Zoll Retina Display, Touch ID und Unterstützung für Apple Pencil (1. Generation).",
                             "release_year": "2018",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/ios11-3-ipad-9-7-in-2018.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro (11)(1st generation)",
@@ -906,7 +1095,10 @@
                             "Description_EN": "Apple iPad Pro 11-inch (1st generation) with A12X Bionic chip, Liquid Retina display, USB-C, and support for Apple Pencil (2nd generation).",
                             "Description_DE": "Apple iPad Pro 11 Zoll (1. Generation) mit A12X Bionic Chip, Liquid Retina Display, USB-C und Unterstützung für Apple Pencil (2. Generation).",
                             "release_year": "2018",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/ios12-ipad-pro-11-in.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Pro (12.9)(3rd generation)",
@@ -920,7 +1112,10 @@
                             "Description_EN": "Apple iPad Pro 12.9-inch (3rd generation) with A12X Bionic chip, Liquid Retina display, Face ID, USB-C, and support for Apple Pencil (2nd generation).",
                             "Description_DE": "Apple iPad Pro 12,9 Zoll (3. Generation) mit A12X Bionic Chip, Liquid Retina Display, Face ID, USB-C und Unterstützung für Apple Pencil (2. Generation).",
                             "release_year": "2018",
-                            "icon": ""
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad/ios12-ipad-pro-12-9-in.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "iPad Air 11-inch (M3)",
@@ -934,7 +1129,10 @@
                             "Description_EN": "Apple iPad Air 11-inch (M3) with Apple M3 chip, 11-inch Liquid Retina display, USB-C, Wi-Fi 6E, and support for Apple Pencil Pro.",
                             "Description_DE": "Apple iPad Air 11 Zoll (M3) mit Apple M3 Chip, 11-Zoll Liquid Retina Display, USB-C, Wi-Fi 6E und Unterstützung für Apple Pencil Pro.",
                             "release_year": "2025",
-                            "icon": "Apple_Tablet_iPad Air 11-inch (M3).png"
+                            "icon": "category_tablet.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/ipad/spring-2025-ipad-air-11.png",
+                            "image_source": "https://support.apple.com/en-us/108043",
+                            "image_checked": "2026-11-02"
                         }
                     ]
                 },
@@ -953,7 +1151,10 @@
                             "Description_EN": "Apple MacBook Air 15-inch (M2, 2023) with Apple M2 chip, 15.3-inch Liquid Retina display, up to 24GB unified memory, MagSafe charging, and macOS.",
                             "Description_DE": "Apple MacBook Air 15 Zoll (M2, 2023) mit Apple M2 Chip, 15,3-Zoll Liquid Retina Display, bis zu 24 GB Unified Memory, MagSafe Laden und macOS.",
                             "release_year": "2023",
-                            "icon": ""
+                            "icon": "category_notebook.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/macbook-air/2023-macbook-air-15in-m2-colors.png",
+                            "image_source": "https://support.apple.com/en-us/102869",
+                            "image_checked": "2026-11-02"
                         },
                         {
                             "model_name": "MacBook Pro (16-inch, 2024)",
@@ -967,7 +1168,10 @@
                             "Description_EN": "Apple MacBook Pro 16-inch (2024) with Apple M4 Pro/Max chip, 16.2-inch Liquid Retina XDR display, up to 128GB unified memory, and macOS.",
                             "Description_DE": "Apple MacBook Pro 16 Zoll (2024) mit Apple M4 Pro/Max Chip, 16,2-Zoll Liquid Retina XDR Display, bis zu 128 GB Unified Memory und macOS.",
                             "release_year": "2024",
-                            "icon": ""
+                            "icon": "category_notebook.png",
+                            "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/macbook-pro/macbook-pro-16in-2024-colors.png",
+                            "image_source": "https://support.apple.com/en-us/108052",
+                            "image_checked": "2026-11-02"
                         }
                     ]
                 }

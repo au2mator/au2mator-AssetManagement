@@ -59,21 +59,49 @@ Manufacturers currently covered: Apple, Dell, HP, HPE, Lenovo, Fujitsu,
 Samsung, Microsoft, ASUS, Acer, MSI, Gigabyte, Dynabook, Alienware, Intel,
 ZOTAC, MINIX, VMware, Zebra, Honeywell, KEYENCE, Poly, Yealink, step.
 
-## About the icons
+## Images: linked, never hosted
 
-This repository ships **neutral category icons only** — one per device type.
-It deliberately contains **no manufacturer product photos**.
+This repository ships **neutral category icons only** — one per device type,
+referenced by the `icon` field. It deliberately contains **no manufacturer
+product photos**.
 
 Product photography is copyrighted by the manufacturer, and no reseller or
 syndication licence covers redistributing it through a public repository.
 We asked. The answer was no, consistently, across every source we checked.
 
-A neutral set also looks better in practice: a catalogue that shows a glossy
-photo for one brand and a blank placeholder for the next is worse than one
-that is consistently clean.
+What the data does carry is a **link** to the manufacturer's own image, on
+the manufacturer's own server:
 
-**Please do not submit manufacturer product images in a pull request** —
-they cannot be merged.
+```json
+"icon": "category_smartphone.png",
+"image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/2022-spring-iphone13-colors.png",
+"image_source": "https://support.apple.com/en-us/108044",
+"image_checked": "2026-11-02"
+```
+
+- `image_url` — the image file, always on an official manufacturer domain
+- `image_source` — the official page the link was taken from, so anyone can
+  verify the origin instead of trusting it
+- `image_checked` — when the link was last confirmed to resolve
+- `icon` — the neutral category icon, always present, used whenever a device
+  has no image link or the link has gone stale
+
+Nothing is copied by this repository. If an import tool fetches an image, it
+does so on the operator's instruction and stores it in that operator's own
+installation.
+
+### Rules for image links
+
+1. **Official manufacturer domains only.** Not reseller shops, not blogs, not
+   image databases, not scraped mirrors.
+2. **`image_source` is mandatory** alongside `image_url`, and must be a page
+   on the same manufacturer's official site.
+3. **No image files in pull requests.** Links only. Manufacturer product
+   images committed to this repository cannot be merged.
+
+Current coverage: **Apple, 68 of 68 models**, linked to Apple's own support
+CDN and sourced from Apple's four "Identify your ..." pages. Other
+manufacturers fall back to category icons for now.
 
 ## Contributing
 
@@ -89,6 +117,8 @@ Useful contributions:
   source system reports them differently
 - **Corrections** to categories, descriptions or release years
 - **German descriptions** where only English exists, and vice versa
+- **Image links** for manufacturers not covered yet — following the three
+  rules above
 
 Please keep the existing JSON structure and field names, and keep files
 UTF-8 encoded.
@@ -101,6 +131,8 @@ UTF-8 encoded.
   `categories.json`
 - Coverage is strongest where our own imports ran — notebooks and
   smartphones are well populated, peripherals barely
+- Image links currently exist for Apple only; other manufacturers still
+  carry stale `icon` values that are being cleaned up
 
 ## Status
 
