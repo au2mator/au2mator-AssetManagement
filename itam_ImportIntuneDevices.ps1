@@ -487,9 +487,29 @@ $BAseDir = "C:\_SCOworkingDir\TFS\au2mator-AssetManagement"
 $ImportUnknownDevices = $false
 $LogFileForUnknownDevices = "C:\_au2mator\_SourceControl\au2mator\PS-Service\LOGS\TASKS\UnknownDevices.log"
 
+<<<<<<< HEAD
 $InternalCompanyShort="au2mator"
 
 #region Image Settings
+=======
+#region Import Settings - Bilder und Updates
+#
+#   Bilder
+#     $ImportCategoryIcons       Kategorie-Icons aus icons\ mitschicken
+#     $DownloadModelImages       Modellbilder vom Hersteller laden
+#     $DownloadCompanyLogos      Herstellerlogos vom Hersteller laden
+#     $ModelImageTimeoutSec      Timeout fuer diese Downloads
+#
+#   Bestehende Objekte gegen die JSON abgleichen
+#     $UpdateExistingCategories  Kategorien aktualisieren
+#     $UpdateExistingModels      Modelle aktualisieren
+#     $UpdateExistingCompanies   Hersteller aktualisieren
+#
+#   Sicherheit
+#     $AllowedImageHosts         erlaubte Hersteller-Domains fuer Bild-Downloads
+#
+
+>>>>>>> 293b16f2fe5f68608f5641cfb75c898d8e25d153
 # Kategorie-Icons stammen aus au2mators eigenem Icon-Set und liegen als Dateien
 # im Repository. Unkritisch, daher standardmaessig aktiv.
 $ImportCategoryIcons = $true
@@ -534,7 +554,7 @@ $AllowedImageHosts = @(
     'www.yealink.com', 'www.keyence.com', 'www.zotac.com', 'www.msi.com',
     'www.fujitsu.com', 'www.poly.com', 'www.alienware.com', 'step-solutions.de'
 )
-#endregion Image Settings
+#endregion Import Settings
 
 
 #region Script
