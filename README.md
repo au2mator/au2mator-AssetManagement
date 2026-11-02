@@ -62,7 +62,7 @@ ZOTAC, MINIX, VMware, Zebra, Honeywell, KEYENCE, Poly, Yealink, step.
 ## Images: linked, never hosted
 
 This repository ships **neutral category icons only** — one per device type,
-referenced by the `icon` field. It deliberately contains **no manufacturer
+referenced from `categories.json`. It deliberately contains **no manufacturer
 product photos**.
 
 Product photography is copyrighted by the manufacturer, and no reseller or
@@ -73,7 +73,6 @@ What the data does carry is a **link** to the manufacturer's own image, on
 the manufacturer's own server:
 
 ```json
-"icon": "category_smartphone.png",
 "image_url": "https://cdsassets.apple.com/live/7WUAS350/images/iphone/2022-spring-iphone13-colors.png",
 "image_source": "https://support.apple.com/en-us/108044",
 "image_checked": "2026-11-02"
@@ -83,8 +82,12 @@ the manufacturer's own server:
 - `image_source` — the official page the link was taken from, so anyone can
   verify the origin instead of trusting it
 - `image_checked` — when the link was last confirmed to resolve
-- `icon` — the neutral category icon, always present, used whenever a device
-  has no image link or the link has gone stale
+
+A model carries **either its correct own image or none at all**. The `icon`
+field stays empty unless a model-specific icon file actually ships with this
+repository. Falling back to a category icon is a presentation decision and is
+handled by au2mator Asset Management itself — it is deliberately not baked
+into this data.
 
 Nothing is copied by this repository. If an import tool fetches an image, it
 does so on the operator's instruction and stores it in that operator's own
@@ -131,8 +134,8 @@ UTF-8 encoded.
   `categories.json`
 - Coverage is strongest where our own imports ran — notebooks and
   smartphones are well populated, peripherals barely
-- Image links currently exist for Apple only; other manufacturers still
-  carry stale `icon` values that are being cleaned up
+- Image links currently exist for Apple only; every other manufacturer has
+  no image yet, which the portal renders as its category icon
 
 ## Status
 
