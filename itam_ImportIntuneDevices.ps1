@@ -1141,9 +1141,7 @@ try {
         }
         else {
             #Update AssignedTo in ITAM
-            #Write-Host "Passt nicht: $($Device.userPrincipalName)"
-            #Write-Host "ITAM ist: $($ITAMDevice.assignedTo.upn)"
-            #Write-Host "Intune ist: $($Device.userPrincipalName)"
+            Write-au2matorLog -Type DEBUG -Text "Assignment differs for $($Device.deviceName) - ITAM: '$($ITAMDevice.assignedTo.upn)' / Intune: '$($Device.userPrincipalName)'"
 
             $ITAMUser = $ITAMUserLookup[$Device.userPrincipalName]
             try {
@@ -1192,7 +1190,7 @@ try {
 
                 }
                 else {
-                    #Write-Host "No Update needed for Device: $($Device.deviceName) - Serial: $($Device.serialNumber) in ITAM"
+                    Write-au2matorLog -Type DEBUG -Text "No Update needed for Device: $($Device.deviceName) - Serial: $($Device.serialNumber) in ITAM"
                 }  
             }
             catch {
