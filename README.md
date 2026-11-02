@@ -29,7 +29,7 @@ asset fields usable in every self-service form you build.
 | File | Content |
 |---|---|
 | `models.json` | **714 models** across **24 manufacturers**, with category, release year, EN + DE descriptions and matching keys |
-| `categories.json` | **9 device categories** with EN + DE descriptions |
+| `categories.json` | **9 device categories** with EN + DE descriptions, each naming its icon |
 | `icons/` | **9 neutral category icons** (PNG) |
 
 ### `models.json`
@@ -83,11 +83,10 @@ the manufacturer's own server:
   verify the origin instead of trusting it
 - `image_checked` — when the link was last confirmed to resolve
 
-A model carries **either its correct own image or none at all**. The `icon`
-field stays empty unless a model-specific icon file actually ships with this
-repository. Falling back to a category icon is a presentation decision and is
-handled by au2mator Asset Management itself — it is deliberately not baked
-into this data.
+A model carries **either its correct own image or none at all**. Models
+without an image simply have no image fields. Falling back to a category
+icon is a presentation decision, handled by au2mator Asset Management
+itself — it is deliberately not baked into this data.
 
 Nothing is copied by this repository. If an import tool fetches an image, it
 does so on the operator's instruction and stores it in that operator's own
@@ -142,6 +141,18 @@ UTF-8 encoded.
 The import scripts themselves are not published here yet. This repository
 currently provides the master data they consume. If you are building your
 own import against the au2mator ITAM API, this data is usable as-is.
+
+## Licence
+
+[MIT](LICENSE) — including an explicit grant of EU database rights over the
+data files, so you can extract and re-use them without ambiguity.
+
+Two things the licence does **not** cover, spelled out in `LICENSE`:
+manufacturer images linked through `image_url` are owned by the
+manufacturers and are never hosted here, and manufacturer and product names
+appear for identification only.
+
+Contributions are accepted under the same licence.
 
 ---
 
