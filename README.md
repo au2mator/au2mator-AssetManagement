@@ -28,7 +28,7 @@ asset fields usable in every self-service form you build.
 
 | File | Content |
 |---|---|
-| `models.json` | **714 models** across **24 manufacturers**, with category, release year, EN + DE descriptions and matching keys |
+| `models.json` | **706 models** across **24 manufacturers**, with category, release year, EN + DE descriptions and matching keys |
 | `categories.json` | **9 device categories** with EN + DE descriptions, each naming its icon |
 | `icons/` | **9 neutral category icons** (PNG) |
 

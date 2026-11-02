@@ -1521,30 +1521,6 @@
                             "Description_EN": "CELSIUS H730 business notebook with Intel/AMD processor, FHD display, up to 32GB RAM, SSD storage, and Windows 11 Pro.",
                             "Description_DE": "CELSIUS H730 Business-Notebook mit Intel/AMD Prozessor, FHD Display, bis zu 32 GB RAM, SSD-Speicher und Windows 11 Pro.",
                             "release_year": ""
-                        },
-                        {
-                            "model_name": "CELSIUS H770",
-                            "key_model_intune": "CELSIUS H770",
-                            "Description_EN": "Detailed description for CELSIUS H770 in English",
-                            "Description_DE": "Detaillierte Beschreibung für CELSIUS H770 auf Deutsch",
-                            "release_year": "2026",
-                            "model_number": "CELSIUS H770"
-                        },
-                        {
-                            "model_name": "CELSIUS H780",
-                            "key_model_intune": "CELSIUS H780",
-                            "Description_EN": "Detailed description for CELSIUS H780 in English",
-                            "Description_DE": "Detaillierte Beschreibung für CELSIUS H780 auf Deutsch",
-                            "release_year": "2026",
-                            "model_number": "CELSIUS H780"
-                        },
-                        {
-                            "model_name": "CELSIUS H7510",
-                            "key_model_intune": "CELSIUS H7510",
-                            "Description_EN": "Detailed description for CELSIUS H7510 in English",
-                            "Description_DE": "Detaillierte Beschreibung für CELSIUS H7510 auf Deutsch",
-                            "release_year": "2026",
-                            "model_number": "CELSIUS H7510"
                         }
                     ]
                 },
@@ -3213,30 +3189,6 @@
                             "Description_EN": "HP EliteBook x360 1040 G6 business notebook with Intel/AMD processor, FHD display, up to 32GB RAM, SSD storage, and Windows 11 Pro.",
                             "Description_DE": "HP EliteBook x360 1040 G6 Business-Notebook mit Intel/AMD Prozessor, FHD Display, bis zu 32 GB RAM, SSD-Speicher und Windows 11 Pro.",
                             "release_year": "2016"
-                        },
-                        {
-                            "model_name": "290 G4 Microtower PC",
-                            "key_model_intune": "HP 290 G4 Microtower PC",
-                            "Description_EN": "Detailed description for HP 290 G4 Microtower PC in English",
-                            "Description_DE": "Detaillierte Beschreibung für HP 290 G4 Microtower PC auf Deutsch",
-                            "release_year": "2026",
-                            "model_number": "HP 290 G4 Microtower PC"
-                        },
-                        {
-                            "model_name": "290 G3 MT Business PC",
-                            "key_model_intune": "HP 290 G3 MT Business PC",
-                            "Description_EN": "Detailed description for HP 290 G3 MT Business PC in English",
-                            "Description_DE": "Detaillierte Beschreibung für HP 290 G3 MT Business PC auf Deutsch",
-                            "release_year": "2026",
-                            "model_number": "HP 290 G3 MT Business PC"
-                        },
-                        {
-                            "model_name": "290 G2 MT Business PC",
-                            "key_model_intune": "HP 290 G2 MT Business PC",
-                            "Description_EN": "Detailed description for HP 290 G2 MT Business PC in English",
-                            "Description_DE": "Detaillierte Beschreibung für HP 290 G2 MT Business PC auf Deutsch",
-                            "release_year": "2026",
-                            "model_number": "HP 290 G2 MT Business PC"
                         }
                     ]
                 },
@@ -3268,32 +3220,6 @@
                             "Description_EN": "HP Pro Mini 400 G9 compact desktop with Intel Core i5/i7 processor, up to 32GB RAM, SSD storage, and Windows 11 Pro.",
                             "Description_DE": "HP Pro Mini 400 G9 Kompakt-Desktop mit Intel Core i5/i7 Prozessor, bis zu 32 GB RAM, SSD-Speicher und Windows 11 Pro.",
                             "release_year": "2023"
-                        },
-                        {
-                            "model_name": "EliteBook X Flip G1i 14 inch Notebook Next Gen AI PC",
-                            "key_model_intune": "HP EliteBook X Flip G1i 14 inch Notebook Next Gen AI PC",
-                            "key_model_apple": "",
-                            "key_model_sccm": "",
-                            "key_model_custom1": "",
-                            "key_model_custom2": "",
-                            "key_model_custom3": "",
-                            "model_number": "HP EliteBook X Flip G1i 14 inch Notebook Next Gen AI PC",
-                            "Description_EN": "HP EliteBook X Flip G1i 14-inch 2-in-1 AI Notebook with Intel Core Ultra, 14-inch touchscreen, 360-degree hinge, and Evo Edition certification.",
-                            "Description_DE": "HP EliteBook X Flip G1i 14-Zoll 2-in-1 KI-Notebook mit Intel Core Ultra, 14-Zoll Touchscreen, 360-Grad-Scharnier und Evo Edition Zertifizierung.",
-                            "release_year": "2024"
-                        },
-                        {
-                            "model_name": "Elite x360 1040 14 inch G11 2-in-1 Notebook PC",
-                            "key_model_intune": "HP Elite x360 1040 14 inch G11 2-in-1 Notebook PC",
-                            "key_model_apple": "",
-                            "key_model_sccm": "",
-                            "key_model_custom1": "",
-                            "key_model_custom2": "",
-                            "key_model_custom3": "",
-                            "model_number": "HP Elite x360 1040 14 inch G11 2-in-1 Notebook PC",
-                            "Description_EN": "HP Elite x360 1040 G11 14-inch 2-in-1 with Intel Core Ultra 7, 14-inch WUXGA touchscreen, 360-degree hinge, and optional 5G.",
-                            "Description_DE": "HP Elite x360 1040 G11 14-Zoll 2-in-1 mit Intel Core Ultra 7, 14-Zoll WUXGA Touchscreen, 360-Grad-Scharnier und optionalem 5G.",
-                            "release_year": "2024"
                         },
                         {
                             "model_name": "ProDesk 4 Mini G1i Desktop AI PC",
