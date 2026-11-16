@@ -3,13 +3,18 @@
 $a2m_Environment = "local"          # local | AAHybrid | AAnoHybrid
 $a2m_LogLevel = "INFO"              # DEBUG | INFO | WARNING | ERROR
 $a2m_LogLocation = "Local"             # Local | Hybrid | Azure
-$a2m_LogPath = "C:\_SCOworkingDir\TFS\au2mator-AssetManagement\LOGS\TASKS"
+$a2m_LogPath = "H:\_au2mator\_Repos\au2mator-AssetManagement\LOGS\TASKS"
 $a2m_LogFileName = "TASK_0011_SyncEntraAssets"
 $a2m_DeleteAfterDays = 30
 $global:a2m_AZKVResponse = $null
 $a2m_AZKeyVaultEnvironment = "Hybrid"    # Hybrid | OnPrem | Azure
-$a2m_AZKeyVaultEnvironmentHybrid = "AzureVM"
-$a2m_AZKeyVaultName = "AA-Prod-au2matorInternal"
+$a2m_AZKeyVaultEnvironmentHybrid = "AzureArc"
+$a2m_AZKeyVaultName = "msc-kv-automation"
+
+
+$BAseDir = "H:\_au2mator\_Repos\au2mator-AssetManagement"
+$LogFileForUnknownDevices = "H:\_au2mator\_Repos\au2mator-AssetManagement\LOGS\TASKS\UnknownDevices.log"
+
 
 #endregion Environment
 
@@ -281,8 +286,6 @@ function Get-AZKeyVaultSecret {
 }
 
 
-
-
 function Get-AzureResourcePaging {
     param (
         $URL,
@@ -453,40 +456,32 @@ function Get-CategoryIconBase64 {
 #endregion Functions
 
 
-
-
-
 #region getSecrets
-$Entra_AppReg_clientID = Get-AZKeyVaultSecret -KeyVaultName $a2m_AZKeyVaultName -SecretName "AppReg-PRODEntraID-clientID"
-$Entra_AppReg_Clientsecret = Get-AZKeyVaultSecret -KeyVaultName $a2m_AZKeyVaultName -SecretName "AppReg-PRODEntraID-ClientSecret"
-$Entra_AppReg_tenantID = Get-AZKeyVaultSecret -KeyVaultName $a2m_AZKeyVaultName -SecretName "AppReg-PRODEntraID-TenantID"
+$Entra_AppReg_clientID = Get-AZKeyVaultSecret -KeyVaultName $a2m_AZKeyVaultName -SecretName "AppReg-appscoteamsonboarding-ClientID"
+$Entra_AppReg_Clientsecret = Get-AZKeyVaultSecret -KeyVaultName $a2m_AZKeyVaultName -SecretName "AppReg-appscoteamsonboarding-ClientSecret"
+$Entra_AppReg_tenantID = Get-AZKeyVaultSecret -KeyVaultName $a2m_AZKeyVaultName -SecretName "Azure-TenantID"
 
 
 #App Reg to Read Intune Devices
 # DeviceManagementManagedDevices.Read.All
-$Intune_AppReg_ClientID = Get-AZKeyVaultSecret -KeyVaultName $a2m_AZKeyVaultName -SecretName "AppReg-PRODIntuneDeviceRead-clientID"
-$Intune_AppReg_TenantID = Get-AZKeyVaultSecret -KeyVaultName $a2m_AZKeyVaultName -SecretName "AppReg-PRODIntuneDeviceRead-TenantID"
-$Intune_AppReg_Secret = Get-AZKeyVaultSecret -KeyVaultName $a2m_AZKeyVaultName -SecretName "AppReg-PRODIntuneDeviceRead-secret"
+$Intune_AppReg_ClientID = Get-AZKeyVaultSecret -KeyVaultName $a2m_AZKeyVaultName -SecretName "AppReg-viepaps34appau2matorassetmanagement-ClientID"
+$Intune_AppReg_TenantID = Get-AZKeyVaultSecret -KeyVaultName $a2m_AZKeyVaultName -SecretName "Azure-TenantID"
+$Intune_AppReg_CertName = Get-AZKeyVaultSecret -KeyVaultName $a2m_AZKeyVaultName -SecretName "AppReg-viepaps34appau2matorassetmanagement-CertName"
 
 
 $a2m_API_Key = Get-AZKeyVaultSecret  -SecretName "au2mator-API-Key-AssetImport-DEMO" -KeyVaultName $a2m_AZKeyVaultName
-$au2mator_BaseURL = "https://avmsrv002.au2mator.local/api"
+$au2mator_BaseURL = "https://viepaps34:444/api"
 $au2mator_Header = @{
     'Content-Type' = "application/json"
     'X-Api-Key'    = "$a2m_API_Key"     
     'accept'       = "*/*"
 }
 
-$BAseDir = "C:\_SCOworkingDir\TFS\au2mator-AssetManagement"
 #endregion getSecrets
 
 
 
 #Sync Settings
-$ImportUnknownDevices = $false
-$LogFileForUnknownDevices = "C:\_au2mator\_SourceControl\au2mator\PS-Service\LOGS\TASKS\UnknownDevices.log"
-
-$InternalCompanyShort="au2mator"
 
 #region Import Settings - images and updates
 #
@@ -517,22 +512,22 @@ $ImportCategoryIcons = $true
 # This is deliberately the operator's decision and therefore OFF by default:
 # the images belong to the respective manufacturers, not to au2mator. Whoever
 # flips the switch must make sure they have the necessary rights.
-$DownloadModelImages = $false
+$DownloadModelImages = $true
 $ModelImageTimeoutSec = 15
 
 # Manufacturer logos. models.json holds a link per manufacturer to the logo on
 # the manufacturer's official site. Same reasoning as for the model images:
 # the logo belongs to the manufacturer, we only link to it.
-$DownloadCompanyLogos = $false
+$DownloadCompanyLogos = $true
 
 # Compare existing categories, models and manufacturers in ITAM against the
 # JSON and update description or image when they differ.
 # OFF by default: enabling this lets the JSON win and may overwrite changes
 # someone made in au2mator.
 # Writes happen only on an actual difference.
-$UpdateExistingCategories = $false
+$UpdateExistingCategories = $true
 $UpdateExistingModels = $false
-$UpdateExistingCompanies = $false
+$UpdateExistingCompanies = $true
 
 # Images may only be downloaded from these hosts. Official manufacturer domains
 # only - no resellers, no logo collections, no mirrors.
@@ -557,11 +552,9 @@ $AllowedImageHosts = @(
 #region Script
 Write-au2matorLog -Type INFO -Text "Start Script"
 try {
-
-
     #Region SyncUsers
     #Get All Users from Azure
-    $Entra_header = Get-GraphHeader -ClientID $Entra_AppReg_clientID -TenantID $Entra_AppReg_tenantID -Secret $Entra_AppReg_Clientsecret 
+    $Entra_header = Get-GraphHeader -ClientID $Entra_AppReg_clientID -TenantID $Entra_AppReg_tenantID -Secret $Entra_AppReg_Clientsecret
 
     $Resource = "users"
     $uri = "https://graph.microsoft.com/v1.0/$($Resource)?`$select=displayName,givenName,postalCode,identities,surname,userPrincipalName,companyName,accountEnabled"
@@ -588,10 +581,32 @@ try {
         $ITAMLookup[$key] = $obj
     }
 
-    $UserNotInITAM = $GRAPHKeys | Where-Object { -not $ITAMLookup.ContainsKey($_) } | ForEach-Object { $GraphLookup[$_] }
-    $UserAlreadyInITAM = $GRAPHKeys | Where-Object { $ITAMLookup.ContainsKey($_) } | ForEach-Object { $GraphLookup[$_] }
-    $USerNotInEntra = $ITAMLookup.Keys | Where-Object { -not $GRAPHKeys.Contains($_) } | ForEach-Object { $ITAMLookup[$_] }
+    #$UserNotInITAM = $GRAPHKeys | Where-Object { -not $ITAMLookup.ContainsKey($_) } | ForEach-Object { $GraphLookup[$_] }
+    #$UserAlreadyInITAM = $GRAPHKeys | Where-Object { $ITAMLookup.ContainsKey($_) } | ForEach-Object { $GraphLookup[$_] }
+    #$USerNotInEntra = $ITAMLookup.Keys | Where-Object { -not $GRAPHKeys.Contains($_) } | ForEach-Object { $ITAMLookup[$_] }
     
+
+    $UserNotInITAM = [System.Collections.Generic.List[object]]::new()
+    $UserAlreadyInITAM = [System.Collections.Generic.List[object]]::new()
+
+    foreach ($Key in $GRAPHKeys) {
+        if ($ITAMLookup.ContainsKey($Key)) {
+            $UserAlreadyInITAM.Add($GraphLookup[$Key])
+        }
+        else {
+            $UserNotInITAM.Add($GraphLookup[$Key])
+        }
+    }
+
+    $UserNotInEntra = @(
+        foreach ($Key in $ITAMLookup.Keys) {
+            if (-not $GraphLookup.ContainsKey($Key)) {
+                $ITAMLookup[$Key]
+            }
+        }
+    )
+
+
     Write-au2matorLog -Type INFO -Text "Total Users not in ITAM: $($UserNotInITAM.count)"
     Write-au2matorLog -Type INFO -Text "Total Users already in ITAM: $($UserAlreadyInITAM.count)"
     Write-au2matorLog -Type INFO -Text "Total Users not in Entra: $($USerNotInEntra.count)"
@@ -616,7 +631,7 @@ try {
             name         = $User.displayName
             firstName    = $User.givenName
             lastName     = $User.surname
-            companyId    = ($AllITAMCompanies | Where-Object { $_.shortName -eq "$InternalCompanyShort"}).id
+            companyId    = ($AllITAMCompanies | Where-Object { $_.Name -eq $User.companyName }).id
             userStatusId = switch ($User.accountEnabled) {
                 $true { ($AllUSerStatus.items | Where-Object { $_.name -eq "Active" }).id }
                 $false { ($AllUSerStatus.items | Where-Object { $_.name -eq "Inactive" }).id }
@@ -656,22 +671,24 @@ try {
         If ($User.surname -ne $ITAMUser.lastName) {
             $Update = $true
         }
+
         #Company
         $UpdateCompany = $false
-        If (($AllITAMCompanies | Where-Object { $_.shortName -eq $InternalCompanyShort }).name -ne $ITAMUserObject.company.name) {
-            
-
-            #checkl if we have a company with the shortName in ITAM
-            If (($AllITAMCompanies | Where-Object { $_.shortName -eq $InternalCompanyShort }).id) {
-                
-                $UpdateCompany = $true
-            }
-            else {
-                Write-au2matorLog -Type WARNING -Text "Company with shortName $($InternalCompanyShort) not found in ITAM for user $($User.userPrincipalName)"
-            }
-
-            
+        try {
+            $ITAMCompany = $ITAMCompanyLookup[$User.companyName]
+   
         }
+        catch {
+            $ITAMCompany = $null
+        }
+
+        if ($ITAMUserObject -and $ITAMCompany.id -ne $ITAMUserObject.company.id) {
+            $UpdateCompany = $true
+            #"Update Company"; Start-Sleep -Seconds 10
+        }
+
+
+
         #>
         #User Status
         $UpdateBody = @()
@@ -715,12 +732,10 @@ try {
                     @{
                         op    = "replace"
                         path  = "/companyId"
-                        value = ($AllITAMCompanies | Where-Object { $_.shortName -eq $InternalCompanyShort }).id
+                        value = $ITAMCompany.id
                     }
                 }
             )
-
-
 
 
             $UpdateBodyJson = $UpdateBody | ConvertTo-Json -Depth 10
@@ -746,7 +761,7 @@ try {
                 value = ($AllUSerStatus.items | Where-Object { $_.name -eq "Inactive" }).id
             }
         )
-        $UpdateBodyJson = $UpdateBody | ConvertTo-Json -Depth 10
+        $UpdateBodyJson = ConvertTo-Json -InputObject $UpdateBody -Depth 10
         $Update_URL = "$($au2mator_BaseURL)/itam_AssetApi/UpdateUser/$($User.id)"
         Write-au2matorLog -Type INFO -Text "Disabling User: $($User.upn) - $($User.name)"
         $Response = Invoke-RestMethod -Method PATCH -Uri $Update_URL -Headers $au2mator_Header -Body $UpdateBodyJson  -ContentType "application/json; charset=utf-8"
@@ -761,7 +776,7 @@ try {
 
 
     #region SyncClientAssets
-    $Intune_header = Get-GraphHeader -ClientID $Intune_AppReg_ClientID -TenantID $Intune_AppReg_TenantID -Secret $Intune_AppReg_Secret 
+    $Intune_header = Get-GraphHeader -ClientID $Intune_AppReg_ClientID -TenantID $Intune_AppReg_TenantID -CertName $Intune_AppReg_CertName 
 
     #GetIntune Devices
 
@@ -854,7 +869,7 @@ try {
         $ITAMModelLookup[$key] = $obj
     }
 
-        $ITAMModelLookup_keyModelIntune = @{}
+    $ITAMModelLookup_keyModelIntune = @{}
     foreach ($obj in $AllITAMModels) {
         $key = "$($obj.keyModelIntune)"
         $ITAMModelLookup_keyModelIntune[$key] = $obj
@@ -1200,7 +1215,7 @@ try {
                 name           = $Device.deviceName
                 manufacturerId = $ModelMatchITAM.manufacturer.id
                 statusId       = $InUseStatusID
-                        }
+            }
             $ImportBodyJson = $ImportBody | ConvertTo-Json -Depth 3
 
             Write-au2matorLog -Type DEBUG -Text "Hardware asset payload: $ImportBodyJson"
@@ -1250,96 +1265,6 @@ try {
 
     #endregion SyncClientAssets
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    $tokenBody = @{
-        Grant_Type    = "client_credentials"
-        Scope         = "https://graph.microsoft.com/.default"
-        Client_Id     = $IntuneScripts_clientID
-        Client_Secret = $IntuneScripts_secret
-    }
-    $tokenResponse = Invoke-RestMethod -Uri "https://login.microsoftonline.com/$TenantID/oauth2/v2.0/token" -Method POST -Body $tokenBody
-    $header = @{
-        "Authorization" = "Bearer $($tokenResponse.access_token)"
-        "Content-type"  = "application/json"
-    }
-
-    Write-au2matorLog -Type INFO -Text "Getting script results"
-    $ScriptResults = Get-AzureResourcePaging -URL "https://graph.microsoft.com/beta/deviceManagement/deviceHealthScripts/3ae6833f-37b7-4175-a11f-72e38490ec8d/deviceRunStates?`$filter=detectionState eq 'success'&`$select=id,lastStateUpdateDateTime,preRemediationDetectionScriptOutput" -AuthHeader $header
-
-    $monitors = $ScriptResults | ForEach-Object {
-        $item = $_
-        $output = $item.preRemediationDetectionScriptOutput | ConvertFrom-Json
-        $output | Select-Object *,
-        @{Name = 'id'; Expression = { $item.id } },
-        @{Name = 'lastStateUpdateDateTime'; Expression = { $item.lastStateUpdateDateTime } } |
-        Where-Object { $_.Status -eq $null }
-    }
-
-    Write-au2matorLog -Type INFO -Text "Getting saved data"
-    $query = "SELECT * FROM [au2mator-help].dbo.MonitorDeviceCollection"
-    $SavedData = ExecuteSqlQuery -sqlquery $query
-    
-    Write-au2matorLog -Type INFO -Text "Creating lookup tables"
-    $monitorLookup = @{}
-    foreach ($monitor in $monitors) {
-        if ($monitor.SerialNumber) {
-            $monitorLookup[$monitor.SerialNumber] = $monitor
-        }
-    }
-
-    $savedLookup = @{}
-    foreach ($saved in $SavedData) {
-        if ($saved.SerialNumber) {
-            $savedLookup[$saved.SerialNumber] = $saved
-        }
-    }
-
-    Write-au2matorLog -Type INFO -Text "Inserting Monitors"
-    foreach ($monitor in $monitors) {
-        if ($monitor.SerialNumber -and $savedLookup.ContainsKey($monitor.SerialNumber)) {
-            if ($savedLookup[$monitor.SerialNumber].ComputerSerialNumber -eq $monitor.ComputerSN -and [DateTime]$savedLookup[$monitor.SerialNumber].LastUpdate -ne ([datetimeoffset]$monitor.lastStateUpdateDateTime).UtcDateTime) {
-                $query = "UPDATE [au2mator-help].dbo.MonitorDeviceCollection set LastUpdate = '$($monitor.lastStateUpdateDateTime)' where ComputerSerialNumber = '$($monitor.ComputerSN)' and SerialNumber = '$($monitor.SerialNumber)'"
-                ExecuteSqlQuery -sqlquery $query
-            }
-        }
-        if ($monitor.SerialNumber -and -not $savedLookup.ContainsKey($monitor.SerialNumber)) {
-            $query = "INSERT INTO [au2mator-help].dbo.MonitorDeviceCollection (ComputerName, ComputerSerialNumber, ManufacturerCode, Model, SerialNumber, PNPDeviceID, ScriptID, LastUpdate) values ('$($monitor.ComputerName)','$($monitor.ComputerSN)','$($monitor.ManufacturerCode)','$($monitor.Model)','$($monitor.SerialNumber)','$($monitor.PNPDeviceID)','$($monitor.id)','$($monitor.lastStateUpdateDateTime)')"
-            ExecuteSqlQuery -sqlquery $query
-        }
-    }
 }
 catch {
     Write-au2matorLog -Type ERROR -Text "Error: $Error"
@@ -1348,14 +1273,7 @@ catch {
 
 #region Return
 Write-au2matorLog -Type INFO -Text "Service finished"
-Clear-Logs 
 
 
 
-
-
-# Note: This used to hold a one-off, commented-out DEV->PROD migration block.
-# Removed because it contained hard-coded customer URLs, a local file path and
-# an API key in plain text. One-off migrations belong in a separate, non-public
-# script.
 
