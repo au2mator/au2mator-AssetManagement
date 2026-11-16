@@ -525,6 +525,7 @@ $au2mator_Header = @{
 #
 #   Assets
 #     $AssignCompanyFromUserToAsset  Set the company of an asset to the company of its assigned user
+#     $SyncAssignedUserToExistingAssets  Take over the user from Intune for assets that already exist
 #
 #   Security
 #     $AllowedImageHosts         Allowed manufacturer domains for image downloads
@@ -567,6 +568,17 @@ $UpdateExistingCompanies = $true
 # asset is not cleared. Assets without an assigned user are left alone.
 # OFF by default, because it changes the company of existing assets.
 $AssignCompanyFromUserToAsset = $false
+
+# Take over the assigned user from Intune for assets that already exist in au2mator.
+# New assets get their user when they are created; without this switch an asset
+# keeps the user it was created with, even if the device changes hands in Intune.
+# With the switch on, assignedTo is set to the au2mator user that matches the
+# Intune userPrincipalName, but only if it differs. Devices without a user in
+# Intune and users that do not exist in au2mator are skipped - an existing
+# assignment is never cleared.
+# Runs before the company pass, so a changed user also changes the company.
+# OFF by default, because it changes existing assets.
+$SyncAssignedUserToExistingAssets = $false
 
 # Images may only be downloaded from these hosts. Official manufacturer domains
 # only - no resellers, no logo collections, no mirrors.
@@ -1281,10 +1293,40 @@ try {
     }
 
 
-    foreach ($Device in $DevicesAlreadyInITAM) {
-        #Check adssigned to and set in ITAM/au2mator
-      
+    #region SyncAssignedUser
+    # Existing assets: take over the assigned user from Intune (switch $SyncAssignedUserToExistingAssets).
+    if ($SyncAssignedUserToExistingAssets) {
+        Write-au2matorLog -Type INFO -Text "Syncing the assigned user of existing assets from Intune"
+        $AssignedChecked = 0
+        $AssignedUpdated = 0
+
+        foreach ($Device in $DevicesAlreadyInITAM) {
+            # No user in Intune (shared device, kiosk): leave the asset alone
+            if ([string]::IsNullOrWhiteSpace("$($Device.userPrincipalName)")) { continue }
+
+            $ITAMUser = $ITAMUserLookup["$($Device.userPrincipalName)"]
+            if ($null -eq $ITAMUser) {
+                Write-au2matorLog -Type WARNING -Text "User $($Device.userPrincipalName) of device $($Device.deviceName) - Serial: $($Device.serialNumber) not found in au2mator, assigned user not changed"
+                continue
+            }
+
+            $Asset = $ITAMDeviceLookup["$($Device.serialNumber)"]
+            if ($null -eq $Asset) { continue }
+            $AssignedChecked++
+            if ("$($Asset.assignedTo.id)" -eq "$($ITAMUser.id)") { continue }
+
+            $AssignOperations = @(@{ op = "replace"; path = "/assignedToId"; value = "$($ITAMUser.id)" })
+            $Result = Invoke-au2matorPatch -BaseURL $au2mator_BaseURL -Header $au2mator_Header -Endpoint "UpdateHardwareAsset" -Id $Asset.id -Operations $AssignOperations -Subject "asset $($Asset.name) - Serial: $($Asset.serialNumber) (assigned to $($ITAMUser.upn))"
+            if ($null -ne $Result) {
+                $AssignedUpdated++
+                # Keep the in-memory asset current, the company pass below reads it
+                $Asset.assignedTo = $ITAMUser
+            }
+        }
+
+        Write-au2matorLog -Type INFO -Text "Assigned user: $AssignedChecked assets checked, $AssignedUpdated updated"
     }
+    #endregion SyncAssignedUser
 
 
 
