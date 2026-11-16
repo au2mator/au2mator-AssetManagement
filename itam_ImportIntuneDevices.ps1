@@ -5,10 +5,9 @@ $a2m_LogLevel = "INFO"              # DEBUG | INFO | WARNING | ERROR
 $a2m_LogLocation = "Local"             # Local | Hybrid | Azure
 $a2m_LogPath = "H:\_au2mator\_Repos\au2mator-AssetManagement\LOGS\TASKS"
 $a2m_LogFileName = "TASK_0011_SyncEntraAssets"
-$a2m_DeleteAfterDays = 30
 $global:a2m_AZKVResponse = $null
 $a2m_AZKeyVaultEnvironment = "Hybrid"    # Hybrid | OnPrem | Azure
-$a2m_AZKeyVaultEnvironmentHybrid = "AzureArc"
+$a2m_AZKeyVaultEnvironmentHybrid = "AzureArc" #AzureArc | AzureVM
 $a2m_AZKeyVaultName = "msc-kv-automation"
 
 
