@@ -417,6 +417,34 @@ function Invoke-au2matorPatch {
     }
 }
 
+function Get-ITAMUserCompanyId {
+    <#
+        Returns the id of the company of an au2mator user, or $null if the user
+        has none. GetAllUsers does not include the company, so GetUser is called
+        once per user and the result is cached for the rest of the run.
+    #>
+    param (
+        [string]$UserId
+    )
+
+    if ([string]::IsNullOrWhiteSpace($UserId)) { return $null }
+    if ($ITAMUserCompanyCache.ContainsKey($UserId)) { return $ITAMUserCompanyCache[$UserId] }
+
+    $CompanyId = $null
+    try {
+        $UserObject = Invoke-RestMethod -Method GET -Uri "$($au2mator_BaseURL)/itam_AssetApi/GetUser?Id=$($UserId)" -Headers $au2mator_Header
+        if ($null -ne $UserObject.company -and -not [string]::IsNullOrWhiteSpace("$($UserObject.company.id)")) {
+            $CompanyId = "$($UserObject.company.id)"
+        }
+    }
+    catch {
+        Write-au2matorLog -Type WARNING -Text "Could not read the company of user $($UserId): $($_.Exception.Message)"
+    }
+
+    $ITAMUserCompanyCache[$UserId] = $CompanyId
+    return $CompanyId
+}
+
 function Get-CategoryIconBase64 {
     <#
         Loads a category icon from the local icons folder as Base64.
@@ -495,6 +523,9 @@ $au2mator_Header = @{
 #     $UpdateExistingModels      Update models
 #     $UpdateExistingCompanies   Update manufacturers
 #
+#   Assets
+#     $AssignCompanyFromUserToAsset  Set the company of an asset to the company of its assigned user
+#
 #   Security
 #     $AllowedImageHosts         Allowed manufacturer domains for image downloads
 #
@@ -528,6 +559,15 @@ $UpdateExistingCategories = $true
 $UpdateExistingModels = $false
 $UpdateExistingCompanies = $true
 
+# Assign the company of the assigned user to the asset.
+# If the user an asset is assigned to has a company in au2mator, the asset gets
+# that company: new assets when they are created, existing assets in a separate
+# pass at the end of the asset sync (a write happens only if the company differs).
+# Users without a company never change an asset - an existing company on the
+# asset is not cleared. Assets without an assigned user are left alone.
+# OFF by default, because it changes the company of existing assets.
+$AssignCompanyFromUserToAsset = $false
+
 # Images may only be downloaded from these hosts. Official manufacturer domains
 # only - no resellers, no logo collections, no mirrors.
 # If you add manufacturers to models.json, add their domain here.
@@ -545,6 +585,9 @@ $AllowedImageHosts = @(
     'psrefstuff.lenovo.com', 'images.samsung.com', 'i02.appmifile.com',
     'www-file.honor.com', 'www.honor.com', 'www.gstatic.com'
 )
+# Cache for Get-ITAMUserCompanyId (user id -> company id)
+$ITAMUserCompanyCache = @{}
+
 #endregion Import Settings
 
 
@@ -1214,6 +1257,14 @@ try {
                 name           = $Device.deviceName
                 manufacturerId = $ModelMatchITAM.manufacturer.id
                 statusId       = $InUseStatusID
+                        }
+
+            # Company of the assigned user (switch $AssignCompanyFromUserToAsset)
+            if ($AssignCompanyFromUserToAsset -and $AssignedUser) {
+                $AssignedUserCompany = Get-ITAMUserCompanyId -UserId "$($AssignedUser.id)"
+                if ($AssignedUserCompany) {
+                    $ImportBody.companyId = $AssignedUserCompany
+                }
             }
             $ImportBodyJson = $ImportBody | ConvertTo-Json -Depth 3
 
@@ -1261,6 +1312,41 @@ try {
             Write-au2matorLog -Type INFO -Text "Set Device: $($Device.name) - Serial: $($Device.serialNumber) to Offline"
         }
     }
+
+    #region AssignCompanyToAssets
+    # Existing assets: take over the company of the assigned user.
+    # GetAllHardwareAssets does not return the asset company, so the asset is read
+    # individually and updated only if its company differs from the user's.
+    # Assets that were just created above already carry the company in their payload.
+    if ($AssignCompanyFromUserToAsset) {
+        Write-au2matorLog -Type INFO -Text "Assigning the company of the assigned user to existing assets"
+        $AssetsChecked = 0
+        $AssetsUpdated = 0
+
+        foreach ($Asset in $AllITAMAssets) {
+            if ($null -eq $Asset.assignedTo -or [string]::IsNullOrWhiteSpace("$($Asset.assignedTo.id)")) { continue }
+
+            # User without a company: leave the asset alone
+            $UserCompanyId = Get-ITAMUserCompanyId -UserId "$($Asset.assignedTo.id)"
+            if ([string]::IsNullOrWhiteSpace("$UserCompanyId")) { continue }
+
+            $AssetsChecked++
+            try {
+                $AssetDetails = Invoke-RestMethod -Method GET -Uri "$($au2mator_BaseURL)/itam_AssetApi/GetHardwareAsset?Id=$($Asset.id)" -Headers $au2mator_Header
+                if ("$($AssetDetails.company.id)" -eq "$UserCompanyId") { continue }
+
+                $CompanyOperations = @(@{ op = "replace"; path = "/companyId"; value = "$UserCompanyId" })
+                $Result = Invoke-au2matorPatch -BaseURL $au2mator_BaseURL -Header $au2mator_Header -Endpoint "UpdateHardwareAsset" -Id $Asset.id -Operations $CompanyOperations -Subject "asset $($Asset.name) - Serial: $($Asset.serialNumber)"
+                if ($null -ne $Result) { $AssetsUpdated++ }
+            }
+            catch {
+                Write-au2matorLog -Type ERROR -Text "Could not check the company of asset $($Asset.name) - Serial: $($Asset.serialNumber): $($_.Exception.Message)"
+            }
+        }
+
+        Write-au2matorLog -Type INFO -Text "Company from user: $AssetsChecked assets checked, $AssetsUpdated updated"
+    }
+    #endregion AssignCompanyToAssets
 
     #endregion SyncClientAssets
 
