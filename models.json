@@ -2462,7 +2462,10 @@
                             "model_number": "HP EliteBook 650 15.6 inch G9 Notebook PC",
                             "Description_EN": "HP EliteBook 650 15.6 inch G9 Notebook PC business notebook with Intel/AMD processor, FHD display, up to 32GB RAM, SSD storage, and Windows 11 Pro.",
                             "Description_DE": "HP EliteBook 650 15.6 inch G9 Notebook PC Business-Notebook mit Intel/AMD Prozessor, FHD Display, bis zu 32 GB RAM, SSD-Speicher und Windows 11 Pro.",
-                            "release_year": "2022"
+                            "release_year": "2022",
+                            "image_url": "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08183353.png",
+                            "image_source": "https://pcb.inc.hp.com/dc/api/spec-sheet/us-en/2101000647/pdf/6C0Z5UT.pdf",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "250 G7 Notebook PC",
@@ -3991,7 +3994,10 @@
                             "model_number": "21MW",
                             "Description_EN": "Lenovo ThinkPad business notebook (21MW). Series/config resolved via Lenovo PSREF.",
                             "Description_DE": "Lenovo ThinkPad Business-Notebook (21MW). Konfiguration via Lenovo PSREF auflösbar.",
-                            "release_year": ""
+                            "release_year": "",
+                            "image_url": "https://psrefstuff.lenovo.com/syspool//Sys/Image/ThinkBook/ThinkBook_16_G7_ARP/Compressedimage/ThinkBook_16_G7_ARP_CT1_01.png",
+                            "image_source": "https://psref.lenovo.com/Product/ThinkBook/ThinkBook_16_G7_ARP?MT=21MW",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "ThinkPad X1 Yoga Gen 8",
@@ -4030,7 +4036,10 @@
                             "model_number": "21QE002RGE",
                             "Description_EN": "Lenovo ThinkPad business notebook (21QE002RGE). Series/config resolved via Lenovo PSREF.",
                             "Description_DE": "Lenovo ThinkPad Business-Notebook (21QE002RGE). Konfiguration via Lenovo PSREF auflösbar.",
-                            "release_year": ""
+                            "release_year": "",
+                            "image_url": "https://psrefstuff.lenovo.com/syspool//Sys/Image/ThinkPad/ThinkPad_T16_Gen_4_Intel/Compressedimage/ThinkPad_T16_Gen_4_Intel_CT1_01.png",
+                            "image_source": "https://psref.lenovo.com/Detail/ThinkPad/ThinkPad_T16_Gen_4?M=21QE002RGE",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "ThinkBook 14 G2 ITL",
@@ -4043,7 +4052,10 @@
                             "model_number": "20VD",
                             "Description_EN": "Lenovo ThinkPad business notebook (20VD). Series/config resolved via Lenovo PSREF.",
                             "Description_DE": "Lenovo ThinkPad Business-Notebook (20VD). Konfiguration via Lenovo PSREF auflösbar.",
-                            "release_year": ""
+                            "release_year": "",
+                            "image_url": "https://psrefstuff.lenovo.com/syspool//Sys/Image/ThinkBook/ThinkBook_14_G2_ITL/Compressedimage/ThinkBook_14_G2_ITL_CT1_01.png",
+                            "image_source": "https://psref.lenovo.com/Product/ThinkBook/ThinkBook_14_G2_ITL?MT=20VD",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "ThinkPad T14s 2-in-1 Gen 1",
@@ -4095,7 +4107,10 @@
                             "model_number": "20SM",
                             "Description_EN": "Lenovo ThinkPad business notebook (20SM). Series/config resolved via Lenovo PSREF.",
                             "Description_DE": "Lenovo ThinkPad Business-Notebook (20SM). Konfiguration via Lenovo PSREF auflösbar.",
-                            "release_year": ""
+                            "release_year": "",
+                            "image_url": "https://psrefstuff.lenovo.com/syspool//Sys/Image/ThinkBook/ThinkBook_15_IIL/Compressedimage/ThinkBook_15_IIL_CT1_01.png",
+                            "image_source": "https://psref.lenovo.com/Product/ThinkBook/ThinkBook_15_IIL?MT=20SM",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "ThinkPad T16 Gen 1",
@@ -4121,7 +4136,10 @@
                             "model_number": "21MN00BKGE",
                             "Description_EN": "Lenovo ThinkPad business notebook (21MN00BKGE). Series/config resolved via Lenovo PSREF.",
                             "Description_DE": "Lenovo ThinkPad Business-Notebook (21MN00BKGE). Konfiguration via Lenovo PSREF auflösbar.",
-                            "release_year": ""
+                            "release_year": "",
+                            "image_url": "https://psrefstuff.lenovo.com/syspool//Sys/Image/ThinkPad/ThinkPad_T16_Gen_3/Compressedimage/ThinkPad_T16_Gen_3_CT1_01.png",
+                            "image_source": "https://psref.lenovo.com/Detail/ThinkPad/ThinkPad_T16_Gen_3?M=21MN00BKGE",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "ThinkPad T16 Gen 2",
@@ -4134,7 +4152,10 @@
                             "model_number": "21HH0028GE",
                             "Description_EN": "Lenovo ThinkPad business notebook (21HH0028GE). Series/config resolved via Lenovo PSREF.",
                             "Description_DE": "Lenovo ThinkPad Business-Notebook (21HH0028GE). Konfiguration via Lenovo PSREF auflösbar.",
-                            "release_year": ""
+                            "release_year": "",
+                            "image_url": "https://psrefstuff.lenovo.com/syspool//Sys/Image/ThinkPad/ThinkPad_T16_Gen_2_Intel/Compressedimage/ThinkPad_T16_Gen_2_Intel_CT1_01.png",
+                            "image_source": "https://psref.lenovo.com/Detail/ThinkPad/ThinkPad_T16_Gen_2?M=21HH0028GE",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "ThinkPad T16 Gen 4",
@@ -4160,7 +4181,10 @@
                             "model_number": "20VE",
                             "Description_EN": "Lenovo ThinkPad business notebook (20VE). Series/config resolved via Lenovo PSREF.",
                             "Description_DE": "Lenovo ThinkPad Business-Notebook (20VE). Konfiguration via Lenovo PSREF auflösbar.",
-                            "release_year": ""
+                            "release_year": "",
+                            "image_url": "https://psrefstuff.lenovo.com/syspool//Sys/Image/ThinkBook/ThinkBook_15_G2_ITL/Compressedimage/ThinkBook_15_G2_ITL_CT1_01.png",
+                            "image_source": "https://psref.lenovo.com/Product/ThinkBook/ThinkBook_15_G2_ITL?MT=20VE",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "ThinkPad L13 Yoga",
@@ -5868,7 +5892,10 @@
                             "model_number": "12TD000RGE",
                             "Description_EN": "Lenovo ThinkCentre desktop (12TD000RGE). Series/config resolved via Lenovo PSREF.",
                             "Description_DE": "Lenovo ThinkCentre Desktop (12TD000RGE). Konfiguration via Lenovo PSREF auflösbar.",
-                            "release_year": ""
+                            "release_year": "",
+                            "image_url": "https://psrefstuff.lenovo.com/syspool//Sys/Image/ThinkCentre/ThinkCentre_M70q_Gen_5/Compressedimage/ThinkCentre_M70q_Gen_5_CT1_01.png",
+                            "image_source": "https://psref.lenovo.com/Detail/ThinkCentre/ThinkCentre_M70q_Gen_5?M=12TD000RGE",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "ThinkStation P3",
@@ -6569,7 +6596,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://static.lenovo.com/fea/images/lenovo-logo-red.png",
+            "image_source": "https://www.lenovo.com/de/de/",
+            "image_checked": "2026-11-16"
         },
         {
             "manufacturer": "Samsung Group",
@@ -6589,7 +6619,10 @@
                             "model_number": "SM-X306B",
                             "Description_EN": "Samsung Galaxy Tab Active 5 rugged tablet with Snapdragon 7s Gen 2, 8-inch FHD+ display, IP68/MIL-STD-810H rated, replaceable battery, and Android 14.",
                             "release_year": "2024",
-                            "Description_DE": "Samsung Galaxy Tab Active 5 robustes Tablet mit Snapdragon 7s Gen 2, 8-Zoll FHD+ Display, IP68/MIL-STD-810H zertifiziert, wechselbarem Akku und Android 14."
+                            "Description_DE": "Samsung Galaxy Tab Active 5 robustes Tablet mit Snapdragon 7s Gen 2, 8-Zoll FHD+ Display, IP68/MIL-STD-810H zertifiziert, wechselbarem Akku und Android 14.",
+                            "image_url": "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-x306bzgaeea/gallery/uk-galaxy-tab-active5-sm-x306bzgaeea-thumb-539582523?$Q90_684_547_JPG$",
+                            "image_source": "https://www.samsung.com/uk/business/tablets/galaxy-tab-active/galaxy-tab-active5-green-128gb-sm-x306bzgaeea/",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Galaxy Tab A7 Lite",
@@ -6646,7 +6679,10 @@
                             "model_number": "SM-G556B",
                             "Description_EN": "Samsung Galaxy Xcover 7 rugged smartphone with 6.6-inch PLS LCD display, IP68/MIL-STD-810H rated, replaceable battery, and Android 14.",
                             "Description_DE": "Samsung Galaxy Xcover 7 robustes Smartphone mit 6,6-Zoll PLS LCD Display, IP68/MIL-STD-810H zertifiziert, wechselbarem Akku und Android 14.",
-                            "release_year": "2024"
+                            "release_year": "2024",
+                            "image_url": "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-g556bzkdeeb/gallery/uk-galaxy-xcover7-sm-g556bzkdeeb-thumb-539582715?$Q90_684_547_JPG$",
+                            "image_source": "https://www.samsung.com/uk/smartphones/others/galaxy-xcover7-black-128gb-sm-g556bzkdeeb/",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Galaxy A52s 5G",
@@ -6659,7 +6695,10 @@
                             "model_number": "SM-G525F",
                             "Description_EN": "Samsung Galaxy A52s 5G with Snapdragon 778G, 6.5-inch FHD+ Super AMOLED display, 64MP quad-camera, 5G, and IP67 water resistance.",
                             "Description_DE": "Samsung Galaxy A52s 5G mit Snapdragon 778G, 6,5-Zoll FHD+ Super AMOLED Display, 64-MP-Quad-Kamera, 5G und IP67-Wasserbeständigkeit.",
-                            "release_year": "2021"
+                            "release_year": "2021",
+                            "image_url": "https://images.samsung.com/is/image/samsung/p6pim/pt/sm-g525fzkdeeb/gallery/pt-galaxy-xcover5-g525-sm-g525fzkdeeb-thumb-537261904?$Q90_684_547_JPG$",
+                            "image_source": "https://www.samsung.com/pt/business/smartphones/xcover/galaxy-xcover-5-enterprise-edition-sm-g525fzkdeeb/",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Galaxy Xcover 4s",
@@ -6932,7 +6971,10 @@
                             "model_number": "Latitude 5520",
                             "Description_EN": "Dell Latitude 5520 15.6-inch notebook with Intel Core i5/i7 (11th gen), FHD display, up to 32GB RAM, 512GB SSD, and optional LTE.",
                             "release_year": "2021",
-                            "Description_DE": "Dell Latitude 5520 15,6-Zoll Notebook mit Intel Core i5/i7 (11. Generation), FHD Display, bis zu 32 GB RAM, 512 GB SSD und optionalem LTE."
+                            "Description_DE": "Dell Latitude 5520 15,6-Zoll Notebook mit Intel Core i5/i7 (11. Generation), FHD Display, bis zu 32 GB RAM, 512 GB SSD und optionalem LTE.",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/latitude-15-5520/global-spi/ng/notebook-latitude-15-5520-nt-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-15-5520-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 5590",
@@ -6945,7 +6987,10 @@
                             "model_number": "Latitude 5590",
                             "Description_EN": "Dell Latitude 5590 15.6-inch notebook with Intel Core i5/i7 (8th gen), FHD display, up to 32GB DDR4 RAM, and 512GB SSD.",
                             "Description_DE": "Dell Latitude 5590 15,6-Zoll Notebook mit Intel Core i5/i7 (8. Generation), FHD Display, bis zu 32 GB DDR4 RAM und 512 GB SSD.",
-                            "release_year": "2018"
+                            "release_year": "2018",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/15-5590/global-spi/non-touch/notebooks-latitude-15-5590-relsize-ss-mtrc-500-nt-ng.psd?fmt=png-alpha",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-15-5590-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 7390",
@@ -6958,7 +7003,10 @@
                             "model_number": "Latitude 7390",
                             "Description_EN": "Dell Latitude 7390 13.3-inch notebook with Intel Core i5/i7 (8th gen), FHD display, up to 16GB LPDDR3 RAM, and 512GB NVMe SSD.",
                             "Description_DE": "Dell Latitude 7390 13,3-Zoll Notebook mit Intel Core i5/i7 (8. Generation), FHD Display, bis zu 16 GB LPDDR3 RAM und 512 GB NVMe SSD.",
-                            "release_year": "2017"
+                            "release_year": "2017",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/13-7390/global-spi/non-touch/notebook-latitude-13-7390-nt-relsize-ss-mtrc-500-ng.psd?fmt=png-alpha",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-13-7390-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 5540",
@@ -6971,7 +7019,10 @@
                             "model_number": "Latitude 5540",
                             "Description_EN": "Dell Latitude 5540 15.6-inch notebook with Intel Core i5/i7 (13th gen), FHD display, up to 64GB DDR5 RAM, optional 4G LTE, and Wi-Fi 6E.",
                             "release_year": "2023",
-                            "Description_DE": "Dell Latitude 5540 15,6-Zoll Notebook mit Intel Core i5/i7 (13. Generation), FHD Display, bis zu 64 GB DDR5 RAM, optionalem 4G LTE und Wi-Fi 6E."
+                            "Description_DE": "Dell Latitude 5540 15,6-Zoll Notebook mit Intel Core i5/i7 (13. Generation), FHD Display, bis zu 64 GB DDR5 RAM, optionalem 4G LTE und Wi-Fi 6E.",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/latitude-15-5540-laptop/spi/rgb/ng/notebook-latitude-15-5540-nt-gray-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-15-5540-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 5550",
@@ -6984,7 +7035,10 @@
                             "model_number": "Latitude 5550",
                             "Description_EN": "Dell Latitude 5550 15.6-inch notebook with Intel Core Ultra (14th gen), FHD display, up to 64GB LPDDR5 RAM, optional 5G, and AI features.",
                             "release_year": "2024",
-                            "Description_DE": "Dell Latitude 5550 15,6-Zoll Notebook mit Intel Core Ultra (14. Generation), FHD Display, bis zu 64 GB LPDDR5 RAM, optionalem 5G und KI-Funktionen."
+                            "Description_DE": "Dell Latitude 5550 15,6-Zoll Notebook mit Intel Core Ultra (14. Generation), FHD Display, bis zu 64 GB LPDDR5 RAM, optionalem 5G und KI-Funktionen.",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/latitude-15-5550-laptop/spi/emza/ng/notebook-latitude-15-5550-t-emza-gray-relsize-500-ng.psd?fmt=png-alpha&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-15-5550-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 5530",
@@ -6997,7 +7051,10 @@
                             "model_number": "Latitude 5530",
                             "Description_EN": "Dell Latitude 5530 15.6-inch notebook with Intel Core i5/i7 (12th gen), FHD display, up to 64GB DDR5 RAM, 512GB SSD, and Wi-Fi 6E.",
                             "release_year": "2022",
-                            "Description_DE": "Dell Latitude 5530 15,6-Zoll Notebook mit Intel Core i5/i7 (12. Generation), FHD Display, bis zu 64 GB DDR5 RAM, 512 GB SSD und Wi-Fi 6E."
+                            "Description_DE": "Dell Latitude 5530 15,6-Zoll Notebook mit Intel Core i5/i7 (12. Generation), FHD Display, bis zu 64 GB DDR5 RAM, 512 GB SSD und Wi-Fi 6E.",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/15-5530/spi/ng/notebook-latitude-15-5530-nt-gray-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-15-5530-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 3440",
@@ -7010,7 +7067,10 @@
                             "model_number": "Latitude 3440",
                             "Description_EN": "Dell Latitude 3440 14-inch notebook with Intel Core i5/i7 (13th gen), FHD display, up to 32GB DDR4 RAM, and optional 4G LTE.",
                             "release_year": "2023",
-                            "Description_DE": "Dell Latitude 3440 14-Zoll Notebook mit Intel Core i5/i7 (13. Generation), FHD Display, bis zu 32 GB DDR4 RAM und optionalem 4G LTE."
+                            "Description_DE": "Dell Latitude 3440 14-Zoll Notebook mit Intel Core i5/i7 (13. Generation), FHD Display, bis zu 32 GB DDR4 RAM und optionalem 4G LTE.",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/latitude-14-3440-laptop/spi/non-touch/ng/notebook-latitude-14-3440-uma-hd-gray-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-14-3440-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 5285",
@@ -7036,7 +7096,10 @@
                             "model_number": "Latitude 5290 2-in-1",
                             "Description_EN": "Dell Latitude 5290 2-in-1 12.3-inch tablet with Intel Core i5/i7 (8th gen), FHD+ touchscreen, detachable keyboard, and Windows 10 Pro.",
                             "Description_DE": "Dell Latitude 5290 2-in-1 12,3-Zoll Tablet mit Intel Core i5/i7 (8. Generation), FHD+ Touchscreen, abnehmbarer Tastatur und Windows 10 Pro.",
-                            "release_year": "2018"
+                            "release_year": "2018",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/12-5290/12-5290-2-in-1/global-spi/notebook-latitude-12-5290-2-in-1-relsize-ss-mtrc-500-de-at-ng.psd?fmt=png-alpha",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-12-5290-2-in-1-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 5500",
@@ -7049,7 +7112,10 @@
                             "model_number": "Latitude 5500",
                             "Description_EN": "Dell Latitude 5500 15.6-inch notebook with Intel Core i5/i7 (8th gen), FHD display, up to 32GB DDR4 RAM, 512GB SSD, and Windows 10 Pro.",
                             "Description_DE": "Dell Latitude 5500 15,6-Zoll Notebook mit Intel Core i5/i7 (8. Generation), FHD Display, bis zu 32 GB DDR4 RAM, 512 GB SSD und Windows 10 Pro.",
-                            "release_year": "2019"
+                            "release_year": "2019",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/15-5501/global-spi/ng/notebook-latitude-15-5501-nt-relsize-500-ng.psd?fmt=jpg",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-15-5500-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 5510",
@@ -7062,7 +7128,10 @@
                             "model_number": "Latitude 5510",
                             "Description_EN": "Dell Latitude 5510 15.6-inch notebook with Intel Core i5/i7 (10th gen), FHD display, up to 32GB DDR4 RAM, 512GB SSD, and Windows 10 Pro.",
                             "Description_DE": "Dell Latitude 5510 15,6-Zoll Notebook mit Intel Core i5/i7 (10. Generation), FHD Display, bis zu 32 GB DDR4 RAM, 512 GB SSD und Windows 10 Pro.",
-                            "release_year": "2020"
+                            "release_year": "2020",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/15-551x/global-spi/ng/notebook-latitude-15-551x-relsize-500-ng.psd?qlt=95&fit=constrain,1&hei=211&wid=500&fmt=jpg",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-15-5510-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 5580",
@@ -7127,7 +7196,10 @@
                             "model_number": "Latitude 7320",
                             "Description_EN": "Dell Latitude 7320 13.3-inch notebook with Intel Core i5/i7 (11th gen), FHD display, up to 32GB LPDDR4X RAM, 512GB SSD, and Windows 10 Pro.",
                             "Description_DE": "Dell Latitude 7320 13,3-Zoll Notebook mit Intel Core i5/i7 (11. Generation), FHD Display, bis zu 32 GB LPDDR4X RAM, 512 GB SSD und Windows 10 Pro.",
-                            "release_year": "2021"
+                            "release_year": "2021",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/latitude-13-7320/global-spi/ng/black/notebook-latitude-13-7320-nt-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-13-7320-2-in-1-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 7330",
@@ -7140,7 +7212,10 @@
                             "model_number": "Latitude 7330",
                             "Description_EN": "Dell Latitude 7330 13.3-inch notebook with Intel Core i5/i7 (12th gen), FHD display, up to 32GB LPDDR5 RAM, 512GB SSD, and Windows 11 Pro.",
                             "Description_DE": "Dell Latitude 7330 13,3-Zoll Notebook mit Intel Core i5/i7 (12. Generation), FHD Display, bis zu 32 GB LPDDR5 RAM, 512 GB SSD und Windows 11 Pro.",
-                            "release_year": "2022"
+                            "release_year": "2022",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/13-7330/spi/ng/notebook-latitude-13-7330-gray-relsize-ss-mtrc-de-at-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-13-7330-2-in-1-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 7340",
@@ -7153,7 +7228,10 @@
                             "model_number": "Latitude 7340",
                             "Description_EN": "Dell Latitude 7340 13.3-inch notebook with Intel Core i5/i7 (13th gen), FHD+ display, up to 32GB LPDDR5 RAM, 512GB SSD, and Windows 11 Pro.",
                             "Description_DE": "Dell Latitude 7340 13,3-Zoll Notebook mit Intel Core i5/i7 (13. Generation), FHD+ Display, bis zu 32 GB LPDDR5 RAM, 512 GB SSD und Windows 11 Pro.",
-                            "release_year": "2023"
+                            "release_year": "2023",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/latitude-13-7340-laptop-2-in-1/spi/ng/notebook-latitude-13-7340-mainstream-2-in-1-gray-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-13-7340-2-in-1-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 7350",
@@ -7166,7 +7244,10 @@
                             "model_number": "Latitude 7350",
                             "Description_EN": "Dell Latitude 7350 13.3-inch notebook with Intel Core Ultra (14th gen), FHD+ display, up to 32GB LPDDR5 RAM, 512GB SSD, and Windows 11 Pro.",
                             "Description_DE": "Dell Latitude 7350 13,3-Zoll Notebook mit Intel Core Ultra (14. Generation), FHD+ Display, bis zu 32 GB LPDDR5 RAM, 512 GB SSD und Windows 11 Pro.",
-                            "release_year": "2024"
+                            "release_year": "2024",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/latitude-13-7350-laptop-2-in-1/spi/mainstream/ng/notebook-latitude-13-7350-mainstream-2-in-1-gray-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-13-7350-2-in-1-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 7350 Detachable",
@@ -7205,7 +7286,10 @@
                             "model_number": "Dell Pro 16 PC16250",
                             "Description_EN": "Dell Pro 16 PC16250 16-inch business notebook with Intel Core Ultra, FHD+ display, up to 32GB RAM, SSD storage, and Windows 11 Pro.",
                             "Description_DE": "Dell Pro 16 PC16250 16-Zoll Business-Notebook mit Intel Core Ultra, FHD+ Display, bis zu 32 GB RAM, SSD-Speicher und Windows 11 Pro.",
-                            "release_year": "2024"
+                            "release_year": "2024",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/dell-pro-plus/pc16250/spi/hd-fhd/notebook-16-db06250-hd-fhd-gray-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/dellpro16laptoppc16250/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 3450",
@@ -7213,7 +7297,10 @@
                             "Description_EN": "Detailed description for Latitude 3450 in English",
                             "Description_DE": "Detaillierte Beschreibung für Latitude 3450 auf Deutsch",
                             "release_year": "2026",
-                            "model_number": "Latitude 3450"
+                            "model_number": "Latitude 3450",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/latitude-14-3450-laptop/spi/touch/ng/notebook-latitude-14-3450-t-dgpu-ir-gray-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-14-3450-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Pro 14 Essential PV14250",
@@ -7221,7 +7308,10 @@
                             "Description_EN": "Detailed description for Dell Pro 14 Essential PV14250 in English",
                             "Description_DE": "Detaillierte Beschreibung für Dell Pro 14 Essential PV14250 auf Deutsch",
                             "release_year": "2026",
-                            "model_number": "Dell Pro 14 Essential PV14250"
+                            "model_number": "Dell Pro 14 Essential PV14250",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/dell/dc14250/spi/plastic/silver/non-fpr/notebook-14-dc14250-nt-plastic-silver-relsize-500-ng.psd?fmt=png-alpha&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/dell-pro-pv14250-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 3410",
@@ -7245,7 +7335,10 @@
                             "Description_EN": "Detailed description for Latitude 5450 in English",
                             "Description_DE": "Detaillierte Beschreibung für Latitude 5450 auf Deutsch",
                             "release_year": "2026",
-                            "model_number": "Latitude 5450"
+                            "model_number": "Latitude 5450",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/latitude-14-5450-laptop/spi/touch/ir/ng/notebook-latitude-14-5450-t-ir-gray-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-14-5450-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude E5440",
@@ -7277,7 +7370,10 @@
                             "Description_EN": "Detailed description for Latitude 3540 in English",
                             "Description_DE": "Detaillierte Beschreibung für Latitude 3540 auf Deutsch",
                             "release_year": "2026",
-                            "model_number": "Latitude 3540"
+                            "model_number": "Latitude 3540",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/latitude-15-3540-laptop/spi/ir/ng/notebook-latitude-15-3540-t-ir-gray-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-15-3540-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "16 DC16250",
@@ -7309,7 +7405,10 @@
                             "Description_EN": "Detailed description for Dell Pro 16 Plus PB16250 in English",
                             "Description_DE": "Detaillierte Beschreibung für Dell Pro 16 Plus PB16250 auf Deutsch",
                             "release_year": "2026",
-                            "model_number": "Dell Pro 16 Plus PB16250"
+                            "model_number": "Dell Pro 16 Plus PB16250",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/dell-pro-plus/pb16250/spi/pb16250-fpr-mipi-5mp/notebook-16-pb16250-nt-gray-fpr-mipi-5mp-relsize-500-ng.psd?fmt=png-alpha&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/dell-pro-pb16250-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 7490",
@@ -7405,7 +7504,10 @@
                             "Description_EN": "Detailed description for Vostro 15 3530 in English",
                             "Description_DE": "Detaillierte Beschreibung für Vostro 15 3530 auf Deutsch",
                             "release_year": "2026",
-                            "model_number": "Vostro 15 3530"
+                            "model_number": "Vostro 15 3530",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/vostro-notebooks/vostro-15-3530/spi/bk-fpr/ng/notebook-vostro-15-3530-nt-fpr-black-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/vostro-15-3530-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Vostro 3710",
@@ -7421,7 +7523,10 @@
                             "Description_EN": "Detailed description for Latitude 5400 in English",
                             "Description_DE": "Detaillierte Beschreibung für Latitude 5400 auf Deutsch",
                             "release_year": "2026",
-                            "model_number": "Latitude 5400"
+                            "model_number": "Latitude 5400",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/14-5400/global-spi/ng/notebook-latitude-14-5400-nt-relsize-500-ng.psd?fmt=jpg",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-14-5400-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 5410",
@@ -7429,7 +7534,10 @@
                             "Description_EN": "Detailed description for Latitude 5410 in English",
                             "Description_DE": "Detaillierte Beschreibung für Latitude 5410 auf Deutsch",
                             "release_year": "2026",
-                            "model_number": "Latitude 5410"
+                            "model_number": "Latitude 5410",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/14-541x/global-spi/ng/notebook-latitude-14-541x-nt-relsize-500-ng.psd?fmt=jpg",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-14-5410-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 3520",
@@ -7549,7 +7657,10 @@
                             "Description_EN": "Detailed description for Latitude 5420 in English",
                             "Description_DE": "Detaillierte Beschreibung für Latitude 5420 auf Deutsch",
                             "release_year": "2026",
-                            "model_number": "Latitude 5420"
+                            "model_number": "Latitude 5420",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/14-5420/pdp/laptops-latitude-5420-pdp-gallery-504x350.jpg?fmt=jpg",
+                            "image_source": "https://www.dell.com/en-us/shop/laptop-computers/spd/latitude-5420-laptop",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude E5530 non-vPro",
@@ -7804,7 +7915,10 @@
                             "model_number": "Precision 7750",
                             "Description_EN": "Dell Precision 7750 17.3-inch mobile workstation with Intel Core i7/i9/Xeon W (10th gen), FHD display, up to 128GB ECC RAM, and NVIDIA Quadro RTX GPU.",
                             "Description_DE": "Dell Precision 7750 17,3-Zoll Mobile Workstation mit Intel Core i7/i9/Xeon W (10. Generation), FHD Display, bis zu 128 GB ECC RAM und NVIDIA Quadro RTX GPU.",
-                            "release_year": "2020"
+                            "release_year": "2020",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/workstations/mobile-workstations/precision/7750/global-spi/ng/notebook-precision-17-7750-nt-relsize-500-ng.psd?fmt=jpg",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/precision-17-7750-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Precision 5770",
@@ -7851,7 +7965,10 @@
                             "model_number": "OptiPlex 3050",
                             "Description_EN": "Dell OptiPlex 3050 compact desktop with Intel Core i3/i5/i7 (7th gen), up to 32GB DDR4 RAM, SSD/HDD storage, and Windows 10 Pro.",
                             "release_year": "2017",
-                            "Description_DE": "Dell OptiPlex 3050 Kompakt-Desktop mit Intel Core i3/i5/i7 (7. Generation), bis zu 32 GB DDR4 RAM, SSD/HDD Speicher und Windows 10 Pro."
+                            "Description_DE": "Dell OptiPlex 3050 Kompakt-Desktop mit Intel Core i3/i5/i7 (7. Generation), bis zu 32 GB DDR4 RAM, SSD/HDD Speicher und Windows 10 Pro.",
+                            "image_url": "https://i.dell.com/das/dih.ashx/500x500/das/xa_____/global-site-design%20WEB/f759b411-0e4e-8da4-efd5-24e89c5593bb/1/OriginalPng?id=Dell/Product_Images/Dell_Client_Products/Desktops/OptiPlex_Desktops/Optiplex_3050/MT/global_spi/desktop-optiplex-3050-mt-black-right-relativesize-500-ng.psd",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/optiplex-3050-desktop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "OptiPlex 3080",
@@ -7864,7 +7981,10 @@
                             "model_number": "OptiPlex 3080",
                             "Description_EN": "Dell OptiPlex 3080 compact desktop with Intel Core i3/i5/i7 (10th gen), up to 64GB DDR4 RAM, SSD storage, and Windows 10 Pro.",
                             "release_year": "2020",
-                            "Description_DE": "Dell OptiPlex 3080 Kompakt-Desktop mit Intel Core i3/i5/i7 (10. Generation), bis zu 64 GB DDR4 RAM, SSD-Speicher und Windows 10 Pro."
+                            "Description_DE": "Dell OptiPlex 3080 Kompakt-Desktop mit Intel Core i3/i5/i7 (10. Generation), bis zu 64 GB DDR4 RAM, SSD-Speicher und Windows 10 Pro.",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/desktops/optiplex-desktops/optiplex-3080/global-spi/ng/desktop-optiplex-3080-sff-relsize-500-ng.psd?fmt=jpg",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/optiplex-3080-desktop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "OptiPlex 3070",
@@ -7877,7 +7997,10 @@
                             "model_number": "OptiPlex 3070",
                             "Description_EN": "Dell OptiPlex 3070 compact desktop with Intel Core i3/i5/i7 (9th gen), up to 64GB DDR4 RAM, SSD storage, and Windows 10 Pro.",
                             "release_year": "2019",
-                            "Description_DE": "Dell OptiPlex 3070 Kompakt-Desktop mit Intel Core i3/i5/i7 (9. Generation), bis zu 64 GB DDR4 RAM, SSD-Speicher und Windows 10 Pro."
+                            "Description_DE": "Dell OptiPlex 3070 Kompakt-Desktop mit Intel Core i3/i5/i7 (9. Generation), bis zu 64 GB DDR4 RAM, SSD-Speicher und Windows 10 Pro.",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/desktops/optiplex-desktops/3070/global-spi/ng/desktop-optiplex-3070-sff-mt-relsize-500-ng.psd?fmt=jpg",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/optiplex-3070-desktop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "OptiPlex 3060",
@@ -7890,7 +8013,10 @@
                             "model_number": "OptiPlex 3060",
                             "Description_EN": "Dell OptiPlex 3060 compact desktop with Intel Core i3/i5/i7 (8th gen), up to 64GB DDR4 RAM, SSD storage, and Windows 10 Pro.",
                             "release_year": "2018",
-                            "Description_DE": "Dell OptiPlex 3060 Kompakt-Desktop mit Intel Core i3/i5/i7 (8. Generation), bis zu 64 GB DDR4 RAM, SSD-Speicher und Windows 10 Pro."
+                            "Description_DE": "Dell OptiPlex 3060 Kompakt-Desktop mit Intel Core i3/i5/i7 (8. Generation), bis zu 64 GB DDR4 RAM, SSD-Speicher und Windows 10 Pro.",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/desktops/optiplex-desktops/3060-mt/global-spi/desktops-optiplex-3060-mt-relsize-500-ng.psd?fmt=png-alpha",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/optiplex-3060-desktop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Precision 5820 Tower",
@@ -7903,7 +8029,10 @@
                             "model_number": "Precision 5820 Tower",
                             "Description_EN": "Dell Precision 5820 Tower workstation with Intel Xeon W processor, up to 256GB ECC RAM, NVIDIA Quadro GPU, and Windows 10 Pro for Workstations.",
                             "Description_DE": "Dell Precision 5820 Tower Workstation mit Intel Xeon W Prozessor, bis zu 256 GB ECC RAM, NVIDIA Quadro GPU und Windows 10 Pro for Workstations.",
-                            "release_year": "2017"
+                            "release_year": "2017",
+                            "image_url": "https://i.dell.com/is/image/DellContent///content/dam/ss2/product-images/dell-client-products/desktops/precision-desktops/desktop-precision-5820/global-spi/desktop-precision-5820-black-right-relativesize-500-ng.psd?fmt=png-alpha",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/precision-5820-workstation/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Precision 7770",
@@ -7916,7 +8045,10 @@
                             "model_number": "Precision 7770",
                             "Description_EN": "Dell Precision 7770 17-inch mobile workstation with Intel Core i7/i9 or Xeon W, up to 128GB DDR5 RAM, NVIDIA RTX GPU, and Windows 11 Pro.",
                             "Description_DE": "Dell Precision 7770 17-Zoll Mobile Workstation mit Intel Core i7/i9 oder Xeon W, bis zu 128 GB DDR5 RAM, NVIDIA RTX GPU und Windows 11 Pro.",
-                            "release_year": "2022"
+                            "release_year": "2022",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/workstations/mobile-workstations/precision/17-7770/pdp/mobile-workstation-precision-17-7770-pdp-hero-504x350.psd?fmt=jpg",
+                            "image_source": "https://www.dell.com/en-us/shop/laptop-computers/spd/precision-17-7770-laptop",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "OptiPlex 3000",
@@ -7929,7 +8061,10 @@
                             "model_number": "OptiPlex 3000",
                             "Description_EN": "Dell OptiPlex 3000 compact desktop with Intel Core i3/i5/i7 (12th gen), up to 64GB DDR4 RAM, SSD storage, and Windows 11 Pro.",
                             "Description_DE": "Dell OptiPlex 3000 Kompakt-Desktop mit Intel Core i3/i5/i7 (12. Generation), bis zu 64 GB DDR4 RAM, SSD-Speicher und Windows 11 Pro.",
-                            "release_year": "2022"
+                            "release_year": "2022",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/products/desktops-and-all-in-ones/optiplex/3000-tsff/spi/optiplex-3000-mt/ng/desktop-optiplex-3000-mt-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/optiplex-3000-desktop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "OptiPlex 3090",
@@ -7942,7 +8077,10 @@
                             "model_number": "OptiPlex 3090",
                             "Description_EN": "Dell OptiPlex 3090 compact desktop with Intel Core i3/i5/i7 (11th gen), up to 64GB DDR4 RAM, SSD storage, and Windows 10 Pro.",
                             "Description_DE": "Dell OptiPlex 3090 Kompakt-Desktop mit Intel Core i3/i5/i7 (11. Generation), bis zu 64 GB DDR4 RAM, SSD-Speicher und Windows 10 Pro.",
-                            "release_year": "2021"
+                            "release_year": "2021",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/desktops/optiplex-desktops/3090-mt-sff/spi/ng/desktop-optiplex-3090-sff-mt-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/optiplex-3090-desktop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "OptiPlex Micro 7010",
@@ -7955,7 +8093,10 @@
                             "model_number": "OptiPlex Micro 7010",
                             "Description_EN": "Dell OptiPlex Micro 7010 ultra-compact desktop with Intel Core i5/i7 (13th gen), up to 64GB DDR5 RAM, SSD storage, and Windows 11 Pro.",
                             "Description_DE": "Dell OptiPlex Micro 7010 Ultra-Kompakt-Desktop mit Intel Core i5/i7 (13. Generation), bis zu 64 GB DDR5 RAM, SSD-Speicher und Windows 11 Pro.",
-                            "release_year": "2023"
+                            "release_year": "2023",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/desktops/optiplex-desktops/optiplex-d13-micro/spi-standard/ng/desktop-optiplex-7010-mff-black-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/optiplex-7010-micro/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "OptiPlex Micro 7020",
@@ -7968,7 +8109,10 @@
                             "model_number": "OptiPlex Micro 7020",
                             "Description_EN": "Dell OptiPlex Micro 7020 ultra-compact desktop with Intel Core i5/i7 (14th gen), up to 64GB DDR5 RAM, SSD storage, and Windows 11 Pro.",
                             "Description_DE": "Dell OptiPlex Micro 7020 Ultra-Kompakt-Desktop mit Intel Core i5/i7 (14. Generation), bis zu 64 GB DDR5 RAM, SSD-Speicher und Windows 11 Pro.",
-                            "release_year": "2024"
+                            "release_year": "2024",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/desktops/optiplex-desktops/optiplex-d13-micro/spi-13-5-plus/ng/desktop-optiplex-7020-mff-plus-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/optiplex-7020-micro/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "OptiPlex Tower 7010",
@@ -8072,7 +8216,10 @@
                             "model_number": "Precision 3581",
                             "Description_EN": "Dell Precision 3581 15.6-inch mobile workstation with Intel Core i5/i7/Xeon W (13th gen), FHD display, up to 64GB DDR5 RAM, and NVIDIA RTX A2000 GPU.",
                             "Description_DE": "Dell Precision 3581 15,6-Zoll Mobile Workstation mit Intel Core i5/i7/Xeon W (13. Generation), FHD Display, bis zu 64 GB DDR5 RAM und NVIDIA RTX A2000 GPU.",
-                            "release_year": "2023"
+                            "release_year": "2023",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/workstations/mobile-workstations/precision/15-3581/spi/ng/workstation-precision-15-3581-nt-gray-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/precision-15-3581-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Precision 3591",
@@ -8085,7 +8232,10 @@
                             "model_number": "Precision 3591",
                             "Description_EN": "Dell Precision 3591 15.6-inch mobile workstation with Intel Core Ultra (14th gen), FHD display, up to 64GB DDR5 RAM, and NVIDIA RTX GPU.",
                             "Description_DE": "Dell Precision 3591 15,6-Zoll Mobile Workstation mit Intel Core Ultra (14. Generation), FHD Display, bis zu 64 GB DDR5 RAM und NVIDIA RTX GPU.",
-                            "release_year": "2024"
+                            "release_year": "2024",
+                            "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/workstations/mobile-workstations/precision/15-3591/spi/non-touch/ng/workstation-precision-15-3591-nt-gray-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/precision-15-3591-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Precision 3630 Tower",
@@ -8176,7 +8326,10 @@
                             "model_number": "Precision 7720",
                             "Description_EN": "Dell Precision 7720 17.3-inch mobile workstation with Intel Core i7/Xeon E3 (7th gen), FHD display, up to 64GB ECC RAM, and NVIDIA Quadro P5000 GPU.",
                             "Description_DE": "Dell Precision 7720 17,3-Zoll Mobile Workstation mit Intel Core i7/Xeon E3 (7. Generation), FHD Display, bis zu 64 GB ECC RAM und NVIDIA Quadro P5000 GPU.",
-                            "release_year": "2017"
+                            "release_year": "2017",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-enterprise-products/enterprise-systems/precision/precision-7720/precision7720.jpeg?fmt=jpg",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/precision-17-7720-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Precision 7730",
@@ -8189,7 +8342,10 @@
                             "model_number": "Precision 7730",
                             "Description_EN": "Dell Precision 7730 17.3-inch mobile workstation with Intel Core i7/Xeon E (8th gen), FHD display, up to 128GB ECC RAM, and NVIDIA Quadro RTX GPU.",
                             "Description_DE": "Dell Precision 7730 17,3-Zoll Mobile Workstation mit Intel Core i7/Xeon E (8. Generation), FHD Display, bis zu 128 GB ECC RAM und NVIDIA Quadro RTX GPU.",
-                            "release_year": "2018"
+                            "release_year": "2018",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/workstations/mobile-workstations/precision/17-7730/spi/ng/workstation-precision-17-7730-relsize-ss-mtrc-500-ng.psd?fmt=png-alpha",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/precision-17-7730-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Precision 7740",
@@ -8436,7 +8592,10 @@
                             "model_number": "Latitude 7320 Detachable",
                             "Description_EN": "Dell Latitude 7320 Detachable 13-inch 2-in-1 tablet with Intel Core i5/i7 (11th gen), FHD+ touchscreen, detachable keyboard, optional LTE, and Windows 10/11 Pro.",
                             "Description_DE": "Dell Latitude 7320 Detachable 13-Zoll 2-in-1 Tablet mit Intel Core i5/i7 (11. Generation), FHD+ Touchscreen, abnehmbarer Tastatur, optionalem LTE und Windows 10/11 Pro.",
-                            "release_year": "2021"
+                            "release_year": "2021",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/latitude-13-7320/global-spi/ng/detachable/tablet-latitude-13-7320-t-relsize-500-ng.psd?fmt=jpg&wid=1000",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-13-7320-detachable-laptop/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 7212 Rugged Extreme Tablet",
@@ -8462,7 +8621,10 @@
                             "model_number": "Latitude 7220 Rugged Extreme Tablet",
                             "Description_EN": "Dell Latitude 7220 Rugged Extreme Tablet 11.6-inch with Intel Core i5/i7 (8th gen), FHD touchscreen, IP65 rated, and Windows 10 Pro.",
                             "Description_DE": "Dell Latitude 7220 Rugged Extreme Tablet 11,6-Zoll mit Intel Core i5/i7 (8. Generation), FHD Touchscreen, IP65-Schutz und Windows 10 Pro.",
-                            "release_year": "2019"
+                            "release_year": "2019",
+                            "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/12-7220/global-spi/ng/tablet-latitude-12-7220-black-falcon-oc-level-165x119-ng.png?fmt=jpg",
+                            "image_source": "https://www.dell.com/support/home/en-us/product-support/product/latitude-12-7220-tablet/overview",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "Latitude 7230 Rugged Extreme Tablet",
@@ -8539,7 +8701,10 @@
                             "model_number": "TC58",
                             "Description_EN": "Zebra TC58 enterprise mobile computer with Qualcomm SD6490, 6-inch FHD display, integrated barcode scanner, 5G, IP67/MIL-STD-810H rated, and Android 13.",
                             "Description_DE": "Zebra TC58 Enterprise Mobile Computer mit Qualcomm SD6490, 6-Zoll FHD Display, integriertem Barcode-Scanner, 5G, IP67/MIL-STD-810H zertifiziert und Android 13.",
-                            "release_year": "2022"
+                            "release_year": "2022",
+                            "image_url": "https://www.zebra.com/content/dam/support-dam/global/photography/web-production/0001/tc58-photography-website.jpg",
+                            "image_source": "https://www.zebra.com/us/en/support-downloads/mobile-computers/handheld/tc58.html",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "TC53",
@@ -8626,7 +8791,10 @@
                             "model_number": "NEO Z100-0dB",
                             "Description_EN": "MINIX NEO Z100-0dB fanless mini PC with Intel N100, 16GB LPDDR5 RAM, 512GB SSD, Wi-Fi 6, and Windows 11 Pro.",
                             "Description_DE": "MINIX NEO Z100-0dB lautloser Mini-PC mit Intel N100, 16 GB LPDDR5 RAM, 512 GB SSD, Wi-Fi 6 und Windows 11 Pro.",
-                            "release_year": "2023"
+                            "release_year": "2023",
+                            "image_url": "https://www.minix.com.hk/cdn/shop/files/Z100-0dB-S_adb8f97c-1b94-40c2-9443-15b4c2a50ecd.jpg?v=1752465469&width=1024",
+                            "image_source": "https://www.minix.com.hk/products/minix-z100-0db-fanless-mini-pc",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "NEO J51-C8 Max",
@@ -8639,7 +8807,10 @@
                             "model_number": "MINIX NEO J51-C8 Max",
                             "Description_EN": "MINIX NEO J51-C8 Max fanless mini PC with Intel Core i5-1155G7, 16GB DDR4 RAM, 512GB SSD, Thunderbolt 4, and Windows 11 Pro.",
                             "Description_DE": "MINIX NEO J51-C8 Max lautloser Mini-PC mit Intel Core i5-1155G7, 16 GB DDR4 RAM, 512 GB SSD, Thunderbolt 4 und Windows 11 Pro.",
-                            "release_year": "2022"
+                            "release_year": "2022",
+                            "image_url": "https://www.minix.com.hk/cdn/shop/files/J51-C8MaxMain_1.jpg?v=1763360288&width=1024",
+                            "image_source": "https://www.minix.com.hk/products/minix-neo-j51-c8-max-mini-pc",
+                            "image_checked": "2026-11-16"
                         }
                     ]
                 }
@@ -8844,7 +9015,10 @@
                             "model_number": "MP54 E2",
                             "Description_EN": "Yealink MP54 E2 Android-based IP desk phone with 4.3-inch touchscreen, Wi-Fi, Bluetooth, Microsoft Teams certified, and Android 10.",
                             "Description_DE": "Yealink MP54 E2 Android-basiertes IP-Tischtelefon mit 4,3-Zoll Touchscreen, Wi-Fi, Bluetooth, Microsoft Teams zertifiziert und Android 10.",
-                            "release_year": "2022"
+                            "release_year": "2022",
+                            "image_url": "https://www.yealink.com/website-service/attachment/product/image/20240705/2024070509592555229b0.jpg",
+                            "image_source": "https://www.yealink.com/en/product-detail/microsoft-teams-phone-mp54e2",
+                            "image_checked": "2026-11-16"
                         },
                         {
                             "model_name": "MP56 E2",
@@ -8895,7 +9069,10 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "image_url": "https://www.yealink.com/website-service/download/yealink-logo.png",
+            "image_source": "https://www.yealink.com/en/product-detail/microsoft-teams-phone-mp54e2",
+            "image_checked": "2026-11-16"
         },
         {
             "manufacturer": "KEYENCE Corporation",
