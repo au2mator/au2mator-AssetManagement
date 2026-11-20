@@ -524,6 +524,7 @@ $au2mator_Header = @{
 #     $UpdateExistingCompanies   Update manufacturers
 #
 #   Assets
+#     $SetMissingAssetsOffline       Set assets that are no longer in Intune to Offline
 #     $AssignCompanyFromUserToAsset  Set the company of an asset to the company of its assigned user
 #     $SyncAssignedUserToExistingAssets  Take over the user from Intune for assets that already exist
 #
@@ -559,6 +560,12 @@ $DownloadCompanyLogos = $true
 $UpdateExistingCategories = $true
 $UpdateExistingModels = $false
 $UpdateExistingCompanies = $true
+
+# Set assets that are In Use in au2mator but no longer in Intune to Offline.
+# ON by default, this is what most installations expect.
+# Set to $false to leave such assets as they are - e.g. if Intune only returns
+# a part of the devices or other sources also maintain assets in au2mator.
+$SetMissingAssetsOffline = $true
 
 # Assign the company of the assigned user to the asset.
 # If the user an asset is assigned to has a company in au2mator, the asset gets
@@ -1332,7 +1339,11 @@ try {
 
 
 
+    if (-not $SetMissingAssetsOffline) {
+        Write-au2matorLog -Type INFO -Text "Skipping Offline for devices no longer in Intune - SetMissingAssetsOffline is disabled"
+    }
     foreach ($Device in $DevicesNotInIntune) {
+        if (-not $SetMissingAssetsOffline) { break }
         #Check if Device is In Use or Offline in ITAM, if In Use, we need to set it to Offline, because it is not in Intune anymore
         if ($Device.status.id -eq $InUseStatusID) {
             Write-au2matorLog -Type INFO -Text "Device: $($Device.name) - Serial: $($Device.serialNumber) is In Use in ITAM but not in Intune anymore, setting to Offline"
