@@ -407,8 +407,8 @@ function Update-ModelFilesFromGitHub {
         [int]$TimeoutSec = 60
     )
 
-    if ($Repository -notmatch '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$') { throw "Invalid GitHub repository '$Repository' (expected owner/name)" }
-    if ($Branch -notmatch '^[A-Za-z0-9_./-]+$') { throw "Invalid GitHub branch or tag '$Branch'" }
+    if ($Repository -notmatch '^(?!.*\.\.)[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$') { throw "Invalid GitHub repository '$Repository' (expected owner/name)" }
+    if ($Branch -notmatch '^(?!/)(?!.*(\.\.|//))[A-Za-z0-9_./-]+$') { throw "Invalid GitHub branch or tag '$Branch'" }
 
     try { [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12 } catch { }
     if (-not (Test-Path -LiteralPath $Destination)) { New-Item -ItemType Directory -Path $Destination -Force | Out-Null }
@@ -440,12 +440,12 @@ function Update-ModelFilesFromGitHub {
                     [PSCustomObject]@{ Name = $Name; Status = 'UpToDate'; Message = 'No change on GitHub' }
                     continue
                 }
-                Copy-Item -LiteralPath $LocalPath -Destination "$LocalPath.bak" -Force
+                Copy-Item -LiteralPath $LocalPath -Destination "$LocalPath.bak" -Force -ErrorAction Stop
             }
 
             $TempPath = "$LocalPath.download"
             [System.IO.File]::WriteAllBytes($TempPath, $Bytes)
-            Move-Item -LiteralPath $TempPath -Destination $LocalPath -Force
+            Move-Item -LiteralPath $TempPath -Destination $LocalPath -Force -ErrorAction Stop
             Write-au2matorLog -Type INFO -Text "$Name downloaded from GitHub ($Repository@$Branch, $([math]::Round($Bytes.Length / 1KB)) KB)"
             [PSCustomObject]@{ Name = $Name; Status = 'Updated'; Message = "Downloaded from $Repository@$Branch" }
         }
@@ -977,7 +977,7 @@ try {
     $manufacturers_File = "$BaseDir\models.json"
     $categories_File = "$BaseDir\categories.json"
 
-    $JSONModels = Get-Content -Path $models_File | ConvertFrom-Json | Select-Object -ExpandProperty manufacturers | ForEach-Object {
+    $JSONModels = Get-Content -Path $models_File -Encoding UTF8 | ConvertFrom-Json | Select-Object -ExpandProperty manufacturers | ForEach-Object {
         $manufacturer = $_.manufacturer
         $manufacturer_short = $_.short_name
         $_.categories | ForEach-Object {
@@ -1055,7 +1055,7 @@ try {
 
 
 
-    $JSONManufacturers = Get-Content -Path $manufacturers_File | ConvertFrom-Json
+    $JSONManufacturers = Get-Content -Path $manufacturers_File -Encoding UTF8 | ConvertFrom-Json
     $JSONManufacturerLookup = @{}
     foreach ($obj in $JSONManufacturers.manufacturers) {
         $key = "$($obj.short_name)"
@@ -1064,7 +1064,7 @@ try {
     
 
 
-    $JSONCategories = Get-Content -Path $categories_File | ConvertFrom-Json
+    $JSONCategories = Get-Content -Path $categories_File -Encoding UTF8 | ConvertFrom-Json
     $JSONCategorieLookup = @{}
     foreach ($obj in $JSONCategories.categories) {
         $key = "$($obj.category)"
