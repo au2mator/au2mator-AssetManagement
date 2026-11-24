@@ -605,6 +605,7 @@ $AllowedImageHosts = @(
     'www.yealink.com', 'www.keyence.com', 'www.zotac.com', 'www.msi.com',
     'www.fujitsu.com', 'www.poly.com', 'www.alienware.com', 'step-solutions.de',
     'psrefstuff.lenovo.com', 'images.samsung.com', 'i02.appmifile.com',
+    'download.lenovo.com', 'dlcdnwebimgs.asus.com',
     'www.minix.com.hk', 'static.lenovo.com',
     'www-file.honor.com', 'www.honor.com', 'www.gstatic.com'
 )

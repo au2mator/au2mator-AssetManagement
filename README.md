@@ -28,7 +28,7 @@ asset fields usable in every self-service form you build.
 
 | File | Content |
 |---|---|
-| `models.json` | **729 models** across **27 manufacturers**, with category, release year, EN + DE descriptions and matching keys |
+| `models.json` | **774 models** across **28 manufacturers**, with category, release year, EN + DE descriptions and matching keys |
 | `categories.json` | **10 device categories** with EN + DE descriptions, each naming its icon |
 | `icons/` | **10 neutral category icons** (PNG) |
 
@@ -58,7 +58,7 @@ canonical model, so a device can be matched no matter where it came from.
 Manufacturers currently covered: Apple, Dell, HP, HPE, Lenovo, Fujitsu,
 Samsung, Microsoft, ASUS, Acer, MSI, Gigabyte, Dynabook, Alienware, Intel,
 ZOTAC, MINIX, VMware, Zebra, Honeywell, KEYENCE, Poly, Yealink, step,
-Xiaomi, HONOR, Google.
+Xiaomi, HONOR, Google, Cat.
 
 ## Images: linked, never hosted
 
@@ -108,11 +108,11 @@ installation.
 
 Current coverage: **Apple, 73 of 73 models**, linked to Apple's own support
 CDN and sourced from Apple's "Identify your ..." pages. Other manufacturers
-have images only for a handful of recently added models (Samsung 4, Dell 3,
-Lenovo 1, Zebra 1, Yealink 1, Xiaomi 1, HONOR 1); everything else has none yet.
+have images for part of their models (Dell 50, Lenovo 31, Samsung 7, Zebra 2,
+MINIX 2, Yealink 2, HP 1, ASUS 1, Xiaomi 1, HONOR 1); everything else has none yet.
 
-**Manufacturer logos: 18 of 27**, each taken from that manufacturer's own
-site. The remaining nine are deliberately empty rather than wrong: some
+**Manufacturer logos: 20 of 28**, each taken from that manufacturer's own
+site. The remaining eight are deliberately empty rather than wrong: some
 sites expose nothing better than a 32×32 `favicon.ico`, some block automated
 access, and for sub-brands the only logo on offer belonged to the parent
 company. A missing logo renders as the category icon, which beats showing
