@@ -1015,7 +1015,7 @@ try {
         Write-au2matorLog -Type INFO -Text "Skipping category update - UpdateExistingCategories is disabled"
     }
 
-    if ($ITAMModelLookup_keyModelIntune) {
+    if ($UpdateExistingModels) {
         Write-au2matorLog -Type INFO -Text "Checking existing models against JSON"
         $ModelsUpdated = 0
         $ModelsChecked = 0
