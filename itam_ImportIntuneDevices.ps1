@@ -567,6 +567,9 @@ $UpdateExistingCompanies = $true
 # a part of the devices or other sources also maintain assets in au2mator.
 $SetMissingAssetsOffline = $true
 
+#inlcude external Entra Account
+$includeExternalEntraAccounts = $false
+
 # Assign the company of the assigned user to the asset.
 # If the user an asset is assigned to has a company in au2mator, the asset gets
 # that company: new assets when they are created, existing assets in a separate
@@ -618,8 +621,15 @@ try {
     #Get All Users from Azure
     $Entra_header = Get-GraphHeader -ClientID $Entra_AppReg_clientID -TenantID $Entra_AppReg_tenantID -Secret $Entra_AppReg_Clientsecret
 
-    $Resource = "users"
-    $uri = "https://graph.microsoft.com/v1.0/$($Resource)?`$select=displayName,givenName,postalCode,identities,surname,userPrincipalName,companyName,accountEnabled"
+    if ($includeExternalEntraAccounts) {
+        $Resource = "users?"
+    }
+    else {
+        $Resource = "users?`$filter=userType eq 'Member'&"
+    }
+    
+   
+    $uri = "https://graph.microsoft.com/v1.0/$($Resource)`$select=displayName,givenName,postalCode,identities,surname,userPrincipalName,companyName,accountEnabled"
     $AllEntraUsers = Get-AzureResourcePaging -URL $uri -AuthHeader $Entra_header
 
     Write-au2matorLog -Type INFO -Text "Total Users in Entra: $($AllEntraUsers.count)"
@@ -1277,7 +1287,7 @@ try {
                 name           = $Device.deviceName
                 manufacturerId = $ModelMatchITAM.manufacturer.id
                 statusId       = $InUseStatusID
-                        }
+            }
 
             # Company of the assigned user (switch $AssignCompanyFromUserToAsset)
             if ($AssignCompanyFromUserToAsset -and $AssignedUser) {
