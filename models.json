@@ -5926,10 +5926,7 @@
                             "model_number": "21WT003HGE",
                             "Description_EN": "Lenovo ThinkPad T16 Gen 5 16-inch notebook with Intel Core Ultra 5 325, 16 GB LPDDR5X, 512 GB SSD, 16\" WUXGA display and Windows 11 Pro.",
                             "release_year": "2026",
-                            "Description_DE": "Lenovo ThinkPad T16 Gen 5 Notebook mit 16\"-WUXGA-Display, Intel Core Ultra 5 325, 16 GB LPDDR5X, 512 GB SSD und Windows 11 Pro.",
-                            "image_url": "https://download.lenovo.com/images/ProdImageLaptops/tp_t16_gen4.jpg",
-                            "image_source": "https://pcsupport.lenovo.com/at/de/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t16-gen-5-type-21wt-21wu/21wt/21wt003hge",
-                            "image_checked": "2026-11-24"
+                            "Description_DE": "Lenovo ThinkPad T16 Gen 5 Notebook mit 16\"-WUXGA-Display, Intel Core Ultra 5 325, 16 GB LPDDR5X, 512 GB SSD und Windows 11 Pro."
                         },
                         {
                             "model_name": "ThinkPad X1 Carbon Gen 8",
