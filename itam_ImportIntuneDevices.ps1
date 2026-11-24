@@ -382,6 +382,84 @@ function Get-RemoteImageBase64 {
     }
 }
 
+function Update-ModelFilesFromGitHub {
+    <#
+        Downloads models.json and categories.json from the GitHub repository into
+        the base directory, so the import always runs against the current catalog.
+
+        - Only the catalog files are fetched, over HTTPS from raw.githubusercontent.com.
+        - With -OnlyIfNew a local file is replaced only if the content on GitHub is
+          different (SHA-256 comparison). Unchanged files are not touched.
+        - A download is validated (valid JSON, expected top-level key) BEFORE it
+          replaces the local file. The previous version is kept as <name>.bak.
+        - If a download fails, the existing local file stays in place and a WARNING
+          is logged. If there is no local file at all, the function throws, because
+          the import cannot run without the catalog.
+
+        Returns one object per file: Name, Status (Updated | UpToDate | Failed), Message.
+    #>
+    param (
+        [Parameter(Mandatory)][string]$Repository,       # owner/name
+        [Parameter(Mandatory)][string]$Destination,
+        [string]$Branch = 'main',                        # branch or tag
+        [string[]]$FileNames = @('models.json', 'categories.json'),
+        [switch]$OnlyIfNew,
+        [int]$TimeoutSec = 60
+    )
+
+    if ($Repository -notmatch '^(?!.*\.\.)[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$') { throw "Invalid GitHub repository '$Repository' (expected owner/name)" }
+    if ($Branch -notmatch '^(?!/)(?!.*(\.\.|//))[A-Za-z0-9_./-]+$') { throw "Invalid GitHub branch or tag '$Branch'" }
+
+    try { [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12 } catch { }
+    if (-not (Test-Path -LiteralPath $Destination)) { New-Item -ItemType Directory -Path $Destination -Force | Out-Null }
+
+    # Top-level key each file must contain, so an error page is never saved as catalog
+    $RequiredKey = @{ 'models.json' = 'manufacturers'; 'categories.json' = 'categories' }
+
+    foreach ($Name in $FileNames) {
+        $LocalPath = Join-Path $Destination $Name
+        $Url = "https://raw.githubusercontent.com/$Repository/$Branch/$Name"
+
+        try {
+            $Response = Invoke-WebRequest -Uri $Url -UseBasicParsing -TimeoutSec $TimeoutSec -MaximumRedirection 3
+            $Bytes = $Response.RawContentStream.ToArray()
+            if ($null -eq $Bytes -or $Bytes.Length -eq 0) { throw 'Download was empty' }
+
+            $Text = (New-Object System.Text.UTF8Encoding($false)).GetString($Bytes).TrimStart([char]0xFEFF)
+            $Parsed = $Text | ConvertFrom-Json
+            if ($RequiredKey.ContainsKey($Name) -and -not ($Parsed.PSObject.Properties.Name -contains $RequiredKey[$Name])) {
+                throw "Unexpected content: top-level key '$($RequiredKey[$Name])' not found"
+            }
+
+            $NewHash = (Get-FileHash -InputStream ([System.IO.MemoryStream]::new($Bytes)) -Algorithm SHA256).Hash
+
+            if (Test-Path -LiteralPath $LocalPath) {
+                $OldHash = (Get-FileHash -LiteralPath $LocalPath -Algorithm SHA256).Hash
+                if ($OnlyIfNew -and $OldHash -eq $NewHash) {
+                    Write-au2matorLog -Type INFO -Text "$Name is up to date (SHA-256 $($NewHash.Substring(0, 12)))"
+                    [PSCustomObject]@{ Name = $Name; Status = 'UpToDate'; Message = 'No change on GitHub' }
+                    continue
+                }
+                Copy-Item -LiteralPath $LocalPath -Destination "$LocalPath.bak" -Force -ErrorAction Stop
+            }
+
+            $TempPath = "$LocalPath.download"
+            [System.IO.File]::WriteAllBytes($TempPath, $Bytes)
+            Move-Item -LiteralPath $TempPath -Destination $LocalPath -Force -ErrorAction Stop
+            Write-au2matorLog -Type INFO -Text "$Name downloaded from GitHub ($Repository@$Branch, $([math]::Round($Bytes.Length / 1KB)) KB)"
+            [PSCustomObject]@{ Name = $Name; Status = 'Updated'; Message = "Downloaded from $Repository@$Branch" }
+        }
+        catch {
+            if (Test-Path -LiteralPath "$LocalPath.download") { Remove-Item -LiteralPath "$LocalPath.download" -Force -ErrorAction SilentlyContinue }
+            if (-not (Test-Path -LiteralPath $LocalPath)) {
+                throw "Could not download $Name from GitHub and there is no local copy: $($_.Exception.Message)"
+            }
+            Write-au2matorLog -Type WARNING -Text "Could not download $Name from GitHub - using the existing local file. $($_.Exception.Message)"
+            [PSCustomObject]@{ Name = $Name; Status = 'Failed'; Message = $_.Exception.Message }
+        }
+    }
+}
+
 function Invoke-au2matorPatch {
     <#
         Sends a JSON Patch operation to the au2mator API.
@@ -528,6 +606,12 @@ $au2mator_Header = @{
 #     $AssignCompanyFromUserToAsset  Set the company of an asset to the company of its assigned user
 #     $SyncAssignedUserToExistingAssets  Take over the user from Intune for assets that already exist
 #
+#   Catalog files
+#     $DownloadModelFilesFromGitHub  Download models.json and categories.json from GitHub into $BaseDir
+#     $ModelFilesOnlyIfNew           Replace a local file only if the GitHub version is different
+#     $ModelFilesRepository          GitHub repository (owner/name)
+#     $ModelFilesBranch              Branch or tag to download from
+#
 #   Security
 #     $AllowedImageHosts         Allowed manufacturer domains for image downloads
 #
@@ -609,6 +693,16 @@ $AllowedImageHosts = @(
     'www.minix.com.hk', 'static.lenovo.com',
     'www-file.honor.com', 'www.honor.com', 'www.gstatic.com'
 )
+# Catalog files from GitHub (models.json and categories.json)
+#   $true  = at the start of the import, both files are downloaded from the repository into $BaseDir
+#   $false = the files already in $BaseDir are used as they are (default - local changes are kept)
+$DownloadModelFilesFromGitHub = $false
+# $true = a local file is only replaced if the file on GitHub is different (SHA-256 comparison).
+# Whenever a file is replaced, the previous version is kept as <name>.bak
+$ModelFilesOnlyIfNew = $true
+$ModelFilesRepository = 'au2mator/au2mator-AssetManagement'
+$ModelFilesBranch = 'main'             # branch or tag - use a tag to pin a version
+
 # Cache for Get-ITAMUserCompanyId (user id -> company id)
 $ITAMUserCompanyCache = @{}
 
@@ -870,12 +964,20 @@ try {
 
 
 
+    #Get the current catalog files from GitHub (optional, see $DownloadModelFilesFromGitHub)
+    if ($DownloadModelFilesFromGitHub) {
+        $ModelFileResult = Update-ModelFilesFromGitHub -Repository $ModelFilesRepository -Branch $ModelFilesBranch -Destination $BaseDir -OnlyIfNew:$ModelFilesOnlyIfNew
+        foreach ($FileResult in $ModelFileResult) {
+            Write-au2matorLog -Type INFO -Text "Catalog file $($FileResult.Name): $($FileResult.Status) - $($FileResult.Message)"
+        }
+    }
+
     #Get Models from JSON
     $models_File = "$BaseDir\models.json"
     $manufacturers_File = "$BaseDir\models.json"
     $categories_File = "$BaseDir\categories.json"
 
-    $JSONModels = Get-Content -Path $models_File | ConvertFrom-Json | Select-Object -ExpandProperty manufacturers | ForEach-Object {
+    $JSONModels = Get-Content -Path $models_File -Encoding UTF8 | ConvertFrom-Json | Select-Object -ExpandProperty manufacturers | ForEach-Object {
         $manufacturer = $_.manufacturer
         $manufacturer_short = $_.short_name
         $_.categories | ForEach-Object {
@@ -953,7 +1055,7 @@ try {
 
 
 
-    $JSONManufacturers = Get-Content -Path $manufacturers_File | ConvertFrom-Json
+    $JSONManufacturers = Get-Content -Path $manufacturers_File -Encoding UTF8 | ConvertFrom-Json
     $JSONManufacturerLookup = @{}
     foreach ($obj in $JSONManufacturers.manufacturers) {
         $key = "$($obj.short_name)"
@@ -962,7 +1064,7 @@ try {
     
 
 
-    $JSONCategories = Get-Content -Path $categories_File | ConvertFrom-Json
+    $JSONCategories = Get-Content -Path $categories_File -Encoding UTF8 | ConvertFrom-Json
     $JSONCategorieLookup = @{}
     foreach ($obj in $JSONCategories.categories) {
         $key = "$($obj.category)"
