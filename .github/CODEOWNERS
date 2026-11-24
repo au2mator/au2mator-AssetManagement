@@ -1,0 +1,10 @@
+# Code owners are requested automatically for review on every pull request.
+# The import script and the catalog files are used by customers (the script can
+# download models.json and categories.json from this repository), so changes to
+# them need an explicit review before they are merged.
+
+*                               @Seidlm
+/itam_ImportIntuneDevices.ps1   @Seidlm
+/models.json                    @Seidlm
+/categories.json                @Seidlm
+/.github/                       @Seidlm
