@@ -60,6 +60,33 @@ Samsung, Microsoft, ASUS, Acer, MSI, Gigabyte, Dynabook, Alienware, Intel,
 ZOTAC, MINIX, VMware, Zebra, Honeywell, KEYENCE, Poly, Yealink, step,
 Xiaomi, HONOR, Google, Cat.
 
+## Keeping the catalog current in the import script
+
+`itam_ImportIntuneDevices.ps1` can fetch `models.json` and `categories.json`
+from this repository itself, so an import always runs against the current
+catalog without copying files by hand. The switches are in the settings block
+of the script:
+
+```powershell
+$DownloadModelFilesFromGitHub = $true    # default: $false
+$ModelFilesOnlyIfNew          = $true    # replace a local file only if GitHub differs
+$ModelFilesRepository         = 'au2mator/au2mator-AssetManagement'
+$ModelFilesBranch             = 'main'   # branch or tag; a tag pins a version
+```
+
+- Only the two catalog files are downloaded, over HTTPS from
+  `raw.githubusercontent.com`, into the script's base directory (`$BaseDir`).
+- With `$ModelFilesOnlyIfNew`, the SHA-256 of the download is compared with the
+  local file. Unchanged files are left alone. Whenever a file is replaced, the
+  previous version is kept as `<name>.bak`.
+- A download is validated (valid JSON, expected top-level key) before it
+  replaces anything. If the download fails, the local file stays in place and
+  a warning is logged. If there is no local copy at all, the import stops with
+  an error, because it cannot run without the catalog.
+- The default is **off**, because switching it on replaces local edits to these
+  two files. If you need models of your own, contribute them through a pull
+  request or work from a fork and point `$ModelFilesRepository` at it.
+
 ## Images: linked, never hosted
 
 This repository ships **neutral category icons only** — one per device type,
